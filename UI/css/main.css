@@ -75,6 +75,7 @@ header h1 .heading-style{
     color: orangered;
     padding-top: 5px;
     margin-top: 25px;
+    text-align: center;
 }
 .login-area a:hover{
     color: gray;
