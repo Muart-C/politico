@@ -6,15 +6,18 @@ body{
     font-size: 13px;
 }
 
-header #brand{
+header .brand{
     text-align: center;
 }
 
-header #brand p{
+header .brand p{
     font-size:20px;
 }
-header #brand h1{
+header .brand h1{
     font-size:30px;
+}
+header h1{
+    color: #35424a;
 }
 
 header h1 .heading-style{
@@ -42,7 +45,7 @@ header h1 .heading-style{
     width: 100%;
     margin-bottom: 25px;
 }
-.login-area input[type="email"], input[type="password"]{
+.login-area input[type="text"],input[type="email"], input[type="password"]{
     border:none;
     background:transparent;
     border-bottom: 1px solid orangered;
