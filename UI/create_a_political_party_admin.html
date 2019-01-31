@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Create a Political Party</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+</head>
+<body>
+   <header id="dashboard">
+       <div class="container">
+            <div id="top-nav-brand">
+                <h1 id="dash-header">Poli<span class="heading-style">Tico</span> ~ Election Services Portal</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a class="log-auth" href="index.html">Log out</a></li>
+                </ul>
+            </nav>
+       </div>
+   </header> 
+   <div class="login-area">
+        <h4>Create a Political Party</h4>
+        
+            <form action="">
+                <div class="input-field">
+                   <center><label for="part_mail">Political party Email</label></center> 
+                    <input type="email" name="part_mail" id="part_mail" required>
+                </div>
+                <div>
+                    <center><label for="part_name">Political Party Name</label></center>
+                    <input type="text" name="part_name" id="part_name" required>
+                </div>
+                <div>
+                    <center><label for="slogan">Political Party Slogan</label></center>
+                    <input type="text" name="slogan" id="slogan" required>
+                </div>
+                <div>
+                    <center><label for="party_bio">A brief Bio for the Party</label></center>
+                    <textarea name="party_bio" id="party_bio" cols="40" rows="5"></textarea>
+                </div>
+                
+                <input type="submit" class="log-auth" value="Register the party">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
