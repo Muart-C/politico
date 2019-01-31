@@ -1,12 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Create a Government Office</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
 </head>
 <body>
-    
+   <header id="dashboard">
+       <div class="container">
+            <div id="top-nav-brand">
+                <h1 id="dash-header">Poli<span class="heading-style">Tico</span> ~ Election Services Portal</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a class="log-auth" href="index.html">Log out</a></li>
+                </ul>
+            </nav>
+       </div>
+   </header> 
+   <div class="login-area">
+        <h4>Create a Government Office</h4>
+        
+            <form action="">
+                <div class="input-field">
+                    <center><label for="office_name">office Name</label></center>
+                    <input type="text" name="office_name" id="office_name" required>
+                </div>
+                <div>
+                    <center><label for="office_role">A brief description about the Office role</label></center>
+                    <textarea name="office_role" id="office_role" cols="40" rows="5" required></textarea>
+                </div>
+                
+                <input type="submit" class="log-auth" value="Create a Government Office">
+            </form>
+        </div>
+    </div>
 </body>
 </html>
