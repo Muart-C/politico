@@ -205,3 +205,28 @@ a.button-add:hover{
     background-color: green;
     color: #ffffff;
 }
+
+select{
+    width: 100%;
+    background: none;
+    border:none;
+    width: 350px;
+    margin:20px 10px 20px 10px;
+    min-height: 40px;
+    cursor: pointer;
+}
+
+select:focus{
+    outline: none;
+}
+
+.select{
+    position: relative;
+    border: 1px solid orangered;
+    background: gray;
+    cursor: pointer;
+}
+
+.select option{
+    text-align: center;
+}
