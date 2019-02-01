@@ -4,9 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+    <title>View List of Vying Politicians</title>
 </head>
 <body>
-    
+        <header id="dashboard">
+                <div class="container">
+                     <div id="top-nav-brand">
+                         <h1 id="dash-header">Poli<span class="heading-style">Tico</span> ~ Election Services Portal</h1>
+                     </div>
+                     <nav>
+                         <ul>
+                             <li><a class="log-auth" href="index.html">Log out</a></li>
+                         </ul>
+                     </nav>
+                </div>
+            </header>
+            <div class="container">
+                <center><h3>List of Vying Politicians</h3></center>
+                <div><a class="button-add" href="view_list_of_political_parties.html">View List of Political Parties</a></div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Politician`s Name</th>
+                            <th>Politician`s Party</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                                <td>Sakaja</td>
+                                <td>Jubilee</td>
+                                <td><a class="button-edit" href="view_a_vying_politician.html">View Bio</a></td>
+                            
+                        </tr>
+                        <tr>
+                                <td>Mutua</td>
+                                <td>Maendeleo chapchap</td>
+                                <td><a class="button-edit" href="view_a_vying_politician.html">View Bio</a></td>
+                            </tr>
+                            <tr>
+                            <td>Narc Kenya</td>
+                            <td>We are one</td>
+                            <td><a class="button-edit" href="view_a_vying_politician.html">View Bio</a></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                                <th>Politician`s Name</th>
+                                <th>Politician`s Party</th>
+                                <th>Action</th>
+                        </tr>
+                    </tfoot>
+                </table>
+
+            </div> 
 </body>
 </html>
