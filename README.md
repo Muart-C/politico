@@ -27,9 +27,9 @@ Pivotal Tracker An Agile Management tool contains the breakdown of the project b
 11. A politician can create an application for government office. 
 
 ## Pre-requisites
-An Operating system(Either MacOS or Linux Distros recommended) 
-Git version control.
-A Modern web browser i.e. Google Chrome.
+-An Operating system(Either MacOS or Linux Distros recommended) 
+-Git version control.
+-A Modern web browser i.e. Google Chrome.
 
 ## Testing
 --------------------------------------
