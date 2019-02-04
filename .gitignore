@@ -1,0 +1,48 @@
+# virtualenv
+.venv
+venv/
+ENV/
+
+.vscode/
+
+
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# pyenv
+.python-version
+
+# dotenv
+.env
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Unit test / coverage reports
+htmlcov/
+.coverage
+.coverage.*
+.cache
+coverage.xml
+*,cover
+.hypothesis/
