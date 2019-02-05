@@ -6,8 +6,7 @@ install:
   - pip install -r requirements.txt
 # command to run tests
 script:
-  - coverage run -m pytest
-  - py.test --cov=api
+  - py.test --cov-report term-missing --cov api -v
 
 after_success:
     - coveralls 
