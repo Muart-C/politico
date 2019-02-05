@@ -64,7 +64,27 @@ def get_party(Id):
 
     if party:
         return jsonify({
-            "party" : party,
+            "status" : 200,
+            "data" : [party],
             "success" : "request was successful and a result was returned",
     }) 
+
+#update the name route
+@party_blueprint.route('/parties/<int:party_id>/name', methods=['PATCH'])
+def change_name(party_id):
+    data = request.get_json()
+    name = data.get('name')
+    party = Party().get_party(party_id)
+
+    if party:
+        data['name'] = name
+        return jsonify({
+            "status": 200,
+            "data": [
+                {
+                    "id" : party_id,
+                    "name" : name,
+                }]}), 200
+    return jsonify({"status": 404, "error": "party name not modified"}), 404
+
 
