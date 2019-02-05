@@ -65,6 +65,6 @@ def get_party(Id):
     if party:
         return jsonify({
             "party" : party,
-            "success" : "party was returned",
+            "success" : "request was successful and a result was returned",
     }) 
 
