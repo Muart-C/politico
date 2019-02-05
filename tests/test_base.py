@@ -32,10 +32,10 @@ class BaseTest(unittest.TestCase):
                 ),
                 content_type = "application/json",
             )
-            data = json.loads(response.data.decode())
+            data = json.loads(response.data)
             self.assertEqual(response.status_code, 201)
             self.assertIn('ANC was added', data['success'])
-            self.assertIn(201, data['status'])
+            
 
 
 
