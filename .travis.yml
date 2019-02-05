@@ -7,7 +7,7 @@ install:
 # command to run tests
 script:
   - coverage run -m pytest
-  -py.test --cov=api
+  - py.test --cov=api
 
 after_success:
     - coveralls 
