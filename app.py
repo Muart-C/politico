@@ -15,6 +15,7 @@ def create_app():
     #app.config.from_object(app_configuration[environment])
     #app.config.from_pyfile('config.py')
 
+    
     #url prefix for api version 1
     url_prefix_version_1 = "/api/v1"
 
