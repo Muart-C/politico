@@ -30,7 +30,7 @@ def add_parties():
         "status" : 201,
         "data" : response,
         "message" : "party was created successfully"
-    })
+    }), 201
 #get all parties route    
 @party_blueprint.route('/parties', methods=['GET'])
 def get_parties():
