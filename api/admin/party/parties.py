@@ -29,8 +29,9 @@ def add_parties():
     return jsonify({
         "status" : 201,
         "data" : response,
-        "message" : "party was created successfully"
+        "success" : "party {} was added".format(name)
     }), 201
+
 #get all parties route    
 @party_blueprint.route('/parties', methods=['GET'])
 def get_parties():
@@ -45,7 +46,7 @@ def get_parties():
     political_parties_response = {
         "status" : 200,
         "data" : political_parties,
-        "success" : "get request is for parties successfull",
+        "success" : "get request is for parties successful",
     }
 
     return jsonify(political_parties_response), 200
@@ -62,8 +63,8 @@ def get_party(Id):
     party = Party().get_party(Id)
 
     if party:
-
         return jsonify({
-            "party":party
+            "party" : party,
+            "success" : "party was returned",
     }) 
 
