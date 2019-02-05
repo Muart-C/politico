@@ -35,7 +35,7 @@ class BaseTest(unittest.TestCase):
                 "hqAddress" : "Machakos",
                 "logoUrl" : "https://goo.gl/images/3RKgQ6",
             }
-        ]
+        ] 
 
     def test_add_party(self):
         """ensure a new party can be added to the political party list."""
