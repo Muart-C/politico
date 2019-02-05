@@ -8,7 +8,7 @@ from app import create_app
 class BaseTest(unittest.TestCase):
     """define setup and teardown methods."""
     def setUp(self):
-        app = create_app(environment='testing')
+        app = create_app()
         self.client = app.test_client()
         self.party = {
             "Id" : "1",
