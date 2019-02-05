@@ -23,10 +23,7 @@ class Party(object):
 
     #get one political party
     def get_party(self, Id):
-        if self.political_parties:
-            for party in self.political_parties:
-                if party.get("Id") == Id:
-                    return party
-
+        return [party for party in self.political_parties if party.get("Id") == Id]
+        
 
     
