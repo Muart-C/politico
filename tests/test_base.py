@@ -13,7 +13,6 @@ class BaseTest(unittest.TestCase):
         
         #a dictionary containing a party
         self.party = {
-                "Id" : "1",
                 "name" : "ANC",
                 "hqAddress" : "Kakamega",
                 "logoUrl" : "https://goo.gl/images/B9U4PK",
@@ -22,19 +21,16 @@ class BaseTest(unittest.TestCase):
         #a list of containing dictionaries containing parties
         self.parties = [
             {
-                "Id" : "1",
                 "name" : "ANC",
                 "hqAddress" : "Kakamega",
                 "logoUrl" : "https://goo.gl/images/B9U4PK",
             },
             {
-                "Id" : "2",
                 "name" : "Jubilee",
                 "hqAddress" : "Muthaiga",
                 "logoUrl" : "https://goo.gl/images/7hU72H",
             },
             {
-                "Id" : "3",
                 "name" : "Maendeleo Chapchap",
                 "hqAddress" : "Machakos",
                 "logoUrl" : "https://goo.gl/images/3RKgQ6",
@@ -53,7 +49,7 @@ class BaseTest(unittest.TestCase):
             self.assertEqual(response.status_code, 201)
             self.assertIn('ANC was added', data['success'])
 
-    def get_parties(self):
+    def test_get_parties(self):
         """a list of political parties is returned."""
         with self.client:
             response = self.client.get(
