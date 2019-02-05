@@ -11,19 +11,26 @@ class BaseTest(unittest.TestCase):
         app = create_app()
         self.client = app.test_client()
         self.party = {
-            "Id" : "1",
-            "name" : "ANC",
-            "hqAddress" : "Kakamega",
-            "logoUrl" : "https://goo.gl/images/B9U4PK",
-        }
+                "Id" : "1",
+                "name" : "ANC",
+                "hqAddress" : "Kakamega",
+                "logoUrl" : "https://goo.gl/images/B9U4PK",
+            }
 
     def test_add_party(self):
         """ensure a new party can be added to the political party list."""
         with self.client:
             response = self.client.post(
                 '/parties',
-                data = json.dumps(self.party),
-                content_type = "application/json"
+                data = json.dumps(
+                    {
+                        "Id" : "1",
+                        "name" : "ANC",
+                        "hqAddress" : "Kakamega",
+                        "logoUrl" : "https://goo.gl/images/B9U4PK",
+                    }
+                ),
+                content_type = "application/json",
             )
             data = json.loads(response.data.decode())
             self.assertEqual(response.status_code, 201)
@@ -31,5 +38,4 @@ class BaseTest(unittest.TestCase):
             self.assertIn(201, data['status'])
 
 
-if __name__ == "__main__":
-    unittest.main()
+
