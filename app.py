@@ -16,7 +16,7 @@ def create_app():
     #app.config.from_pyfile('config.py')
 
     #url prefix for api version 1
-    url_prefix_version_1 = "/api/v1/"
+    url_prefix_version_1 = "/api/v1"
 
     #register party blueprint
     app.register_blueprint(party_blueprint, url_prefix=url_prefix_version_1)

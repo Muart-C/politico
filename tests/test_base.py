@@ -21,7 +21,7 @@ class BaseTest(unittest.TestCase):
         """ensure a new party can be added to the political party list."""
         with self.client:
             response = self.client.post(
-                '/parties',
+                '/api/v1/parties',
                 data = json.dumps(
                     {
                         "Id" : "1",
