@@ -42,7 +42,7 @@ def get_offices():
         political_offices_response = {
             "status" : 200,
             "data" : political_offices,
-            "success" : "get request is for offices successful",
+            "success" : "get request to get list of offices was successful",
         }
         return jsonify(political_offices_response), 200
 
@@ -50,7 +50,7 @@ def get_offices():
     #incase the request is unsuccessful json error response is returned
     return jsonify({
         "status": 404, 
-        "error": "the office list was empty"
+        "error": "get request to get list of offices was was unsuccessful"
         }), 404 
     
 #get a particular office route
