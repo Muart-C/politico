@@ -1,9 +1,10 @@
+import json
 from tests.test_base import BaseTest
 
 class TestPartyApi(BaseTest):
     """test the endpoints for the Party and edge cases"""
 
-     def test_add_party(self):
+    def test_add_party(self):
         """ensure a new party can be added to the political party list."""
         with self.client:
             response = self.client.post(
