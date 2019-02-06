@@ -46,6 +46,7 @@ def get_offices():
         }
         return jsonify(political_offices_response), 200
 
+
     #incase the request is unsuccessful json error response is returned
     return jsonify({"status": 404, "error": "the office list was empty"}), 404 
     
