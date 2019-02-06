@@ -3,21 +3,19 @@ import json
 
 from app import create_app
 
-
-
 class BaseTest(unittest.TestCase):
     """define setup and teardown methods."""
     def setUp(self):
         app = create_app()
         self.client = app.test_client()
-        
+
         #a dictionary containing a party
         self.party = {
                 "name" : "ANC",
                 "hqAddress" : "Kakamega",
                 "logoUrl" : "https://goo.gl/images/B9U4PK",
             }
-        
+
         #a list of containing dictionaries containing parties
         self.parties = [
             {
@@ -35,7 +33,7 @@ class BaseTest(unittest.TestCase):
                 "hqAddress" : "Machakos",
                 "logoUrl" : "https://goo.gl/images/3RKgQ6",
             }
-        ] 
+        ]
 
     def test_add_party(self):
         """ensure a new party can be added to the political party list."""
@@ -60,9 +58,7 @@ class BaseTest(unittest.TestCase):
             data = json.loads(response.data)
             self.assertEqual(response.status_code, 200)
             self.assertIsInstance(data['data'], list)
-        
-    
-    
+
 
 
 
