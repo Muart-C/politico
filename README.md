@@ -3,8 +3,21 @@
 [![Coverage Status](https://coveralls.io/repos/github/Muart-C/politico/badge.svg?branch=develop)](https://coveralls.io/github/Muart-C/politico?branch=develop)
 [![Maintainability](https://api.codeclimate.com/v1/badges/71270642743b6a0883b3/maintainability)](https://codeclimate.com/github/Muart-C/politico/maintainability)
 
+# Politico API Endpoints
 
-# installation steps of the application
+| Method  | Endpoint                                   | What the endpoint does                            |
+| ------- | ------------------------------------------ | --------------------------------------------------|
+| `POST`  | `/api/v1/parties`                          | creates a political party                         |
+| `GET`   | `/api/v1/parties`                          | returns all political parties                     |
+| `GET`   | `/api/v1/parties/party_id>`                | returns a specific political party                |
+| `PATCH` | `/api/v1/parties/<party_id>/name`          | updates the name of the political party           |
+| `DELETE`| `/api/v1/parties/party_id>`                | deletes a specific political party                |
+| `POST`  | `/api/v1/offices`                          | creates a government office                       |
+| `GET`   | `/api/v1/offices`                          | returns all the government offices                |
+| `GET`   | `/api/v1/parties/party_id>`                | returns a specific government office              | 
+
+
+# steps to setup the application locally
 
 - clone the git repo
 ```
@@ -18,12 +31,42 @@ $ cd politico
 - create the virtual environment and activate it
 ```
 $ virtualenv venv
-$ source venv/bin/activate
+$ source .env
 ```
 - install dependencies
 ```
 $ pip install -r requirements.txt
 ```
-- Run the app
-``` $ flask run ```
 
+# How to run the Application
+
+- Then execute the following app to run the app
+```
+$ flask run
+```
+
+# How to Test the Application
+------------------------------------------------------------------
+## How to run the unit tests
+ On your terminal execute the following command
+ 
+ ```
+ $ python -m pytests
+ ```
+
+# Testing The API Endpoints
+Use any API Test Client 
+Insomnia is preferred since it is lightweight
+Get it here => [Insomnia Test Client](https://insomnia.rest/download/)
+
+or 
+
+You can use Postman get it here => [Postman](https://www.getpostman.com/downloads/)
+
+
+# Credits
+[Andela Bootcamp](https://andela.com/)
+
+
+# Author
+Charles Muathe Ndirangu
