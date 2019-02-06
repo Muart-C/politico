@@ -96,4 +96,25 @@ def change_name(party_id):
     #incase the request is unsuccessful json error response is returned
     return jsonify({"status": 404, "error": "party name not modified"}), 404
 
+#delete a party route
+@party_blueprint.route('/parties/<int:party_id>', methods=['DELETE'])
+def delete_party(party_id):
+    
+    #initialize the party model
+    party = Party()
+
+    #get party of the provided id
+    party_delete = party.get_party(party_id)
+
+    #check if the party to delete exist in the model
+    if party_delete:
+        party_delete.remove(party_id)
+        return jsonify({
+            "status" : 204,
+            "data" : [
+                {"message" : "party was deleted"},
+            ]
+        })
+    #if party not in list return error
+    return jsonify({"status": 404, "error": "error processing your request"}), 404
 
