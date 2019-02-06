@@ -18,13 +18,7 @@ def add_parties():
             "error" : "invalid request payload"
         })
     
-    #initialize an instance of a party
-    # party = Party()
-
-    #add party to list data structure
-    
-
-    #return a json response with the data payload
+    #return a json response with the data payload of the details
     response = Party().add_party(name, hqAddress, logoUrl)
     return jsonify({
         "status" : 201,
@@ -43,39 +37,53 @@ def get_parties():
     #get a list of all political parties
     political_parties = parties.get_parties()
 
-    political_parties_response = {
-        "status" : 200,
-        "data" : political_parties,
-        "success" : "get request is for parties successful",
-    }
+    #checks if a list of political parties exists then returns it as a json response
+    if political_parties:
+        political_parties_response = {
+            "status" : 200,
+            "data" : political_parties,
+            "success" : "get request is for parties successful",
+        }
+        return jsonify(political_parties_response), 200
 
-    return jsonify(political_parties_response), 200
-
+    #incase the request is unsuccessful json error response is returned
+    return jsonify({"status": 404, "error": "the party list was empty"}), 404 
+    
 #get a particular party route
 @party_blueprint.route('/parties/<int:Id>', methods=['GET'])
 def get_party(Id):
     """get a particular party."""
     
     #initialize a party model
-    #political_party = Party()
+    political_party = Party()
 
     #get a party
-    party = Party().get_party(Id)
+    party = political_party.get_party(Id)
 
+    #checks if the party exists then returns the party as a json response
     if party:
         return jsonify({
             "status" : 200,
             "data" : [party],
             "success" : "request was successful and a result was returned",
-    }) 
+        })
+    #incase the request is unsuccessful json error response is returned
+    return jsonify({"status": 404, "error": "no party with that id was found"}), 404 
 
 #update the name route
 @party_blueprint.route('/parties/<int:party_id>/name', methods=['PATCH'])
 def change_name(party_id):
     data = request.get_json()
     name = data.get('name')
-    party = Party().get_party(party_id)
 
+
+    #initialize the Party model class
+    political_party = Party()
+
+    #retrieve a particular party of provided id
+    party = political_party.get_party(party_id)
+
+    #checks if the party exists then modifies the party name and returns the required json response
     if party:
         data['name'] = name
         return jsonify({
@@ -85,6 +93,7 @@ def change_name(party_id):
                     "id" : party_id,
                     "name" : name,
                 }]}), 200
+    #incase the request is unsuccessful json error response is returned
     return jsonify({"status": 404, "error": "party name not modified"}), 404
 
 
