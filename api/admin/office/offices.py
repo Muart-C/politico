@@ -48,7 +48,10 @@ def get_offices():
 
 
     #incase the request is unsuccessful json error response is returned
-    return jsonify({"status": 404, "error": "the office list was empty"}), 404 
+    return jsonify({
+        "status": 404, 
+        "error": "the office list was empty"
+        }), 404 
     
 #get a particular office route
 @office_blueprint.route('/offices/<int:Id>', methods=['GET'])
