@@ -16,14 +16,11 @@ class Party(object):
         }
         self.political_parties.append(party)
         return party
-    
+
     #get all parties
     def get_parties(self):
         return self.political_parties
 
     #get one political party
     def get_party(self, Id):
-        return [party for party in self.political_parties if party.get("Id") == Id]
-        
-
-    
+        return [print(party) for party in self.political_parties if party.get("Id") == Id]

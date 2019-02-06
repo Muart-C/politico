@@ -9,11 +9,11 @@ script:
   - py.test --cov-report term-missing --cov api -v
 
 after_success:
-    - coveralls 
+    - coveralls
 
 # deploy:
 #   provider: heroku
 #   api_key:
 #     secure: "bPEhm2H+mLRenIs8w5xDSZeb+oeFX+E1EwPYMgY6BN6equPaWAgdxaXWcSq9+mSXICRLGE378CUkfoJ1H6YrZNfsEIo3AO8j9yDnPk3KEPQIvbQcxyxkhhBAxDFB0goioHDXMibQhBpNH69Ub57kagYbADV6g5UHf46uHpRHDyBRFlXzCIatLtubPU6sK0s/nQkXysVg9afB9XecM6mBc6d4S5IwmSy2TgewAaxXMag7d0iZ8fMrG6qSh/961HnccEnA7QUlESKESz0UeasXpsyd55/1Ixtd/iBYaDEgIFIg8vuKCYQ9WbyBnQAZULteYfz96X3sbH9RdRpfAkJzzAnbIaFuY1VJ2yfj+e/C7jXZ1TNyCCAqrXhBCI8s0DL91GgTvWHHXgLLJ1mCHmwyhQ0YuZfilZFyfw5yoR5tpgbJZPeETcTecy00+DjUHmnP5WYCGvfdY0HW5K0twHuCQeB028ENedVNHXamQ2VfRj6D4HbDEfoEycnx9B54eOC/Ff54o+DzP/ZAwDXQrtv5fdfXoum9c/xZJaHX+iMK5MARTlO9WeAJasXqawpXTk6LW3RS0z1doFg+J7V4sRgU30Ov5RgN0tHpO49ejjevmZjTC10NOLlROBDhJJzQXkYrpPc3h0v9K8f50AqKY763s4Kis2uh51g4QWiqw2yi0w8="
 #   app: api-politico
-#   on: develop   
+#   on: develop
