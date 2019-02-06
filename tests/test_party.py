@@ -9,7 +9,7 @@ class TestPartyApi(BaseTest):
         with self.client:
             response = self.client.post(
                 '/api/v1/parties',
-                data = json.dumps(self.party),
+                data = json.dumps(self.party_with_data),
                 content_type = "application/json",
             )
             data = json.loads(response.data)
