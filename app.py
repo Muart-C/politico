@@ -8,6 +8,7 @@ from api.admin.office.offices import office_blueprint
 def create_app(environment="development"):
     """create an instance of the flask app given the passed environment variable and return."""
 
+    
     #instantiate the app
     app = Flask(__name__, instance_relative_config=True)
 
