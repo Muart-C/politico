@@ -23,4 +23,9 @@ class Party(object):
 
     #get one political party
     def get_party(self, Id):
-        return [print(party) for party in self.political_parties if party.get("Id") == Id]
+        return [party for party in self.political_parties if party.get("Id") == Id]
+
+    def update_party(self, id, name):
+        for party in self.political_parties:
+            if(party["Id"] == id):
+                party["name"] = name
