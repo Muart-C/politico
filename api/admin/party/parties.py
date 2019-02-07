@@ -13,31 +13,16 @@ def add_parties():
         hqAddress = data.get('hqAddress')
         logoUrl = data.get('logoUrl')
 
-        if not logoUrl and not name and not hqAddress:
-            return jsonify({
-                "status" : 400,
-                "error" : "Please fill in all the required fields",
-            }), 400
-
-        if not name:
-            return jsonify({"status" : 400,
-             "error" : "Please add your name"}),400
-        if not hqAddress:
-            return jsonify({
-                "status" : 400,
-                "error" : "Please the parties headquarter",
-            }), 400
-        if not logoUrl:
-            return jsonify({
-                "status" : 400,
-                "error" : "Please add your logo",
-            }), 400
-
     except:
         return jsonify({
             "status" : 400,
             "error" : "invalid request payload"
         })
+    if not logoUrl or not name or not hqAddress:
+            return jsonify({
+                "status" : 400,
+                "error" : "Please fill in all the required fields",
+            }), 400
 
     #return a json response with the data payload of the details
     response = Party().add_party(name, hqAddress, logoUrl)
@@ -85,7 +70,7 @@ def get_party(Id):
         return jsonify({
             "status" : 200,
             "data" : party,
-            "success" : "request was successful and a result was returned",
+            "success" : "request was successful and a party was returned",
         })
     #incase the request is unsuccessful json error response is returned
     return jsonify({"status": 404, "error": "no party with that id was found"}), 404
