@@ -11,13 +11,19 @@ def add_offices():
         data = request.get_json()
         name = data.get('name')
         office_type = data.get('office_type')
+
     #returns an error response incase of an error
     except:
         return jsonify({
             "status" : 400,
             "error" : "invalid request"
         })
-    
+    if not name or not office_type:
+        return jsonify({
+                "status" : 400,
+                "error" : "Please fill in all the required fields",
+            }), 400
+
     #return a json response of the office created
     response = Office().add_office(name, office_type)
     return jsonify({
@@ -26,7 +32,7 @@ def add_offices():
         "success" : "the office {} was added".format(name)
     }), 201
 
-#get all offices route    
+#get all offices route
 @office_blueprint.route('/offices', methods=['GET'])
 def get_offices():
     """get all the offices"""
@@ -49,15 +55,15 @@ def get_offices():
 
     #if unsuccessful an error is returned
     return jsonify({
-        "status": 404, 
+        "status": 404,
         "error": "request was unsuccessful"
-        }), 404 
-    
+        }), 404
+
 #get a particular office route endpoint
 @office_blueprint.route('/offices/<int:Id>', methods=['GET'])
 def get_office(Id):
     """get a particular political office."""
-    
+
     #initialize an office data structure
     political_office = Office()
 
@@ -73,4 +79,4 @@ def get_office(Id):
         })
 
     #return error response
-    return jsonify({"status": 404, "error": "no office with that id was found"}), 404 
+    return jsonify({"status": 404, "error": "no office with that id was found"}), 404
