@@ -79,12 +79,12 @@ def get_party(Id):
 
     #get a party
     party = political_party.get_party(Id)
-    print(party)
+
     #checks if the party exists then returns the party as a json response
     if party:
         return jsonify({
             "status" : 200,
-            "data" : [party],
+            "data" : party,
             "success" : "request was successful and a result was returned",
         })
     #incase the request is unsuccessful json error response is returned
@@ -101,11 +101,12 @@ def change_name(party_id):
     political_party = Party()
 
     #retrieve a particular party of provided id
-    party = political_party.get_party(party_id)
+    political_party.update_party(party_id, name)
+
 
     #checks if the party exists then modifies the party name and returns the required json response
-    if party:
-        data['name'] = name
+    if political_party:
+        political_party.update_party(party_id, name)
         return jsonify({
             "status": 200,
             "data": [
@@ -124,17 +125,12 @@ def delete_party(party_id):
     party = Party()
 
     #get party of the provided id
-    party_delete = party.get_party(party_id)
+    party_delete = party.get_party(party_id)[0]
     print(party_delete)
     #check if the party to delete exist in the model
     if party_delete:
-        parties.remove(party_delete[0])
-        return jsonify({
-            "status" : 204,
-            "data" : [
-                {"message" : "party was deleted"},
-            ]
-        }), 204
+        parties.remove(party_delete)
+        return 204
     #if party not in list return error
     return jsonify({"status": 404, "error": "error processing your request"}), 404
 
