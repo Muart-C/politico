@@ -2,6 +2,7 @@ import unittest
 
 
 from app import create_app
+from api.admin.party.model import parties
 
 class BaseTest(unittest.TestCase):
     """define setup and teardown methods."""
@@ -18,7 +19,7 @@ class BaseTest(unittest.TestCase):
 
         #a party with empty party name
         self.party_with_name_missing = {
-            "name" : " ",
+            "name" : "",
             "hqAddress" : "Kakamega",
             "logoUrl" : "https://goo.gl/images/B9U4PK",
         }
@@ -26,15 +27,20 @@ class BaseTest(unittest.TestCase):
         #a party with empty party hq
         self.party_with_hq_missing = {
             "name" : "Jubilee",
-            "hqAddress" : "Muthaiga",
+            "hqAddress" : "",
             "logoUrl" : "https://goo.gl/images/7hU72H",
         }
-
+        #a party with a missing logo
+        self.party_with_logo_missing = {
+            "name" : "ANC",
+            "hqAddress" : "Kakamega",
+            "logoUrl" : "",
+        }
         #a party with empty fields
         self.party_with_empty_fields = {
-            "name" : " ",
-            "hqAddress" : " ",
-            "logoUrl" : " ",
+            "name" : "",
+            "hqAddress" : "",
+            "logoUrl" : "",
         }
         #a party with a name of wrong data type
         self.party_with_name_of_wrong_data_type = {
@@ -60,8 +66,9 @@ class BaseTest(unittest.TestCase):
                 "logoUrl" : "https://goo.gl/images/3RKgQ6",
             }
         ]
+        #an empty parties list for testing
+        self.empty_parties_list = []
 
-
-
-
-
+    #clear the list to be empty
+    def tearDown(self):
+        self.parties.clear()

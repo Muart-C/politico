@@ -12,6 +12,27 @@ def add_parties():
         name = data.get('name')
         hqAddress = data.get('hqAddress')
         logoUrl = data.get('logoUrl')
+
+        if not logoUrl and not name and not hqAddress:
+            return jsonify({
+                "status" : 400,
+                "error" : "Please fill in all the required fields",
+            }), 400
+
+        if not name:
+            return jsonify({"status" : 400,
+             "error" : "Please add your name"}),400
+        if not hqAddress:
+            return jsonify({
+                "status" : 400,
+                "error" : "Please the parties headquarter",
+            }), 400
+        if not logoUrl:
+            return jsonify({
+                "status" : 400,
+                "error" : "Please add your logo",
+            }), 400
+
     except:
         return jsonify({
             "status" : 400,
