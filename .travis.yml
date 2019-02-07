@@ -1,14 +1,16 @@
 language: python
 python:
-  - 3.6.7
+- 3.6.7
 install:
-  - pip install -r requirements.txt
+- pip install -r requirements.txt
 script:
-  - pytest --cov=api tests/ -v
+- pytest --cov=api tests/ -v
 after_success:
-  - coveralls
-
+- coveralls
 deploy:
   provider: heroku
   api_key:
-    secure: hnFBWF4MsvGBsi06ExtTs6PmgxSWqDE9ZfYP0T0ut2AVHZQ5qykazYkbcSM6GWg48YZ7gzPgpTfe36mM4i6tMvjlnUi3OKvBpV69zqZEg5OHsrOqjBvf4+GHwNmmr3weDn/1uNloZW3Qh5pX/5cKNdFb3nGpF+TN+jOMALpRkK2j1lQ0rFIGi1IrCUYTUsq5mTmNguQpBeyEtzJqpDXKhtJEV8/ZFJPN/v3VOeo/6mmrJWY/z1Ddawlxm1ogcgXsRcAafsjx3WJOyXWUcchceawyg+m1EKCN8tNVdmdbBL5Iu5/KVOBAyHU8vORzJFngmM724+0NiT0to6o6OFxeTAb6dPiWkSe3pxjynifxD7wFbVYB5G3a4wvvLvc1l01CCAQjDdQspVInQwdC3aNvA6JLJBPW+eb2jB3mnqyAe9ovOM8TYQc/pc3xLWDk9UEdC0SYVZOJgYhooQYH7XQNYNIvYkcfTMc9+SEAiR9i85PYEnHNOP5yevPKw3O0AQn36W4ERplO4ofrUi1pJLilfbeY2nVRK+4hchCPEWTdU0HJyXCrMzKHpypNNNLZMzynOjU3MMeTt6aSPWlnLd/xn1nlYGDWfy5E9466H3rMCZ1LndNg/xBVhfDTzEWHZ1GXRg0UnmGk7ufM2qLbyAdXKqhCKMw9kDvNz0+YtE0MuNw=
+    secure: iK6b9prnVvqzoZYoUSW/YlYoBEFlzlrFMnnwNIbzbm5d5SKn7lYJIFHrZgL0vecF2fJVA5wJKGtukZCIGp/sUBUUv3AfdYOG65M7DP5QjQx2tgY4avEaHXGJ/cZPMX0J+G0BsiJLXScaZNr98jEafU6bj/wDXkSwJ8lc9ldKEtWJXVKduhZJ4EsXeGTFzX+qgDvSq1I26w0kgHlr/7lea/TVatNSTxy4P1msFljSLtczrN4BLnEaj8EFJZRHUgd0lYZeNPiwGr0ZgJ02lxWhu9n/1q9X3MCglui5A48lSUqAQedpoe6X/6/mcLpT/wIFmP5kn7OEYOLc25VNESEfWn/vOZ20s8DKdZdIVWTAT6tHoSlFXOBwpgcMvVM0YJsI7mz5ts5w1BgS5udOyyWsj0tMIbRJIJ4Pus/aIrYGHTbGN2OWqhusglkcBwqaVReFhFgnLi48O8VoHSXI4iCMfo37EiVQcnXXyCVDIcDFNGkqGJPf5GS0Itsc8yVXFM2jLiPFCCwf6Ye1JLMlgwcpTwWL6CzNXknC5kK/gYjI6+mmB/E8hZa22V311nbREUBzY4xI9GzPX33jHIM79FyQRRtUIwgzz41NW0IdsTlSFVTR0CjCuI8ZkRXfPHrNEeO/wtc+95QLETRrYqzZbX+g3EQuPuzozGjJ4hTmMqxOQ+4=
+  on:
+    develop
+  app: api-politico
