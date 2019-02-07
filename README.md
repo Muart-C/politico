@@ -56,7 +56,7 @@ $ flask run
  On your terminal execute the following command
  
  ```
- $ python -m pytests
+ $ pytest --cov=api tests/
  ```
 
 # Testing The API Endpoints
