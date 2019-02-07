@@ -30,6 +30,7 @@ $ git clone https://github.com/Muart-C/politico.git
 ```
 - cd into the project directory
 ```
+
 $ cd politico
 ```
 
