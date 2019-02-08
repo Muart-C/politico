@@ -69,6 +69,8 @@ or
 
 You can use Postman get it here => [Postman](https://www.getpostman.com/downloads/)
 
+# Here is a collection of endpoints open via postman
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/55e0954df1faa13e63ad)
 
 # Credits
 [Andela Bootcamp](https://andela.com/)
