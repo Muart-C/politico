@@ -5,56 +5,66 @@ class TestParty(BaseTest):
     """test the endpoints for the Party and edge cases"""
 
     def test_add_party(self):
-        """ensure a new party can be added to the political party list."""
+        """test creation of a party."""
         response = self.client.post(
-            '/api/v1/parties',
-            data = json.dumps(self.party_with_data),
-            content_type = "application/json",
+            "/api/v1/parties",
+            data=json.dumps(self.party_with_data),
+            content_type="application/json",
         )
-        data = json.loads(response.data)
-        self.assertEqual(response.status_code, 201)
-        self.assertIn('ANC was added', data['success'])
-        self.assertIsInstance(data['status'], int)
-        self.assertIsInstance(response.status_code, int)
+        data = json.loads(response.data.decode("utf-8"))
 
-    def test_add_party_with_empty_fields(self):
-        """ensure all fields are field in order to create a party"""
-        response = self.client.post(
-                '/api/v1/parties',
-                data = json.dumps(self.party_with_empty_fields),
-                content_type = "application/json",
-        )
-        data = json.loads(response.data)
-        self.assertEqual(data["status"], 400)
-        self.assertIn(data["error"], "Please fill in all the required fields")
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(data["status"], 201)
+        self.assertEqual(data["message"], "party ANC was created")
 
-    def test_get_parties(self):
-        """a list of political parties is returned."""
-        response = self.client.get(
-                '/api/v1/parties',
-                data = json.dumps(self.parties),
-                content_type = "application/json",
-            )
-        data = json.loads(response.data)
-        self.assertEqual(response.status_code, 200)
-        self.assertIsInstance(data['data'], list)
-
-    def test_get_a_party(self):
-        """tests if can get a party"""
+    def test_get_all_parties(self):
+        """tests if parties are returned."""
         self.client.post(
             '/api/v1/parties',
-            data = json.dumps(self.party_with_data),
-            content_type = "application/json",
+            data=json.dumps(self.party_with_data)
         )
 
-        get_party = self.client.get(
+        response = self.client.get('/api/v1/parties')
+
+        data = json.loads(response.data)
+
+        self.assertEqual(data["status"], 200)
+        self.assertEqual(len(data["data"]), 1)
+        self.assertEqual(data["message"], "get request is for parties successful")
+
+    def test_get_party(self):
+        """tests to get a party"""
+
+        self.client.post(
+            '/api/v1/parties',
+            data=json.dumps(self.party_with_data),
+            content_type="application/json"
+        )
+        response = self.client.get(
             '/api/v1/parties/1',
             content_type = "application/json",
         )
-        data = json.loads(get_party.data)
-        self.assertEqual(data["status"], 200)
-        self.assertEqual(data["data"][0]["Id"], 1)
-        self.assertEqual(data["data"][0]["name"], self.party_with_data["name"])
-        self.assertEqual(data["success"], "request was successful and a party was returned")
 
+        data = json.loads(response.data.decode("utf-8"))
+        self.assertEqual(data["status"], 200)
+        self.assertEqual(len(data["data"]), 1)
+        self.assertEqual(data["message"], "a party with the id was returned")
+
+    def test_updating_party_name(self):
+        """test update party name."""
+
+        self.client.post(
+            '/api/v1/parties',
+            data=json.dumps(self.party_with_data),
+            content_type="application/json"
+        )
+
+        response = self.client.patch(
+            '/api/v1/parties/1/name',
+            data=json.dumps({
+                "name":"party name"
+            }),
+        )
+        print(response)
+        data = json.loads(response.data)
+        self.assertEqual(data["message"], "party name was updated")
+        self.assertEqual(data["status"], 200)

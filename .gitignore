@@ -5,11 +5,11 @@ ENV/
 
 .vscode/
 
-
+.sonarlint/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
-
+.pytest_cache/
 .Python
 env/
 build/
