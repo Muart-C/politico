@@ -1,3 +1,4 @@
+from api.utils.validator import generate_id, checks_if_exist
 #party class for data structure model
 parties = []
 class Party(object):
@@ -9,7 +10,7 @@ class Party(object):
     #create a party.
     def add_party(self, name, hqAddress, logoUrl):
         party = {
-            "Id" : len(self.political_parties)+1,
+            "Id" : generate_id(self.political_parties),
             "name" : name,
             "hqAddress" : hqAddress,
             "logoUrl" : logoUrl,
@@ -23,9 +24,11 @@ class Party(object):
 
     #get one political party
     def get_party(self, Id):
-        return [party for party in self.political_parties if party.get("Id") == Id]
+        return [party for party in self.political_parties if party["Id"] == Id]
 
     def update_party(self, id, name):
         for party in self.political_parties:
             if(party["Id"] == id):
                 party["name"] = name
+        return party
+

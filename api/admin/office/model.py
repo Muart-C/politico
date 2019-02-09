@@ -1,3 +1,4 @@
+from api.utils.validator import generate_id
 #office class for data structure model
 offices = []
 class Office(object):
@@ -9,13 +10,13 @@ class Office(object):
     #create a office.
     def add_office(self, office_type, name):
         office = {
-            "Id" : len(self.political_offices)+1,
+            "Id" : generate_id(self.political_offices),
             "office_type" : office_type,
             "name" : name,
         }
         self.political_offices.append(office)
         return office
-    
+
     #get all offices
     def get_offices(self):
         return self.political_offices
@@ -23,6 +24,3 @@ class Office(object):
     #get one political office
     def get_office(self, Id):
         return [office for office in self.political_offices if office.get("Id") == Id]
-        
-
-    

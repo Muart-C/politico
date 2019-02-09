@@ -15,7 +15,11 @@ class BaseTest(unittest.TestCase):
             "hqAddress" : "Kakamega",
             "logoUrl" : "https://goo.gl/images/B9U4PK",
         }
-
+        self.second_party_with_data = {
+            "name" : "ANC",
+            "hqAddress" : "Kakamega",
+            "logoUrl" : "https://goo.gl/images/B9U4PK",
+        }
         #a party with empty fields
         self.party_with_empty_fields = {
             "name" : "",
@@ -52,7 +56,6 @@ class BaseTest(unittest.TestCase):
         self.office_with_data = {
             "name" : "ANC",
             "office_type" : "Kakamega",
-
         }
 
         #an office with empty fields
