@@ -34,7 +34,7 @@ def add_parties():
         party = Party()
         party=party.add_party(name=name, hqAddress=hqAddress, logoUrl=logoUrl)
         if party:
-            return return_response(201, "party {} was created".format(name), party)
+            return return_response(201, "party {} was created".format(name), [party])
         #if not success return error
         return return_response(400, "an error occurred while creating party")
 #get all parties route
@@ -48,7 +48,7 @@ def get_parties():
     political_parties = parties.get_parties()
     #checks if a list of political parties exists then returns it as a json response
     if political_parties:
-        return return_response(200, "get request is for parties successful", [political_parties])
+        return return_response(200, "get request is for parties successful", political_parties)
     #incase the request is unsuccessful json error response is returned
     return return_response(400, "the party list was empty")
 
@@ -68,15 +68,17 @@ def get_party(id):
 
     #checks if the party exists then returns the party as a json response
     if party:
-        return return_response(200,"a party with the id was returned", [party])
+        return return_response(200,"a party with the id was returned", party)
 
     #incase the request is unsuccessful json error response is returned
     return return_response(400, "no party with that id was found")
 
 #update the name route
-@party_blueprint.route('/parties/<int:party_id>/<string:name>', methods=['PATCH'])
-def change_name(party_id, name):
+@party_blueprint.route('/parties/<int:party_id>/name', methods=['PATCH'])
+def change_name(party_id):
     try:
+        data = request.get_json()
+        name=data["name"]
         if(validate_string_data_type(name)== False):
             return return_response(400, "the name should of string data type")
     except KeyError as e:
@@ -97,7 +99,12 @@ def change_name(party_id, name):
 #delete a party route
 @party_blueprint.route('/parties/<int:party_id>', methods=['DELETE'])
 def delete_party(party_id):
+    try:
 
+        if(validate_int_data_type(party_id)==False):
+            return return_response(400, "pass the correct party id")
+    except KeyError as e:
+        return return_response(400, "an error occurred while fetching the {}".format(e.args[0]))
     #initialize the party model
     party = Party()
 
