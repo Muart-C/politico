@@ -1,6 +1,6 @@
 """"!api/admin/office/offices/py """
 from flask import Blueprint, jsonify, request
-from api.admin.office.model import Office, OFFICES
+from api.models.offices_model import Office, OFFICES
 from api.utils.validator import return_response
 from api.utils.validator import validate_string_data_type
 from api.utils.validator import validate_int_data_type

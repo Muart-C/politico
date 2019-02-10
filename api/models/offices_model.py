@@ -1,4 +1,4 @@
-"""!api/admin/offices/model.py"""
+"""!api/models/offices_model.py"""
 from api.utils.validator import generate_id
 #office class for data structure model
 OFFICES = []
