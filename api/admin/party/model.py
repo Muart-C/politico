@@ -1,34 +1,33 @@
-from api.utils.validator import generate_id, checks_if_exist
+from api.utils.validator import generate_id
 #party class for data structure model
-parties = []
+PARTIES = []
 class Party(object):
     """Party model to store party data in data structures"""
-    def __init__(self):
-        """#instatiate an empty list of political parties."""
-        self.political_parties = parties
 
-    #create a party.
-    def add_party(self, name, hqAddress, logoUrl):
+    def add_party(self, name, hq_address, logo_url):
+        """create a party."""
         party = {
-            "Id" : generate_id(self.political_parties),
+            "id" : generate_id(PARTIES),
             "name" : name,
-            "hqAddress" : hqAddress,
-            "logoUrl" : logoUrl,
+            "hq_address" : hq_address,
+            "logo_url" : logo_url,
         }
-        self.political_parties.append(party)
+        PARTIES.append(party)
         return party
 
-    #get all parties
+
     def get_parties(self):
-        return self.political_parties
+        """get all parties"""
+        return PARTIES
 
-    #get one political party
-    def get_party(self, Id):
-        return [party for party in self.political_parties if party["Id"] == Id]
+    def get_party(self, party_id):
+        """get one political party"""
+        return [party for party in PARTIES if party["id"] == party_id]
 
-    def update_party(self, id, name):
-        for party in self.political_parties:
-            if(party["Id"] == id):
+    def update_party(self, party_id, name):
+        for party in PARTIES:
+            if(party["id"] == party_id):
                 party["name"] = name
+                return party
         return party
 

@@ -12,27 +12,29 @@ class TestOffice(BaseTest):
             content_type = "application/json",
         )
         data = json.loads(response.data)
-        self.assertEqual(response.status_code, 201)
-        self.assertIsInstance(data['status'], int)
-        self.assertIsInstance(response.status_code, int)
+        self.assertEqual(data["status"], 201)
+        self.assertEqual(data["message"], "office of Presidency was created")
 
-    def test_add_office_with_empty_fields(self):
-        """ensure all fields are field in order to create a office"""
-        response = self.client.post(
-                '/api/v1/offices',
-                data = json.dumps(self.office_with_empty_fields),
-                content_type = "application/json",
-        )
-        data = json.loads(response.data)
-        self.assertEqual(data["status"], 400)
-        self.assertIn(data["error"], "Please fill in all the required fields")
-        self.assertEqual(response.status_code, 400)
+
+    # def test_add_office_with_empty_fields(self):
+    #     """ensure all fields are field in order to create a office"""
+    #     response = self.client.post(
+    #         '/api/v1/offices',
+    #         data = json.dumps(self.office_with_empty_fields),
+    #         content_type = "application/json",
+    #     )
+    #     data = json.loads(response.data.decode())
+    #     self.assertEqual(data["message"], "an error occurred while adding the office")
 
     def test_get_offices(self):
         """a list of political offices is returned."""
+        self.client.post(
+            '/api/v1/offices',
+            data = json.dumps(self.office_with_data),
+            content_type = "application/json",
+        )
         response = self.client.get(
                 '/api/v1/offices',
-                data = json.dumps(self.offices),
                 content_type = "application/json",
             )
         data = json.loads(response.data)
@@ -48,13 +50,12 @@ class TestOffice(BaseTest):
         )
 
         get_office = self.client.get(
-            '/api/v1/offices/{}'.format(1),
+            '/api/v1/offices/1',
             content_type = "application/json",
         )
-        data = json.loads(get_office.data)
+        data = json.loads(get_office.data.decode("utf-8"))
+        print(data)
         self.assertEqual(data["status"], 200)
-        #self.assertEqual(data["data"][0]["Id"], 1)
-        #self.assertEqual(data["data"][0]["name"], self.office_with_data["name"])
-        self.assertEqual(data["success"], "request was successful")
+        self.assertEqual(data["message"], "request was successful")
 
 
