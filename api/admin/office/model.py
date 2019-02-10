@@ -1,26 +1,30 @@
+"""!api/admin/offices/model.py"""
 from api.utils.validator import generate_id
 #office class for data structure model
-offices = []
-class Office(object):
+OFFICES = []
+class Office():
     """office model to store office data in data structures"""
     def __init__(self):
-        """#instatiate an empty list of political offices."""
-        self.political_offices = offices
+        """#instantiate an empty list of political offices."""
+        self.offices = OFFICES
 
-    #create a office.
-    def add_office(self, office_type, name):
+    def add_office(self, name, office_type):
+        """create a office."""
         office = {
-            "Id" : generate_id(self.political_offices),
-            "office_type" : office_type,
+            "id" : generate_id(OFFICES),
             "name" : name,
+            "office_type" : office_type,
         }
-        self.political_offices.append(office)
+        OFFICES.append(office)
         return office
 
-    #get all offices
     def get_offices(self):
-        return self.political_offices
+        """get all offices"""
+        return OFFICES
 
-    #get one political office
-    def get_office(self, Id):
-        return [office for office in self.political_offices if office.get("Id") == Id]
+    def get_office(self, office_id):
+        """get one political office"""
+        for office in OFFICES:
+            if(office["id"] == office_id):
+                return office
+            return office
