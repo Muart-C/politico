@@ -50,7 +50,7 @@ $ pip install -r requirements.txt
 - Then execute the following app to run the app
 ```
 $ export FLASK_APP = "run.py"
-$export FLASK_ENV="development"
+$ export FLASK_ENV="development"
 $ flask run
 ```
 
