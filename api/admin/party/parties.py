@@ -1,6 +1,6 @@
 """!#api/admin/party"""
 from flask import Blueprint, request
-from api.admin.party.model import Party, PARTIES
+from api.models.parties_model import Party, PARTIES
 from api.utils.validator import return_response,validate_string_data_type, validate_int_data_type
 
 #initialize a party blueprint
