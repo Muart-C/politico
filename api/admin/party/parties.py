@@ -1,5 +1,4 @@
 """!#api/admin/party"""
-import validators
 from flask import Blueprint, request
 from api.models.parties_model import Party, PARTIES
 from api.utils.validator import return_response, validate_string_data_type, check_json_party_keys
@@ -88,8 +87,10 @@ def change_name(party_id):
     try:
         data = request.get_json()
         name=data["name"]
+
         if(validate_string_data_type(name)== False):
             return return_error(400, "the name should of string data type")
+
     except KeyError as e:
             return return_error(400, "an error the party {} is missing".format(e.args[0]))
 
@@ -127,19 +128,5 @@ def delete_party(party_id):
         return return_response(204, "party deleted")
     #if party not in list return error
     return return_response(404, "error processing your request")
-
-
-#update the details of the party
-@PARTY_BLUEPRINT.route('/parties/<int:party_id>', methods=['PATCH'])
-def edit_party(party_id):
-    """updates details of a particular party."""
-    if(validate_int_data_type(id) == False):
-        return return_error(400, "invalid url arguments provided")
-    
-    data = request.get_json()
-    party = Party()
-    # update
-    updated_party = party.update_party(party_id, data)
-
 
 

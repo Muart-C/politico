@@ -1,6 +1,7 @@
 import json
 from tests.test_base import BaseTest
 from app import create_app
+from api.utils.test_data import office_with_data
 class TestOffice(BaseTest):
     """test the endpoints for the office and edge cases"""
 
@@ -8,7 +9,7 @@ class TestOffice(BaseTest):
         """ensure a new office can be added to the political office list."""
         response = self.client.post(
             '/api/v1/offices',
-            data = json.dumps(self.office_with_data),
+            data = json.dumps(office_with_data),
             content_type = "application/json",
         )
         data = json.loads(response.data)
@@ -16,21 +17,11 @@ class TestOffice(BaseTest):
         self.assertEqual(data["message"], "office of Presidency was created")
 
 
-    # def test_add_office_with_empty_fields(self):
-    #     """ensure all fields are field in order to create a office"""
-    #     response = self.client.post(
-    #         '/api/v1/offices',
-    #         data = json.dumps(self.office_with_empty_fields),
-    #         content_type = "application/json",
-    #     )
-    #     data = json.loads(response.data.decode())
-    #     self.assertEqual(data["message"], "an error occurred while adding the office")
-
     def test_get_offices(self):
         """a list of political offices is returned."""
         self.client.post(
             '/api/v1/offices',
-            data = json.dumps(self.office_with_data),
+            data = json.dumps(office_with_data),
             content_type = "application/json",
         )
         response = self.client.get(
@@ -45,7 +36,7 @@ class TestOffice(BaseTest):
         """tests if can get a office"""
         self.client.post(
             '/api/v1/offices',
-            data = json.dumps(self.office_with_data),
+            data = json.dumps(office_with_data),
             content_type = "application/json",
         )
 
