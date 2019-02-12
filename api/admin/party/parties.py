@@ -1,7 +1,9 @@
 """!#api/admin/party"""
 from flask import Blueprint, request
 from api.models.parties_model import Party, PARTIES
-from api.utils.validator import return_response,validate_string_data_type, validate_int_data_type
+from api.utils.validator import return_response, validate_string_data_type, check_json_party_keys
+from api.utils.validator import return_error, validate_int_data_type, sanitize_input
+from api.utils.validator import check_is_valid_url
 
 #initialize a party blueprint
 PARTY_BLUEPRINT = Blueprint('parties', __name__)
@@ -9,23 +11,30 @@ PARTY_BLUEPRINT = Blueprint('parties', __name__)
 #create a party route
 @PARTY_BLUEPRINT.route('/parties', methods=['POST'])
 def add_parties():
-    data = request.get_json()
+    """add a new party if it does not exist."""
 
-    if not data:
-        return return_response(400, "fill in all the required values")
+    key_errors=check_json_party_keys(request)
+    if key_errors:
+        return return_error(400, "Invalid keys provided")
     try:
+        data = request.get_json()
         # validate data from the request
         name=data['name']
         hqAddress=data['hqAddress']
         logoUrl=data['logoUrl']
 
+        # ensure keys data values of correct format
         if(validate_string_data_type(name) == False):
-            return return_response(400, "the name cannot be empty")
+            return return_error(400, "the name should be of correct data type")
         if(validate_string_data_type(hqAddress) == False):
-            return return_response(400, "the HQ cannot be empty")
-        if(validate_string_data_type(logoUrl) == False):
-            return return_response(400, "the Logo is needed add the url")
+            return return_error(400, "the HQ be of correct data type")
+        if(check_is_valid_url(logoUrl) == False):
+            return return_error(400, "the Logo url is not in the correct format")
 
+        if(sanitize_input(name)) == False:
+            return return_error(400, "name is in the wrong format")
+        if (sanitize_input(hqAddress)) == False:
+            return return_error(400, "hq address is in the wrong format")
     except KeyError as e:
         return return_response(400, "an error occurred while creating party {} is missing".format(e.args[0]))
 
@@ -34,7 +43,7 @@ def add_parties():
     if party:
         return return_response(201, "party {} was created".format(name), [party])
     #if not success return error
-    return return_response(400, "an error occurred while creating party")
+    return return_error(400, "an error occurred while creating party")
 
 #get all parties route
 @PARTY_BLUEPRINT.route('/parties', methods=['GET'])
@@ -49,7 +58,7 @@ def get_parties():
     if political_parties:
         return return_response(200, "get request is for parties successful", political_parties)
     #incase the request is unsuccessful json error response is returned
-    return return_response(400, "the party list was empty")
+    return return_error(400, "the party list was empty")
 
 #get a particular party route
 @PARTY_BLUEPRINT.route('/parties/<int:id>', methods=['GET'])
@@ -57,7 +66,7 @@ def get_party(id):
     """get a particular party."""
 
     if(validate_int_data_type(id) == False):
-        return return_response(400, "please provide id of correct type")
+        return return_error(400, "invalid url arguments provided")
 
     #initialize a party model
     political_party = Party()
@@ -70,7 +79,7 @@ def get_party(id):
         return return_response(200, "a party with the id was returned", party)
 
     #incase the request is unsuccessful json error response is returned
-    return return_response(404, "no party with that id was found")
+    return return_error(404, "no party with that id was found")
 
 #update the name route
 @PARTY_BLUEPRINT.route('/parties/<int:party_id>/name', methods=['PATCH'])
@@ -78,10 +87,12 @@ def change_name(party_id):
     try:
         data = request.get_json()
         name=data["name"]
+
         if(validate_string_data_type(name)== False):
-            return return_response(400, "the name should of string data type")
+            return return_error(400, "the name should of string data type")
+
     except KeyError as e:
-            return return_response(400, "an error the party {} is missing".format(e.args[0]))
+            return return_error(400, "an error the party {} is missing".format(e.args[0]))
 
     #initialize the Party model class
     political_party = Party()
@@ -93,7 +104,7 @@ def change_name(party_id):
     if updated_party:
         return return_response(200, "party name was updated", updated_party)
     #incase the request is unsuccessful json error response is returned
-    return return_response(400, "party name not modified an error occurred")
+    return return_error(400, "the party you are trying to modify does not exist")
 
 #delete a party route
 @PARTY_BLUEPRINT.route('/parties/<int:party_id>', methods=['DELETE'])
@@ -102,7 +113,7 @@ def delete_party(party_id):
         if(validate_int_data_type(party_id)==False):
             return return_response(400, "pass the correct party id")
     except KeyError as e:
-        return return_response(400, "an error occurred while fetching the {}".format(e.args[0]))
+        return return_error(400, "an error occurred while fetching the {}".format(e.args[0]))
     #initialize the party model
     party = Party()
 
@@ -110,11 +121,12 @@ def delete_party(party_id):
     try:
         party_delete = party.get_party(party_id)[0]
     except IndexError:
-        return return_response(400, "party does not exist")
+        return return_error(400, "party does not exist")
     #check if the party to delete exist in the model
     if party_delete:
         PARTIES.remove(party_delete)
         return return_response(204, "party deleted")
     #if party not in list return error
-    return return_response(404, "error processing your request")
+    return return_error(404, "error processing your request")
+
 

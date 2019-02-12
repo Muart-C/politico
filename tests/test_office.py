@@ -1,6 +1,9 @@
 import json
 from tests.test_base import BaseTest
 from app import create_app
+from api.utils.test_data import office_with_correct_data, office_with_wrong_office_type_data
+from api.utils.test_data import office_with_wrong_office_name_data, office_with_invalid_key_name
+from api.utils.test_data import office_with_invalid_key_office_type, office_with_wrong_office_type_type_input
 class TestOffice(BaseTest):
     """test the endpoints for the office and edge cases"""
 
@@ -8,29 +11,68 @@ class TestOffice(BaseTest):
         """ensure a new office can be added to the political office list."""
         response = self.client.post(
             '/api/v1/offices',
-            data = json.dumps(self.office_with_data),
+            data = json.dumps(office_with_correct_data),
             content_type = "application/json",
         )
         data = json.loads(response.data)
         self.assertEqual(data["status"], 201)
-        self.assertEqual(data["message"], "office of Presidency was created")
 
+    def test_add_office_with_wrong_type(self):
+        """ensure a correct office type is chosen."""
+        response = self.client.post(
+            '/api/v1/offices',
+            data = json.dumps(office_with_wrong_office_type_data),
+            content_type = "application/json",
+        )
+        data = json.loads(response.data)
+        self.assertEqual(data["status"], 400)
 
-    # def test_add_office_with_empty_fields(self):
-    #     """ensure all fields are field in order to create a office"""
-    #     response = self.client.post(
-    #         '/api/v1/offices',
-    #         data = json.dumps(self.office_with_empty_fields),
-    #         content_type = "application/json",
-    #     )
-    #     data = json.loads(response.data.decode())
-    #     self.assertEqual(data["message"], "an error occurred while adding the office")
+    def test_add_office_with_wrong_office_name_data(self):
+        """ensure correct name is used."""
+        response = self.client.post(
+            '/api/v1/offices',
+            data = json.dumps(office_with_wrong_office_name_data),
+            content_type = "application/json",
+        )
+        data = json.loads(response.data)
+        self.assertEqual(data["status"], 400)
+
+    def test_add_office_with_invalid_key_name(self):
+        """ensure correct keys for the name."""
+        response = self.client.post(
+            '/api/v1/offices',
+            data = json.dumps(office_with_invalid_key_name),
+            content_type = "application/json",
+        )
+        data = json.loads(response.data)
+        self.assertEqual(data["status"], 400)
+
+    def test_add_office_with_invalid_key_office_type(self):
+        """ensure correct keys for the name."""
+        response = self.client.post(
+            '/api/v1/offices',
+            data = json.dumps(office_with_invalid_key_office_type),
+            content_type = "application/json",
+        )
+        data = json.loads(response.data)
+        self.assertEqual(data["status"], 400)
+
+    def test_add_office_with_wrong_office_type_type_input(self):
+        """ensure correct keys for the name."""
+        response = self.client.post(
+            '/api/v1/offices',
+            data = json.dumps(office_with_wrong_office_type_type_input),
+            content_type = "application/json",
+        )
+        data = json.loads(response.data)
+        self.assertEqual(data["status"], 400)
+
 
     def test_get_offices(self):
         """a list of political offices is returned."""
         self.client.post(
             '/api/v1/offices',
-            data = json.dumps(self.office_with_data),
+            data = json.dumps(office_with_correct_data),
             content_type = "application/json",
         )
         response = self.client.get(
@@ -45,7 +87,7 @@ class TestOffice(BaseTest):
         """tests if can get a office"""
         self.client.post(
             '/api/v1/offices',
-            data = json.dumps(self.office_with_data),
+            data = json.dumps(office_with_correct_data),
             content_type = "application/json",
         )
 
