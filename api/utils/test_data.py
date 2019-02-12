@@ -108,5 +108,93 @@ office_with_empty_fields = {
     "office_type" : "",
  }
 
-#an empty offices list for testing
-empty_offices_list = []
+# #an empty offices list for testing
+# empty_offices_list = []
+
+# test data for new user
+create_user={
+    "firstname":"firstname",
+    "lastname":"lastname",
+    "othername":"othername",
+    "email":"e@email.com",
+    "phone_number":"+213425435",
+    "passport_url":"https://goo.gl/images/B9U4PK",
+    "is_admin":False,
+}
+
+create_user_missing_data = {
+    "firstname":"",
+    "lastname":"",
+    "othername":"",
+    "email":"",
+    "phone_number":"",
+    "passport_url":"",
+    "is_admin":False,
+}
+
+create_user_wrong_email_input = {
+    "firstname":"firstname",
+    "lastname":"lastname",
+    "othername":"othername",
+    "email":"mail",
+    "phone_number":"+213425435",
+    "passport_url":"https://goo.gl/images/B9U4PK",
+    "is_admin":False,
+}
+
+create_user_wrong_firstname_input = {
+    "firstname":" ",
+    "lastname":"lastname",
+    "othername":"othername",
+    "email":"mail",
+    "phone_number":"+213425435",
+    "passport_url":"https://goo.gl/images/B9U4PK",
+    "is_admin":False,
+}
+create_user_wrong_othername_input = {
+    "firstname":"firstname",
+    "lastname":"lastname",
+    "othername":3454,
+    "email":"e@email.com",
+    "phone_number":"+213425435",
+    "passport_url":"https://goo.gl/images/B9U4PK",
+    "is_admin":False,
+}
+create_user_wrong_lastname_input = {
+    "firstname":"firstname",
+    "lastname":123,
+    "othername":"othername",
+    "email":"e@email.com",
+    "phone_number":"+213425435",
+    "passport_url":"https://goo.gl/images/B9U4PK",
+    "is_admin":False,
+}
+create_user_wrong_othername_input = {
+    "firstname":"firstname",
+    "lastname":"lastname",
+    "othername":3454,
+    "email":"e@email.com",
+    "phone_number":"+213425435",
+    "passport_url":"https://goo.gl/images/B9U4PK",
+    "is_admin":False,
+}
+create_user_wrong_phone_number_input = {
+    "firstname":"firstname",
+    "lastname":"lastname",
+    "othername":"othername",
+    "email":"e@email.com",
+    "phone_number":2|3,
+    "passport_url":"https://goo.gl/images/B9U4PK",
+    "is_admin":False,
+}
+
+
+create_user_wrong_passport_url_input = {
+    "firstname":"firstname",
+    "lastname":"lastname",
+    "othername":"othername",
+    "email":"e@email.com",
+    "phone_number":2|3,
+    "passport_url":"oo.g/images/B9U4PK",
+    "is_admin":False,
+}
