@@ -104,7 +104,7 @@ def change_name(party_id):
     if updated_party:
         return return_response(200, "party name was updated", updated_party)
     #incase the request is unsuccessful json error response is returned
-    return return_response(400, "party name not modified an error occurred")
+    return return_error(400, "the party you are trying to modify does not exist")
 
 #delete a party route
 @PARTY_BLUEPRINT.route('/parties/<int:party_id>', methods=['DELETE'])
@@ -113,7 +113,7 @@ def delete_party(party_id):
         if(validate_int_data_type(party_id)==False):
             return return_response(400, "pass the correct party id")
     except KeyError as e:
-        return return_response(400, "an error occurred while fetching the {}".format(e.args[0]))
+        return return_error(400, "an error occurred while fetching the {}".format(e.args[0]))
     #initialize the party model
     party = Party()
 
@@ -121,12 +121,12 @@ def delete_party(party_id):
     try:
         party_delete = party.get_party(party_id)[0]
     except IndexError:
-        return return_response(400, "party does not exist")
+        return return_error(400, "party does not exist")
     #check if the party to delete exist in the model
     if party_delete:
         PARTIES.remove(party_delete)
         return return_response(204, "party deleted")
     #if party not in list return error
-    return return_response(404, "error processing your request")
+    return return_error(404, "error processing your request")
 
 

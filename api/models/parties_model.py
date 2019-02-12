@@ -29,5 +29,5 @@ class Party(object):
             if(party["id"] == party_id):
                 party["name"] = name
                 return party
-        return party
+            return party
 

@@ -56,22 +56,52 @@ party_with_name_of_wrong_data_type = {
     "hqAddress" : "Machakos",
 }
 
-
+party_with_name_of_wrong_data_type = {
+    "name" : 4564,
+    "hqAddress" : "Machakos",
+}
+party_with_name_of_wrong_data_type = {
+    "name" : 4564,
+    "hqAddress" : "Machakos",
+}
 party_with_invalid_key_name = {
     "namesada" : "name",
     "hqAddress" : "Machakos",
 }
+
 party_with_invalid_key_address = {
     "name" : "name",
-    "hqAddrs" : "Machakos",
+    "hqdress" : "Machakos",
 }
 
-#a dictionary containing an office
-office_with_data = {
+
+office_with_correct_data = {
     "name" : "Presidency",
-    "office_type" : "Office of the President",
+    "office_type" : "legislative",
+}
+office_with_wrong_office_type_data = {
+    "name" : "president",
+    "office_type" : "hello"
 }
 
+office_with_wrong_office_name_data = {
+    "name" : 213,
+    "office_type" : "hello"
+}
+
+office_with_wrong_office_type_type_input = {
+    "name" : "president",
+    "office_type" : 12
+}
+
+office_with_invalid_key_name = {
+    "namesada" : "name",
+    "office_type" : "Machakos",
+}
+office_with_invalid_key_office_type = {
+    "name" : "name",
+    "office" : "legislative",
+}
 #an office with empty fields
 office_with_empty_fields = {
     "name" : "",

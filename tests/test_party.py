@@ -93,15 +93,16 @@ class TestParty(BaseTest):
         self.assertEqual(data["message"], "party name was updated")
         self.assertEqual(data["status"], 200)
 
-    # def test_updating_party_name_of_party_that_does_not_exist(self):
-    #     """test update name of a party that does not exist."""
+    def test_updating_party_name_of_party_that_does_not_exist(self):
+        """test update name of a party that does not exist."""
 
-    #     response = self.client.patch(
-    #         '/api/v1/parties/{}/name'.format(100),
-    #         data=json.dumps(party_with_data),
-    #     )
-    #     data = json.loads(response.data.decode())
-    #     self.assertEqual(data["status"], 400)
+        response = self.client.patch(
+            '/api/v1/parties/{}/name'.format(100),
+            data=json.dumps(party_with_data),
+            content_type="application/json",
+        )
+        data = json.loads(response.data.decode())
+        self.assertEqual(data["status"], 400)
 
     def test_delete_party(self):
         """ensure a party is deleted."""

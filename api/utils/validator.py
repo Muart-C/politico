@@ -42,6 +42,24 @@ def check_json_party_keys(request):
         if not key in request.json:
             errors.append(key)
         return errors
+
+def validate_office_type(data):
+    """ensures the office name is of the defined parameters"""
+    accepted = ["federal", "legislative", "local", "state"]
+    if data not in accepted:
+        return False
+    return True
+
+def check_json_office_keys(request):
+    """checks if keys of the office payload is correct"""
+    request_keys = ["name", "office_type"]
+    errors = []
+    for key in request_keys:
+        if not key in request.json:
+            errors.append(key)
+        return errors
+
+
 # check if the url is of correct format
 def check_is_valid_url(url):
     """check if the url provided is valid"""
