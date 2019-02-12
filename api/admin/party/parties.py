@@ -24,7 +24,7 @@ def add_parties():
         logoUrl=data['logoUrl']
 
         # ensure keys data values of correct format
-        if(validate_string_data_type(name) == False) and name:
+        if(validate_string_data_type(name) == False):
             return return_error(400, "the name should be of correct data type")
         if(validate_string_data_type(hqAddress) == False):
             return return_error(400, "the HQ be of correct data type")

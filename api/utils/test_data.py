@@ -18,22 +18,33 @@ party_with_empty_fields = {
 }
 
 #a party with a name of wrong data type
-create_party_with_wrong_name_type = {
-    "name" : 4564,
+party_with_wrong_name_type = {
+    "name" : 54654,
     "hqAddress" : "Machakos",
     "logoUrl" : "https://goo.gl/images/3RKgQ6",
 }
 
-#a party with an address of wrong data type
-create_party_with_wrong_address_type = {
+party_with_wrong_name_input = {
+    "name" : "sasa  ",
+    "hqAddress" : "Machakos",
+    "logoUrl" : "https://goo.gl/images/3RKgQ6",
+}
+party_with_wrong_address_input = {
     "name" : "name",
-    "hqAddress" : "`234324)!`",
+    "hqAddress" : "  ",
+    "logoUrl" : "https://goo.gl/images/3RKgQ6",
+}
+
+#a party with an address of wrong data type
+party_with_wrong_address_type = {
+    "name" : "name",
+    "hqAddress" : 123423,
     "logoUrl" : "https://goo.gl/images/3RKgQ6",
 }
 
 
 #a party with a wrong logo url
-create_party_with_wrong_logo_url = {
+party_with_wrong_logo_url = {
     "name" : "name",
     "hqAddress" : "Hello",
     "logoUrl" : "/images/3RKgQ6",
