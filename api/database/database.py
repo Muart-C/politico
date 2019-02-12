@@ -1,23 +1,12 @@
 #!api/database/database.py
 from sys import modules
 import psycopg2
-from config import database_url_test
-
-"""connect to postgres"""
-def connect():
-    try:
-        if 'pytest' in modules:
-           db_url = database_url_test
-           connection = psycopg2.connect(db_url)
-        return connection
-
-    except (Exception, psycopg2.Error) as db_error:
-        print("An error occurred while trying to connect to the database", db_error)
+from config import database_url
 
 class DatabaseSetup():
     """database instance"""
     def __init__(self):
-        self.connection = connect()
+        self.connection = psycopg2.connect(database_url)
 
     def create_tables(self):
         """create data tables for the api."""
@@ -35,12 +24,13 @@ class DatabaseSetup():
             users = """
                 CREATE TABLE users(
                     id INTEGER PRIMARY KEY,
-                    firstname VARCHAR(128) NOT NULL,
-                    lastname VARCHAR(128) NOT NULL,
+                    firstname VARCHAR(128) NULL,
+                    lastname VARCHAR(128) NULL,
                     email VARCHAR(128) NOT NULL,
-                    phone_number VARCHAR(150) NOT NULL,
-                    passport_url VARCHAR(256) NOT NULL,
-                    is_admin  boolean NOT NULL DEFAULT FALSE
+                    phone_number VARCHAR(150)  NULL,
+                    passport_url VARCHAR(256)  NULL,
+                    password VARCHAR(256) NOT NULL,
+                    is_admin  boolean NOT NULL DEFAULT TRUE
                 );
             """
             #create parties sql query definition

@@ -15,6 +15,7 @@ class TestingConfiguration(Config):
 class DevelopmentConfiguration(Config):
     """configurations for use during development phase."""
     DEBUG=True
+    DATABASE_URL = os.getenv("DATABASE_URL")
 
 class ProductionConfiguration(Config):
     """configurations for use during production phase."""
@@ -27,3 +28,4 @@ app_config = {
 }
 
 database_url_test = TestingConfiguration.DATABASE_URL_TEST
+database_url = DevelopmentConfiguration.DATABASE_URL
