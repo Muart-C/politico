@@ -2,8 +2,8 @@
 
 from flask import Flask
 from config import app_config
-from api.admin.party.parties import PARTY_BLUEPRINT
-from api.admin.office.offices import OFFICE_BLUEPRINT
+from api.views.parties import PARTY_BLUEPRINT
+from api.views.offices import OFFICE_BLUEPRINT
 from api.utils.validator import return_error
 
  #handle 405 errors
