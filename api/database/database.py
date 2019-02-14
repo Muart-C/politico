@@ -21,8 +21,9 @@ class DatabaseSetup:
             # drop existing tables if there are any
             drop_tables = "DROP TYPE IF EXISTS office_type; \
                 DROP TABLE IF EXISTS users, parties, candidates, petitions, offices,votes"
-
+            # drop all tables
             self.cursor.execute(drop_tables)
+
 
             # limit office options
             office_type_enum = "CREATE TYPE office_type as ENUM(\
