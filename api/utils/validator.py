@@ -1,5 +1,7 @@
 """validation functions"""
 import re
+import jwt
+import datetime
 from flask import jsonify, make_response
 
 def sanitize_input(input_data):
@@ -102,3 +104,26 @@ def check_email_validity(email):
                email):
        return True
     return False
+
+def encode_auth_token(user_id):
+    """generate an auth token"""
+    try:
+        payload ={
+            'exp': datetime.datetime.now() + \
+                datetime.timedelta(minutes=40),
+            'iat':datetime.datetime.now(),
+            'sub':user_id,
+        }
+        return jwt.encode(payload)
+    except Exception as err:
+        return return_error(404, "an authentication error occurred")
+
+def decode_auth_token(token):
+    """decode an auth token"""
+    try:
+        payload = jwt.decode(token, options={'verify_iat': False})
+        return payload
+    except jwt.ExpiredSignatureError:
+        return "your token signature already expired"
+    except jwt.InvalidTokenError:
+        return "your token is invalid"

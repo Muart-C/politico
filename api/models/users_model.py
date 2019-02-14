@@ -1,5 +1,6 @@
 """#!api/models/users_model.py"""
 from werkzeug.security import generate_password_hash
+from psycopg2.extras import RealDictCursor
 from api.database.database import DatabaseSetup
 class User(DatabaseSetup):
     """users model"""
@@ -34,7 +35,12 @@ class User(DatabaseSetup):
 
     def get_user(self, user_id):
         """get a user whose id was passed."""
-        return self
+        self.cursor.execute('''SELECT * FROM users WHERE email='{}';'''.format(self.email))
+        user=self.cursor.fetchone()
+        if user is not None:
+	        return user
+        else:
+	        return None
 
     def check_if_user_exist_before_creating_one(self):
         """checks if a user exists before attempting to create one"""
