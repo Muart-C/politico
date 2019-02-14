@@ -6,6 +6,8 @@ def sanitize_input(input_data):
     """check if input is of alphanumeric characters"""
     if input_data.isalpha() == False:
         return False
+    return True
+
 def validate_int_data_type(data_passed):
     """ ensures the inputs are of int  type"""
     if not isinstance(data_passed, int):
@@ -26,7 +28,7 @@ def return_error(status_code, message):
         "error": message,
     }
     return make_response(jsonify(response), status_code)
-def return_response(status_code, message, data=list()):
+def return_response(status_code, message, data={}):
     """ function to format the response """
     response = {
         "status": status_code,
@@ -65,5 +67,38 @@ def check_is_valid_url(url):
     """check if the url provided is valid"""
     if re.match(r"https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)",
                url):
+       return True
+    return False
+
+def check_json_new_user_keys(request):
+    """checks if keys of the office payload is correct"""
+    user_keys = ["firstname", "lastname", "othername",\
+        "email","phone_number","passport_url", "password"]
+    errors = []
+    for key in user_keys:
+        if not key in request.json:
+            errors.append(key)
+        return errors
+
+def check_json_new_candidate_keys(request):
+    candidate_keys = ["candidate_id","office_id","party_id"]
+    errors = []
+    for key in candidate_keys:
+        if not key in request.json:
+            errors.append(key)
+        return errors
+
+def check_json_new_votes_keys(request):
+    vote_keys = ["candidate_id","office_id","user_id"]
+    errors = []
+    for key in vote_keys:
+        if not key in request.json:
+            errors.append(key)
+        return errors
+
+def check_email_validity(email):
+    """checks to ensure correct mail format"""
+    if re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+[a-zA-Z0-9-.]+$)",
+               email):
        return True
     return False

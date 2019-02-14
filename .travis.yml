@@ -3,6 +3,13 @@ python:
 - 3.6.7
 install:
 - pip install -r requirements.txt
+services:
+  - postgresql
+
+before_script:
+  - psql -c "CREATE DATABASE testing_politico;" -U postgres
+  - psql -c "CREATE USER politico WITH PASSWORD 'politico';" -U postgres
+
 script:
 - pytest --cov=api tests/ -v
 after_success:
@@ -14,5 +21,5 @@ deploy:
     secure: iK6b9prnVvqzoZYoUSW/YlYoBEFlzlrFMnnwNIbzbm5d5SKn7lYJIFHrZgL0vecF2fJVA5wJKGtukZCIGp/sUBUUv3AfdYOG65M7DP5QjQx2tgY4avEaHXGJ/cZPMX0J+G0BsiJLXScaZNr98jEafU6bj/wDXkSwJ8lc9ldKEtWJXVKduhZJ4EsXeGTFzX+qgDvSq1I26w0kgHlr/7lea/TVatNSTxy4P1msFljSLtczrN4BLnEaj8EFJZRHUgd0lYZeNPiwGr0ZgJ02lxWhu9n/1q9X3MCglui5A48lSUqAQedpoe6X/6/mcLpT/wIFmP5kn7OEYOLc25VNESEfWn/vOZ20s8DKdZdIVWTAT6tHoSlFXOBwpgcMvVM0YJsI7mz5ts5w1BgS5udOyyWsj0tMIbRJIJ4Pus/aIrYGHTbGN2OWqhusglkcBwqaVReFhFgnLi48O8VoHSXI4iCMfo37EiVQcnXXyCVDIcDFNGkqGJPf5GS0Itsc8yVXFM2jLiPFCCwf6Ye1JLMlgwcpTwWL6CzNXknC5kK/gYjI6+mmB/E8hZa22V311nbREUBzY4xI9GzPX33jHIM79FyQRRtUIwgzz41NW0IdsTlSFVTR0CjCuI8ZkRXfPHrNEeO/wtc+95QLETRrYqzZbX+g3EQuPuzozGjJ4hTmMqxOQ+4=
   on:
     develop
-  
+
 

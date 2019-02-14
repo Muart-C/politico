@@ -1,5 +1,5 @@
 """"!api/admin/office/offices/py """
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, request
 from api.models.offices_model import Office, OFFICES
 from api.utils.validator import return_response, return_error, check_json_office_keys
 from api.utils.validator import validate_string_data_type, sanitize_input
@@ -61,17 +61,17 @@ def get_offices():
     return return_response(400, "there are no offices registered")
 
 #get a particular office route endpoint
-@OFFICE_BLUEPRINT.route('/offices/<int:Id>', methods=['GET'])
-def get_office(Id):
+@OFFICE_BLUEPRINT.route('/offices/<int:id>', methods=['GET'])
+def get_office(id):
     """get a particular political office."""
-    if(validate_int_data_type(Id) == False):
+    if(validate_int_data_type(id) == False):
         return return_response(400, "please provide id of correct type")
 
     #initialize an office data structure
     political_office = Office()
 
     #get an office with the id passed
-    office = political_office.get_office(Id)
+    office = political_office.get_office(id)
 
     #if the office exists then return it as json response
     if office:
