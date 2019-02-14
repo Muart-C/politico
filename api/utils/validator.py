@@ -122,8 +122,7 @@ def encode_auth_token(email):
             'iat':datetime.datetime.now(),
             'sub':email
         }
-
-        return jwt.encode(payload, algorithm='HS256')
+        return jwt.encode(payload,"secret", algorithm='HS256')
 
     except Exception as err:
         return return_error(404, "an authentication error occurred")

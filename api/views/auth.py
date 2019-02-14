@@ -95,6 +95,7 @@ def login():
         if user:
             return return_error(400, "user does not exist")
         password = check_password_hash(user.password, password)
+        print(password)
         if password:
             """generate token for user"""
             token = encode_auth_token(user.email)

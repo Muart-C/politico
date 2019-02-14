@@ -1,6 +1,6 @@
 """!#api/admin/party"""
-from flask import Blueprint, request
-from api.models.parties_model import Party, PARTIES
+from flask import Blueprint, request, make_response, jsonify
+from api.models.parties_model import Party
 from api.utils.validator import return_response, validate_string_data_type, check_json_party_keys
 from api.utils.validator import return_error, validate_int_data_type, sanitize_input
 from api.utils.validator import check_is_valid_url
@@ -38,10 +38,17 @@ def add_parties():
     except KeyError as e:
         return return_response(400, "an error occurred while creating party {} is missing".format(e.args[0]))
 
-    party = Party()
-    party = party.add_party(name=name, hq_address=hqAddress, logo_url=logoUrl)
+    party = Party(name,hqAddress, logoUrl)
+    party = party.create_a_party()
     if party:
-        return return_response(201, "party {} was created".format(name), [party])
+        return make_response(jsonify({
+            "status":201,
+            "message":"party created successfully",
+            "data": [{
+                "name" : name,
+                "hq_address":hqAddress
+            }]
+        }))
     #if not success return error
     return return_error(400, "an error occurred while creating party")
 
@@ -124,7 +131,6 @@ def delete_party(party_id):
         return return_error(400, "party does not exist")
     #check if the party to delete exist in the model
     if party_delete:
-        PARTIES.remove(party_delete)
         return return_response(204, "party deleted")
     #if party not in list return error
     return return_error(404, "error processing your request")
