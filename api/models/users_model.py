@@ -14,6 +14,8 @@ class User(DatabaseSetup):
         self.phone_number =  kwargs.get("phone_number")
         self.password = generate_password_hash(kwargs.get("password"))
 
+
+
     def create_user(self):
         """create a user if one does not exist."""
         insert_user= '''INSERT INTO users(\

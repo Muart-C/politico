@@ -1,4 +1,4 @@
-"""authentication blueprint"""
+"""authentication endpoints"""
 import re
 from flask import Blueprint, request
 from api.utils.validator import check_json_new_user_keys,\
