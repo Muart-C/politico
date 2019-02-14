@@ -9,7 +9,7 @@ services:
 before_script:
   - psql -c "CREATE DATABASE testing_politico;" -U postgres
   - psql -c "CREATE USER politico WITH PASSWORD 'politico';" -U postgres
-  - psql -c "psql -h localhost -d politico -U postgres -p 5432 -f create_table.sql"
+  - psql -h localhost -d politico -U postgres -p 5432 -f create_table.sql
 
 script:
 - pytest --cov=api tests/ -v
