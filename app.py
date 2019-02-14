@@ -2,6 +2,7 @@
 
 from flask import Flask
 from config import app_config
+from api.views.auth import AUTH_BLUEPRINT
 from api.views.parties import PARTY_BLUEPRINT
 from api.views.offices import OFFICE_BLUEPRINT
 from api.utils.validator import return_error
@@ -29,13 +30,16 @@ def create_app(environment="development"):
 
 
     #url prefix for api version 1
-    url_prefix_version_1 = "/api/v1"
+    url_prefix_version_2 = "/api/v2"
+
+    # register auth blueprint
+    app.register_blueprint(AUTH_BLUEPRINT, url_prefix=url_prefix_version_2)
 
     #register party blueprint
-    app.register_blueprint(PARTY_BLUEPRINT, url_prefix=url_prefix_version_1)
+    app.register_blueprint(PARTY_BLUEPRINT, url_prefix=url_prefix_version_2)
 
     #register office blueprint
-    app.register_blueprint(OFFICE_BLUEPRINT, url_prefix=url_prefix_version_1)
+    app.register_blueprint(OFFICE_BLUEPRINT, url_prefix=url_prefix_version_2)
 
     return app
 

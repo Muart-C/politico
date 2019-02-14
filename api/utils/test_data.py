@@ -116,10 +116,10 @@ create_user={
     "firstname":"firstname",
     "lastname":"lastname",
     "othername":"othername",
-    "email":"e@email.com",
+    "email":"email@email.com",
     "phone_number":"+213425435",
     "passport_url":"https://goo.gl/images/B9U4PK",
-    "is_admin":False,
+    "password":"secretpass",
 }
 
 create_user_missing_data = {
@@ -129,7 +129,7 @@ create_user_missing_data = {
     "email":"",
     "phone_number":"",
     "passport_url":"",
-    "is_admin":False,
+    "password":"secretpass",
 }
 
 create_user_wrong_email_input = {
@@ -139,7 +139,7 @@ create_user_wrong_email_input = {
     "email":"mail",
     "phone_number":"+213425435",
     "passport_url":"https://goo.gl/images/B9U4PK",
-    "is_admin":False,
+    "password":"secretpass",
 }
 
 create_user_wrong_firstname_input = {
@@ -149,7 +149,7 @@ create_user_wrong_firstname_input = {
     "email":"mail",
     "phone_number":"+213425435",
     "passport_url":"https://goo.gl/images/B9U4PK",
-    "is_admin":False,
+    "password":"secretpass",
 }
 create_user_wrong_othername_input = {
     "firstname":"firstname",
@@ -158,7 +158,7 @@ create_user_wrong_othername_input = {
     "email":"e@email.com",
     "phone_number":"+213425435",
     "passport_url":"https://goo.gl/images/B9U4PK",
-    "is_admin":False,
+    "password":"secretpass",
 }
 create_user_wrong_lastname_input = {
     "firstname":"firstname",
@@ -167,7 +167,7 @@ create_user_wrong_lastname_input = {
     "email":"e@email.com",
     "phone_number":"+213425435",
     "passport_url":"https://goo.gl/images/B9U4PK",
-    "is_admin":False,
+    "password":"secretpass",
 }
 create_user_wrong_othername_input = {
     "firstname":"firstname",
@@ -176,7 +176,7 @@ create_user_wrong_othername_input = {
     "email":"e@email.com",
     "phone_number":"+213425435",
     "passport_url":"https://goo.gl/images/B9U4PK",
-    "is_admin":False,
+    "password":"secretpass",
 }
 create_user_wrong_phone_number_input = {
     "firstname":"firstname",
@@ -185,7 +185,7 @@ create_user_wrong_phone_number_input = {
     "email":"e@email.com",
     "phone_number":2|3,
     "passport_url":"https://goo.gl/images/B9U4PK",
-    "is_admin":False,
+    "password":"secretpass",
 }
 
 
@@ -196,5 +196,5 @@ create_user_wrong_passport_url_input = {
     "email":"e@email.com",
     "phone_number":2|3,
     "passport_url":"oo.g/images/B9U4PK",
-    "is_admin":False,
+    "password":"secretpass",
 }
