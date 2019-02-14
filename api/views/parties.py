@@ -43,14 +43,14 @@ def add_parties():
     if party:
         return make_response(jsonify({
             "status":201,
-            "message":"party created successfully",
+            "message":"party {} created successfully".format(name),
             "data": [{
                 "name" : name,
                 "hq_address":hqAddress
             }]
         }))
-    #if not success return error
-    return return_error(400, "an error occurred while creating party")
+    #if not success party already exists
+    return return_error(400, "the party already exists")
 
 #get all parties route
 @PARTY_BLUEPRINT.route('/parties', methods=['GET'])
@@ -58,12 +58,11 @@ def get_parties():
     """get all political parties"""
 
     #initialize the party model
-    parties = Party()
-    #get a list of all political parties
-    political_parties = parties.get_parties()
+    parties = Party(name=None, hq_address=None, logo_url=None)
+    registered_parties=parties.get_parties()
     #checks if a list of political parties exists then returns it as a json response
-    if political_parties:
-        return return_response(200, "get request is for parties successful", political_parties)
+    if registered_parties:
+        return return_response(200, "success", registered_parties)
     #incase the request is unsuccessful json error response is returned
     return return_error(400, "the party list was empty")
 
@@ -76,7 +75,7 @@ def get_party(id):
         return return_error(400, "invalid url arguments provided")
 
     #initialize a party model
-    political_party = Party()
+    political_party = Party(name=None, hq_address=None, logo_url=None)
 
     #get a party
     party = political_party.get_party(id)
@@ -102,10 +101,10 @@ def change_name(party_id):
             return return_error(400, "an error the party {} is missing".format(e.args[0]))
 
     #initialize the Party model class
-    political_party = Party()
+    political_party = Party(name=name, hq_address=None, logo_url=None)
 
     #retrieve a particular party of provided id
-    updated_party = political_party.update_party(party_id, name)
+    updated_party = political_party.patch_party_name(party_id)
 
     #checks if the party exists then modifies the party name and returns the required json response
     if updated_party:
@@ -117,22 +116,17 @@ def change_name(party_id):
 @PARTY_BLUEPRINT.route('/parties/<int:party_id>', methods=['DELETE'])
 def delete_party(party_id):
     try:
-        if(validate_int_data_type(party_id)==False):
+        if(validate_int_data_type(party_id) is False):
             return return_response(400, "pass the correct party id")
     except KeyError as e:
         return return_error(400, "an error occurred while fetching the {}".format(e.args[0]))
     #initialize the party model
-    party = Party()
+    party = Party(name=None, hq_address=None,logo_url=None)
 
-    #get party of the provided id
-    try:
-        party_delete = party.get_party(party_id)[0]
-    except IndexError:
-        return return_error(400, "party does not exist")
-    #check if the party to delete exist in the model
-    if party_delete:
-        return return_response(204, "party deleted")
-    #if party not in list return error
-    return return_error(404, "error processing your request")
+    # delete the party
+    if party.delete_party(party_id):
+        return return_response(200, "party deleted")
+    #if party was not found
+    return return_error(404, "party of that id does not exist")
 
 

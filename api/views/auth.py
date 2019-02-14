@@ -90,9 +90,11 @@ def login():
             return return_error(400,\
                  "password should be more than six characters")
 
-        user = User(email=email, )
+        user = User(email=email, password=None, firstname=None,\
+             lastname=None, othername=None, phone_number=None,\
+                  passport_url=None)
         user = user.get_user(email)
-        if user:
+        if user: 
             return return_error(400, "user does not exist")
         password = check_password_hash(user.password, password)
         print(password)
