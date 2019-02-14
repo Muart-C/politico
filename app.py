@@ -6,7 +6,7 @@ from api.views.auth import AUTH_BLUEPRINT
 from api.views.parties import PARTY_BLUEPRINT
 from api.views.offices import OFFICE_BLUEPRINT
 from api.utils.validator import return_error
-from api.database.database import DatabaseSetup
+
 
 
  #handle 405 errors
@@ -43,8 +43,6 @@ def create_app(environment=os.getenv("FLASK_ENV")):
     #register office blueprint
     app.register_blueprint(OFFICE_BLUEPRINT, url_prefix=url_prefix_version_2)
 
-    # add create tables
-    DatabaseSetup().create_tables()
     return app
 
 
