@@ -19,35 +19,32 @@ class User(DatabaseSetup):
 
     def create_user(self):
         """create a user if one does not exist."""
-        insert_user= '''INSERT INTO users(\
-            email, password, is_admin, firstname, lastname, othername,\
-                 passport_url, phone_number) VALUES ('{}','{}','{}', '{}','{}',\
-                '{}','{}','{}') RETURNING firstname, lastname,\
-                     othername, email'''.format(self.email, \
-                    self.password, self.is_admin,\
-                         self.firstname, self.lastname,self.othername, \
-                             self.passport_url,self.phone_number)
-
-        self.cursor.execute(insert_user)
-        self.connection.commit()
-        self.cursor.close()
-        return self
-
-    def get_user(self, user_id):
-        """get a user whose id was passed."""
-        self.cursor.execute('''SELECT * FROM users WHERE email='{}';'''.format(self.email))
-        user=self.cursor.fetchone()
-        if user is not None:
-	        return user
-        else:
-	        return None
-
-    def check_if_user_exist_before_creating_one(self):
-        """checks if a user exists before attempting to create one"""
         self.cursor.execute('''SELECT * FROM users WHERE email='{}';'''.format(self.email))
         user=self.cursor.fetchone()
         if user is None:
+            insert_user= '''INSERT INTO users(\
+                email, password, is_admin, firstname, lastname, othername,\
+                    passport_url, phone_number) VALUES ('{}','{}','{}', '{}','{}',\
+                    '{}','{}','{}') RETURNING firstname, lastname,\
+                        othername, email'''.format(self.email, \
+                        self.password, self.is_admin,\
+                            self.firstname, self.lastname,self.othername, \
+                                self.passport_url,self.phone_number)
+
+            self.cursor.execute(insert_user)
+            self.connection.commit()
+            self.cursor.close()
+            return "user created"
+        else:
             return False
-        return True
+
+    def get_user(self, email):
+        """get a user whose id was passed."""
+        self.cursor.execute('''SELECT * FROM users WHERE email='{}';'''.format(self.email))
+        user=self.cursor.fetchone()
+        if user:
+	        return user
+        else:
+	        return None
 
 

@@ -1,8 +1,16 @@
 """validation functions"""
 import re
 import jwt
+
 import datetime
 from flask import jsonify, make_response
+
+
+def validate_password(password):
+    if re.match('[a-zA-Z0-9@#$&^%+=-]{6,}', password) is None:
+        return False
+    return True
+
 
 def sanitize_input(input_data):
     """check if input is of alphanumeric characters"""
@@ -105,16 +113,17 @@ def check_email_validity(email):
        return True
     return False
 
-def encode_auth_token(user_id):
+def encode_auth_token(email):
     """generate an auth token"""
     try:
         payload ={
             'exp': datetime.datetime.now() + \
                 datetime.timedelta(minutes=40),
             'iat':datetime.datetime.now(),
-            'sub':user_id,
+            'sub':email
         }
-        return jwt.encode(payload)
+        return jwt.encode(payload,"secret", algorithm='HS256')
+
     except Exception as err:
         return return_error(404, "an authentication error occurred")
 

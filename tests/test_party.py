@@ -17,7 +17,6 @@ class TestParty(BaseTest):
         data = json.loads(response.data.decode("utf-8"))
 
         self.assertEqual(data["status"], 201)
-        self.assertEqual(data["message"], "party ANC was created")
 
     def test_add_party_with_missing_input(self):
         """test user cannot create party with missing fields"""
@@ -116,7 +115,7 @@ class TestParty(BaseTest):
             '/api/v2/parties/1',
             content_type="application/json",
         )
-        self.assertEqual(result_delete.status_code, 204)
+        self.assertEqual(result_delete.status_code, 200)
 
     def test_getting_non_existing_party(self):
         """ensure an error is returned for non existing party"""
