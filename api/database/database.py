@@ -24,6 +24,7 @@ class DatabaseSetup:
 
             self.cursor.execute(drop_tables)
 
+            # limit office options
             office_type_enum = "CREATE TYPE office_type as ENUM(\
                 'federal','legislative','local','state')"
 
