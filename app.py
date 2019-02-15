@@ -1,15 +1,14 @@
 """Instantiate an instance of the app."""
 import os
 from flask import Flask
-from instance.config import app_config
+from config import app_config
 from api.views.auth import AUTH_BLUEPRINT
 from api.views.parties import PARTY_BLUEPRINT
 from api.views.offices import OFFICE_BLUEPRINT
 from api.views.votes import VOTE_BLUEPRINT
 from api.utils.validator import return_error
 
-
-
+ 
  #handle 405 errors
 def handle_405_error(err):
     return return_error(405, "method not allowed")
@@ -18,7 +17,9 @@ def handle_405_error(err):
 def handle_404_error(err):
     return return_error(404, "bad url format")
 
-def create_app(app_config):
+environment = os.getenv("FLASK_ENV")
+
+def create_app(environment):
     """create an instance of the flask app given the passed environment variable and return."""
 
     #instantiate the app
@@ -29,7 +30,7 @@ def create_app(app_config):
     #register 404 error handler
     app.register_error_handler(404, handle_404_error)
     #set configuration
-    app.config.from_pyfile('config.py')
+    app.config.from_object(app_config[environment])
 
 
     #url prefix for api version 1

@@ -15,7 +15,7 @@ class Users(BaseTest):
         # get data from the request into json
         data = json.loads(response.data.decode("utf-8"))
         print(data)
-        self.assertEqual(response.status_code, 201)
+        self.assertEqual(data["status"], 201)
 
     def test_user_sign_up_missing_data(self):
         """"ensures data is provided before registration."""

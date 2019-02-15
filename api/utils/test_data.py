@@ -116,7 +116,7 @@ create_user={
     "firstname":"firstname",
     "lastname":"lastname",
     "othername":"othername",
-    "email":"emal@email.com",
+    "email":"demo@email.com",
     "phone_number":"+213425435",
     "passport_url":"https://goo.gl/images/B9U4PK",
     "password":"secretpass",
