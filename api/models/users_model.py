@@ -4,16 +4,16 @@ from psycopg2.extras import RealDictCursor
 from api.database.database import DatabaseSetup
 class User(DatabaseSetup):
     """users model"""
-    def __init__(self, **kwargs):
+    def __init__(self, email=None,password=None,firstname=None,lastname=None,othername=None,passport_url=None,phone_number=None):
         super().__init__()
         self.is_admin = False
-        self.email = kwargs.get("email")
-        self.firstname = kwargs.get("firstname")
-        self.lastname = kwargs.get("lastname")
-        self.othername = kwargs.get("othername")
-        self.passport_url = kwargs.get("passport_url")
-        self.phone_number =  kwargs.get("phone_number")
-        self.password = generate_password_hash(kwargs.get("password"))
+        self.email = email
+        self.firstname = firstname
+        self.lastname = lastname
+        self.othername = othername
+        self.passport_url = passport_url
+        self.phone_number =  phone_number
+        self.password = password
 
 
 
@@ -40,11 +40,9 @@ class User(DatabaseSetup):
 
     def get_user(self, email):
         """get a user whose id was passed."""
-        self.cursor.execute('''SELECT * FROM users WHERE email='{}';'''.format(self.email))
+        self.cursor.execute('''SELECT * FROM users WHERE email='{}';'''.format(email))
         user=self.cursor.fetchone()
-        if user:
-	        return user
-        else:
-	        return None
+        self.connection.commit()
+        return user
 
 

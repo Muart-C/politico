@@ -1,5 +1,5 @@
 """"!api/admin/office/offices/py """
-from flask import Blueprint, request
+from flask import Blueprint, request, make_response, jsonify
 from api.models.offices_model import Office
 from api.models.candidates_model import Candidate
 from api.utils.validator import return_response, return_error, check_json_office_keys
@@ -38,10 +38,17 @@ def add_offices():
     except KeyError as e:
         return return_error(400, "an error occurred while creating office  {} is missing".format(e.args[0]))
 
-    office = Office()
-    office = office.add_office(name=name, office_type=office_type)
+    office = Office(name=name, office_type=office_type)
+    office = office.create_office()
     if office:
-        return return_response(201, "office of {} was created".format(name), [office])
+        return make_response(jsonify({
+            "status":201,
+            "message":"office {} created successfully".format(name),
+            "data": [{
+                "name" : name,
+                "office_type":office_type
+            }]
+        }))
     #if not success return error
     return return_response(400, "an error occurred while creating an office")
 
@@ -51,7 +58,7 @@ def get_offices():
     """get all the offices"""
 
     #initialize an office data model
-    offices = Office()
+    offices = Office(name=None, office_type=None)
 
     #get a list of all  offices
     political_offices = offices.get_offices()
@@ -70,14 +77,14 @@ def get_office(id):
         return return_response(400, "please provide id of correct type")
 
     #initialize an office data structure
-    political_office = Office()
+    political_office = Office(name=None, office_type=None)
 
     #get an office with the id passed
     office = political_office.get_office(id)
 
     #if the office exists then return it as json response
     if office:
-        return return_response(200, "request was successful", [office])
+        return return_response(200, "request was successful", office)
     #return error response
     return return_response(404,"no office with that id was found")
 
@@ -96,23 +103,30 @@ def create_candidate(office_id):
         party_id=data['party_id']
         candidate_id=data['candidate_id']
 
-        if(sanitize_input(party_id) == False):
+        if(validate_int_data_type(party_id) == False):
             return return_error(400, "provide a valid party id")
-        if(sanitize_input(candidate_id) == False):
+        if(validate_int_data_type(candidate_id) == False):
             return return_error(400, "provide a valid candidate id")
 
 
     except KeyError as e:
         return return_error(400, "an error occurred {} is missing".format(e.args[0]))
 
-    office = Office()
+    office = Office(name=None, office_type=None)
     result = office.get_office(office_id)
     if result:
         candidate = Candidate(office_id=office_id, candidate_id=candidate_id, party_id=party_id)
 	    #check if candidate is already registered
         new = candidate.create_a_candidate()
         if new:
-            return return_response(201, "candidate was created successfully")
+            return make_response(jsonify({
+            "status":201,
+            "message":"candidate created",
+            "data": [{
+                "office" : office_id,
+                "user":candidate_id,
+            }]
+        }))
         return return_error(500, "candidate already exist")
     return return_error(400, "no such office that exists")
 

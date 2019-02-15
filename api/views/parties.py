@@ -55,7 +55,7 @@ def add_parties():
 #get all parties route
 @PARTY_BLUEPRINT.route('/parties', methods=['GET'])
 def get_parties():
-    """get all all parties"""
+    """get all parties"""
 
     #initialize the party model
     parties = Party(name=None, hq_address=None, logo_url=None)

@@ -1,12 +1,13 @@
 """Instantiate an instance of the app."""
 import os
 from flask import Flask
-from config import app_config
+from instance.config import app_config
 from api.views.auth import AUTH_BLUEPRINT
 from api.views.parties import PARTY_BLUEPRINT
 from api.views.offices import OFFICE_BLUEPRINT
+from api.views.votes import VOTE_BLUEPRINT
 from api.utils.validator import return_error
-from api.database.database import DatabaseSetup
+
 
 
  #handle 405 errors
@@ -17,7 +18,7 @@ def handle_405_error(err):
 def handle_404_error(err):
     return return_error(404, "bad url format")
 
-def create_app(environment=os.getenv("FLASK_ENV")):
+def create_app(app_config):
     """create an instance of the flask app given the passed environment variable and return."""
 
     #instantiate the app
@@ -28,7 +29,7 @@ def create_app(environment=os.getenv("FLASK_ENV")):
     #register 404 error handler
     app.register_error_handler(404, handle_404_error)
     #set configuration
-    app.config.from_object(app_config[environment])
+    app.config.from_pyfile('config.py')
 
 
     #url prefix for api version 1
@@ -43,8 +44,10 @@ def create_app(environment=os.getenv("FLASK_ENV")):
     #register office blueprint
     app.register_blueprint(OFFICE_BLUEPRINT, url_prefix=url_prefix_version_2)
 
-    # add create tables
-    DatabaseSetup().create_tables()
+     #register vote blueprint
+    app.register_blueprint(VOTE_BLUEPRINT, url_prefix=url_prefix_version_2)
+
+
     return app
 
 

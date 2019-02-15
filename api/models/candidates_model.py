@@ -20,7 +20,7 @@ class Candidate(DatabaseSetup):
 
     def get_candidate(self, candidate_id):
         """get a candidate whose id was passed."""
-        self.cursor.execute('''SELECT * FROM candidates WHERE id='{}';'''.format(self.candidate_id))
+        self.cursor.execute('''SELECT * FROM candidates WHERE id='{}';'''.format(candidate_id))
         candidate=self.cursor.fetchone()
         if candidate is not None:
             return True

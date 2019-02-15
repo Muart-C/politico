@@ -9,7 +9,7 @@ class Vote(DatabaseSetup):
         self.user_id = user_id
         self.candidate_id=candidate_id
 
-    def vote_for_a_candidate(self, user_id, candidate_id):
+    def vote_for_a_candidate(self):
         """checks if one has voted before voting again"""
         self.cursor.execute('''SELECT * FROM votes WHERE created_by='{}' AND candidate_id = '{}';'''.format(self.user_id, self.candidate_id))
         vote=self.cursor.fetchone()
@@ -28,12 +28,13 @@ class Vote(DatabaseSetup):
     def get_vote_results(self, user_id, candidate_id):
         pass
 
-    # def get_vote_results(self, office_id):
-    #     """get results"""
-    #     self.cursor.execute('''SELECT * FROM votes WHERE office_id='{}';'''.format(self.office_id)votes = self.cursor.fetchall()
-    #     votes_list = []
-	#     for vote in votes:
-	#         voter = {'voter_id': vote[0], 'office_id': vote[3], 'candidate_id': vote[4]}
-	#         votes_list.append(voter)
 
-
+    def get_offget_vote_resultsices(self):
+        """get results"""
+        self.cursor.execute('''SELECT * FROM votes WHERE office_id='{}';'''.format(self.office_id))
+        votes=self.cursor.fetchall()
+        votes_list = []
+        for vote in votes:
+            vote = { "voter": vote[2],'office': vote[3], 'candidate': vote[4]}
+            votes_list.append(vote)
+        return votes_list

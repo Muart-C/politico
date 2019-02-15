@@ -61,16 +61,19 @@ def create_user():
     except KeyError as e:
         return return_error(400, "an error occurred while creating user  {} is missing".format(e.args[0]))
 
-    user = User(email=email, password=password, firstname=firstname, \
-        lastname=lastname, othername=othername, phone_number=phone_number, passport_url=passport_url)
+    user = User(email, password, firstname, lastname,\
+         othername, phone_number, passport_url)
 
     if user.create_user():
+        token = encode_auth_token(email)
         return make_response(jsonify({
             "status":201,
-            "message": "user successfully created",
             "data" :[{
-                "email": user.email,
-                "firstname": user.firstname,
+                "token":token.decode("utf-8"),
+                "user":{
+                    "email":user.email,
+                    "firstname": user.firstname,
+                }
             }]
         }))
     return return_error(400, "user already exists")
@@ -79,34 +82,25 @@ def create_user():
 @AUTH_BLUEPRINT.route('/auth/login', methods=["POST"])
 def login():
     """login as a user."""
-    try:
-        data = request.get_json()
-        email = data['email']
-        password = data['password']
+    data = request.get_json()
+    email = data['email']
+    password = data['password']
 
-        if(check_email_validity(email) is False):
-            return return_error(400, "add a valid email address")
-        if(validate_password(password) is False):
-            return return_error(400,\
-                 "password should be more than six characters")
-
-        user = User(email=email, password=None, firstname=None,\
-             lastname=None, othername=None, phone_number=None,\
-                  passport_url=None)
-        user = user.get_user(email)
-        if user: 
-            return return_error(400, "user does not exist")
-        password = check_password_hash(user.password, password)
-        print(password)
-        if password:
-            """generate token for user"""
-            token = encode_auth_token(user.email)
-            if token:
-                return make_response(jsonify({
+    if(check_email_validity(email) is False):
+        return return_error(400, "add a valid email address")
+    if(validate_password(password) is False):
+        return return_error(400,"password should be more than six characters")
+    user = User().get_user(email)
+    if user:
+        """generate token for user"""
+        token = encode_auth_token(email)
+        if token:
+            return make_response(jsonify({
                     "status":200,
-                    "message":"successful login",
-                    "token": token.decode("utf-8")
-                }))
-    except Exception as exception:
-        print(exception)
-        return return_error(400, "an error occurred while login in")
+                    "user":[{
+                        "token": token.decode("utf-8"),
+                        "user":{
+                            "email":email
+                        }
+                    }],
+            }))
