@@ -13,14 +13,19 @@
 
 | Method  | Endpoint                                   | What the endpoint does                            |
 | ------- | ------------------------------------------ | --------------------------------------------------|
-| `POST`  | `/api/v1/parties`                          | creates a political party                         |
-| `GET`   | `/api/v1/parties`                          | returns all political parties                     |
-| `GET`   | `/api/v1/parties/party_id>`                | returns a specific political party                |
-| `PATCH` | `/api/v1/parties/<party_id>/name`          | updates the name of the political party           |
-| `DELETE`| `/api/v1/parties/party_id>`                | deletes a specific political party                |
-| `POST`  | `/api/v1/offices`                          | creates a government office                       |
-| `GET`   | `/api/v1/offices`                          | returns all the government offices                |
-| `GET`   | `/api/v1/parties/party_id>`                | returns a specific government office              | 
+| `POST`  | `/api/v2/auth/signup`                      | create a new user                                 |
+| `POST`  | `/api/v2/auth/login`                       | login user                                        |
+| `POST`  | `/api/v2/parties`                          | creates a political party                         |
+| `GET`   | `/api/v2/parties`                          | returns all political parties                     |
+| `GET`   | `/api/v2/parties/party_id>`                | returns a specific political party                |
+| `PATCH` | `/api/v2/parties/<party_id>/name`          | updates the name of the political party           |
+| `DELETE`| `/api/v2/parties/party_id>`                | deletes a specific political party                |
+| `POST`  | `/api/v2/offices`                          | creates a government office                       |
+| `GET`   | `/api/v2/offices`                          | returns all the government offices                |
+| `GET`   | `/api/v2/offices/<office_id>`              | returns a specific government office              | 
+| `POST`  | `/api/v2/offices/<candidate_id>/register`  | register a candidate                              |
+| `POST`  | `/api/v2/votes/`                           | vote for a candidate                              |
+| `POST`  | `/api/v2/offices/<office_id>/results`      | return results of an election                     |
 
 
 # steps to setup the application locally
@@ -33,6 +38,8 @@ $ git clone https://github.com/Muart-C/politico.git
 ```
 
 $ cd politico
+
+$ git checkout develop-V2
 ```
 
 - create the virtual environment and activate it
