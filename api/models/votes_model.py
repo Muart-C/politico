@@ -4,7 +4,6 @@ from api.database.database import DatabaseSetup
 class Vote(DatabaseSetup):
     """votes model"""
     def __init__(self, office_id, user_id, candidate_id):
-        super().__init__()
         self.office_id = office_id
         self.user_id = user_id
         self.candidate_id=candidate_id

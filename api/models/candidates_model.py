@@ -4,7 +4,6 @@ from api.database.database import DatabaseSetup
 class Candidate(DatabaseSetup):
     """candidates model"""
     def __init__(self, office_id, party_id, candidate_id):
-        super().__init__()
         self.office_id = office_id
         self.party_id = party_id
         self.candidate_id = candidate_id

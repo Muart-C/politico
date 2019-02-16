@@ -4,7 +4,6 @@ from api.database.database import DatabaseSetup
 class Party(DatabaseSetup):
     """parties model"""
     def __init__(self, name, hq_address, logo_url):
-        super().__init__()
         self.name = name
         self.hq_address = hq_address
         self.logo_url = logo_url
