@@ -18,7 +18,7 @@ class Users(BaseTest):
         # get data from the request into json
         data = json.loads(response.data.decode("utf-8"))
         print(data)
-        self.assertEqual(data["status"], 201)
+        self.assertEqual(data['status'], 201)
 
     def test_user_sign_up_missing_data(self):
         """"ensures data is provided before registration."""
@@ -30,57 +30,57 @@ class Users(BaseTest):
         data = json.loads(response.data.decode("utf-8"))
         self.assertEqual(response.status_code, 400)
 
-    # def test_user_sign_up_with_wrong_email_input(self):
-    #     """ensure user can only sign up with valid email address"""
-    #     response=self.client.post(
-    #         "/api/v2/auth/signup",
-    #         data=json.dumps(create_user_wrong_email_input),
-    #         content_type="application/json"
-    #     )
+    def test_user_sign_up_with_wrong_email_input(self):
+        """ensure user can only sign up with valid email address"""
+        response=self.client.post(
+            "/api/v2/auth/signup",
+            data=json.dumps(create_user_wrong_email_input),
+            content_type="application/json"
+        )
 
-    #     data = json.loads(response.data.decode("utf-8"))
-    #     self.assertEqual(response.status_code, 400)
+        data = json.loads(response.data.decode("utf-8"))
+        self.assertEqual(response.status_code, 400)
 
-    # def test_user_sign_up_with_wrong_firstname_input(self):
-    #     """ensure user can only sign up with valid firstname"""
-    #     response=self.client.post(
-    #         "/api/v2/auth/signup",
-    #         data=json.dumps(create_user_wrong_firstname_input),
-    #         content_type="application/json"
-    #     )
+    def test_user_sign_up_with_wrong_firstname_input(self):
+        """ensure user can only sign up with valid firstname"""
+        response=self.client.post(
+            "/api/v2/auth/signup",
+            data=json.dumps(create_user_wrong_firstname_input),
+            content_type="application/json"
+        )
 
-    #     data = json.loads(response.data.decode("utf-8"))
-    #     self.assertEqual(response.status_code, 400)
+        data = json.loads(response.data.decode("utf-8"))
+        self.assertEqual(response.status_code, 400)
 
-    # def test_user_sign_up_with_wrong_lastname_input(self):
-    #     """ensure user can only sign up with valid lastname"""
-    #     response=self.client.post(
-    #         "/api/v2/auth/signup",
-    #         data=json.dumps(create_user_wrong_lastname_input),
-    #         content_type="application/json"
-    #     )
+    def test_user_sign_up_with_wrong_lastname_input(self):
+        """ensure user can only sign up with valid lastname"""
+        response=self.client.post(
+            "/api/v2/auth/signup",
+            data=json.dumps(create_user_wrong_lastname_input),
+            content_type="application/json"
+        )
 
-    #     data = json.loads(response.data.decode("utf-8"))
-    #     self.assertEqual(response.status_code, 400)
+        data = json.loads(response.data.decode("utf-8"))
+        self.assertEqual(response.status_code, 400)
 
-    # def test_user_sign_up_with_wrong_phone_number_input(self):
-    #     """ensure user can only sign up with valid phone_number"""
-    #     response=self.client.post(
-    #         "/api/v2/auth/signup",
-    #         data=json.dumps(create_user_wrong_phone_number_input),
-    #         content_type="application/json"
-    #     )
+    def test_user_sign_up_with_wrong_phone_number_input(self):
+        """ensure user can only sign up with valid phone_number"""
+        response=self.client.post(
+            "/api/v2/auth/signup",
+            data=json.dumps(create_user_wrong_phone_number_input),
+            content_type="application/json"
+        )
 
-    #     data = json.loads(response.data.decode("utf-8"))
-    #     self.assertEqual(response.status_code, 400)
+        data = json.loads(response.data.decode("utf-8"))
+        self.assertEqual(response.status_code, 400)
 
-    # def test_user_sign_up_with_wrong_passport_url_input(self):
-    #     """ensure user can only sign up with valid passport url input"""
-    #     response=self.client.post(
-    #         "/api/v2/auth/signup",
-    #         data=json.dumps(create_user_wrong_passport_url_input),
-    #         content_type="application/json"
-    #     )
+    def test_user_sign_up_with_wrong_passport_url_input(self):
+        """ensure user can only sign up with valid passport url input"""
+        response=self.client.post(
+            "/api/v2/auth/signup",
+            data=json.dumps(create_user_wrong_passport_url_input),
+            content_type="application/json"
+        )
 
-    #     data = json.loads(response.data.decode("utf-8"))
-    #     self.assertEqual(response.status_code, 400)
+        data = json.loads(response.data.decode("utf-8"))
+        self.assertEqual(response.status_code, 400)

@@ -1,7 +1,7 @@
 """authentication endpoints"""
 import re
 from flask import Blueprint, request, make_response, jsonify
-from werkzeug.security import check_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash
 from api.utils.validator import check_json_new_user_keys,\
      return_error, validate_string_data_type,\
          sanitize_input, check_email_validity, check_is_valid_url\
@@ -32,38 +32,45 @@ def create_user():
         password=data['password']
 
         if(check_email_validity(email) is False):
-            return return_error(400, "enter the correct email format")
+            return return_error(400, "enter the correct email format\
+                 i.e should contain @ and .")
 
         if(validate_string_data_type(firstname) is False):
-            return return_error(400, "the first name should be a string")
+            return return_error(400, "the first name should contain\
+                  character of words")
         if(validate_string_data_type(lastname) is False):
-            return return_error(400, "the last name should be a string")
+            return return_error(400, "the last name should contain\
+                 character of words")
         if(validate_string_data_type(othername) is False):
-            return return_error(400, "the other name should be a string")
+            return return_error(400, "the other name should contain\
+                 character of words")
         if(check_email_validity(email) is False):
             return return_error(400, "enter the correct email format")
         if(validate_string_data_type(phone_number) is False):
-            return return_error(400, "the phone number should alphanumeric")
+            return return_error(400, "enter a correct phone number")
         if(check_is_valid_url(passport_url) is False):
             return return_error(400, "the passport url should be of correct \
-                format")
+                format should be of format https://myimage.com")
 
         if(sanitize_input(firstname) == False):
-            return return_error(400, "provide a valid first name")
+            return return_error(400, "provide a valid first name\
+                 it should not contain any spaces")
         if(sanitize_input(lastname) == False):
-            return return_error(400, "provide a valid last name")
+            return return_error(400, "provide a valid last name,\
+                it should not contain any spaces")
         if(sanitize_input(othername) == False):
-            return return_error(400, "provide a valid other name")
+            return return_error(400, "provide a valid other name,\
+                it should not contain any spaces ")
         if(validate_password(password) == False):
             return return_error(400,\
                  "password should be more than six characters")
 
     except KeyError as e:
         return return_error(400, "an error occurred while creating user  {} is missing".format(e.args[0]))
-
-    user = User(email, password, firstname, lastname,\
-         othername, phone_number, passport_url)
-
+    pass_hash = generate_password_hash(password)
+    user = User(email=email, password=pass_hash, firstname=firstname,\
+        lastname=lastname, othername=othername, phone_number=phone_number,\
+             passport_url=passport_url)
     if user.create_user():
         token = encode_auth_token(email)
         return make_response(jsonify({
@@ -76,7 +83,7 @@ def create_user():
                 }
             }]
         }))
-    return return_error(400, "user already exists")
+    return return_error(409, "user already exists")
 
 # login
 @AUTH_BLUEPRINT.route('/auth/login', methods=["POST"])
@@ -90,13 +97,16 @@ def login():
         return return_error(400, "add a valid email address")
     if(validate_password(password) is False):
         return return_error(400,"password should be more than six characters")
-    user = User().get_user(email)
-    if user:
+
+    user = User()
+    check_user = user.get_user(email, generate_password_hash(password))
+
+    if check_user:
         """generate token for user"""
         token = encode_auth_token(email)
         if token:
             return make_response(jsonify({
-                    "status":200,
+                    "status":201,
                     "user":[{
                         "token": token.decode("utf-8"),
                         "user":{

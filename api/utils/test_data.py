@@ -116,7 +116,7 @@ new_user={
     "firstname":"firstname",
     "lastname":"lastname",
     "othername":"othername",
-    "email":"edede@email.com",
+    "email":"eded@email.com",
     "phone_number":"+213425435",
     "passport_url":"https://goo.gl/images/B9U4PK",
     "password":"secretpass",

@@ -108,7 +108,7 @@ def check_json_new_votes_keys(request):
 
 def check_email_validity(email):
     """checks to ensure correct mail format"""
-    if re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+[a-zA-Z0-9-.]+$)",
+    if re.match(r"(^[a-zA-Z0-9\.\+_-]+@[a-zA-Z0-9\._-]+\.[a-zA-Z0-9-.]+$)",
                email):
        return True
     return False

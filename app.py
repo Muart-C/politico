@@ -33,9 +33,9 @@ def create_app(configuration):
     app.config.from_object(app_config[configuration])
 
     # choose database according to the app configuration chosen
-    with app.app_context():
-         database = DatabaseSetup()
-         database.create_all_tables()
+    if app_config[configuration] == "testing":
+         db_name = app_config[configuration].DATABASE_POLITICO_TEST
+
 
 
     #url prefix for api version 1
