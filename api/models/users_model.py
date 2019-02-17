@@ -14,8 +14,6 @@ class User(DatabaseSetup):
         self.phone_number =  phone_number
         self.password = password
 
-
-
     def create_user(self):
         """create a user if one does not exist."""
         select_user ='''SELECT * FROM users WHERE email='{}';'''.format(self.email)
@@ -30,12 +28,13 @@ class User(DatabaseSetup):
                                 self.passport_url,self.phone_number)
 
             self.save_data_row(insert_user)
-
+ 
     def get_user(self, email):
         """get a user whose id was passed."""
         self.cursor.execute('''SELECT * FROM users WHERE email='{}';'''.format(email))
         user=self.cursor.fetchone()
         self.connection.commit()
+        self.connection.close()
         return user
 
 

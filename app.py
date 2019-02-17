@@ -34,7 +34,8 @@ def create_app(configuration):
 
     # choose database according to the app configuration chosen
     with app.app_context():
-         DatabaseSetup()
+         DatabaseSetup().create_all_tables()
+
 
     #url prefix for api version 1
     url_prefix_version_2 = "/api/v2"

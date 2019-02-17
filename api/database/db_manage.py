@@ -72,21 +72,6 @@ def create_tables():
 
     return [users, parties, offices, candidates, votes, petitions]
 
-def create_admin_if_does_not_exist(connection):
-    """create an admin."""
-    connection.cursor.execute('''SELECT * FROM users WHERE email='ndirangu@gmail.com';''')
-    user=connection.cursor.fetchone()
-    if user is None:
-        create_admin= '''INSERT INTO users(\
-                email, password, is_admin, firstname, lastname, othername,\
-                    passport_url, phone_number) VALUES \
-                        ('muathe.ndirangu@gmail.com', ndirangu', 'True',\
-                            'muathe', 'ndirangu','muathe', \
-                                'https://mypassport.com','+2342343');'''
-
-    connection.cursor.execute(create_admin)
-    connection.commit()
-    connection.cursor.close()
 
 
 #to be used during testing database operations
@@ -105,6 +90,5 @@ def drop_data_from_tables():
 
 def drop_tables_if_exists():
     # drop existing tables if there are any
-    drop_tables = "DROP TABLE IF EXISTS users, parties,\
-         candidates, petitions, offices, votes"
-    return [drop_tables]
+    users = '''DROP TABLE IF EXISTS users'''
+    return [users]

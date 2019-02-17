@@ -4,7 +4,6 @@ import os
 class Config:
     """base class for configurations for all phases"""
     DEBUG = False
-    DATABASE_POLITICO=os.getenv("DATABASE_POLITICO_URL")
 
 
 class TestingConfiguration(Config):
