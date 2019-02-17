@@ -32,35 +32,27 @@ def create_user():
         password=data['password']
 
         if(check_email_validity(email) is False):
-            return return_error(400, "enter the correct email format\
-                 i.e should contain @ and .")
+            return return_error(400, "enter the correct email format i.e should contain @ and .")
 
         if(validate_string_data_type(firstname) is False):
-            return return_error(400, "the first name should contain\
-                  character of words")
+            return return_error(400, "the first name should contain character of words")
         if(validate_string_data_type(lastname) is False):
-            return return_error(400, "the last name should contain\
-                 character of words")
+            return return_error(400, "the last name should contain character of words")
         if(validate_string_data_type(othername) is False):
-            return return_error(400, "the other name should contain\
-                 character of words")
+            return return_error(400, "the other name should contain character of words")
         if(check_email_validity(email) is False):
             return return_error(400, "enter the correct email format")
         if(validate_string_data_type(phone_number) is False):
             return return_error(400, "enter a correct phone number")
         if(check_is_valid_url(passport_url) is False):
-            return return_error(400, "the passport url should be of correct \
-                format should be of format https://myimage.com")
+            return return_error(400, "the passport url should be of correct format should be of format https://myimage.com")
 
         if(sanitize_input(firstname) == False):
-            return return_error(400, "provide a valid first name\
-                 it should not contain any spaces")
+            return return_error(400, "provide a valid first name it should not contain any spaces")
         if(sanitize_input(lastname) == False):
-            return return_error(400, "provide a valid last name,\
-                it should not contain any spaces")
+            return return_error(400, "provide a valid last name, it should not contain any spaces")
         if(sanitize_input(othername) == False):
-            return return_error(400, "provide a valid other name,\
-                it should not contain any spaces ")
+            return return_error(400, "provide a valid other name,it should not contain any spaces ")
         if(validate_password(password) == False):
             return return_error(400,\
                  "password should be more than six characters")
@@ -75,8 +67,8 @@ def create_user():
         token = encode_auth_token(email)
         return make_response(jsonify({
             "status":201,
+            "token":token.decode("utf-8"),
             "data" :[{
-                "token":token.decode("utf-8"),
                 "user":{
                     "email":user.email,
                     "firstname": user.firstname,
@@ -99,16 +91,16 @@ def login():
         return return_error(400,"password should be more than six characters")
 
     user = User()
-    check_user = user.get_user(email, generate_password_hash(password))
-
+    check_user = user.get_user(email, )
+    print(check_user)
     if check_user:
         """generate token for user"""
         token = encode_auth_token(email)
         if token:
             return make_response(jsonify({
-                    "status":201,
+                    "status":200,
+                    "token": token.decode("utf-8"),
                     "user":[{
-                        "token": token.decode("utf-8"),
                         "user":{
                             "email":email
                         }

@@ -12,11 +12,11 @@ from api.utils.validator import return_error
 
  #handle 405 errors
 def handle_405_error(err):
-    return return_error(405, "method not allowed")
+    return return_error(405, "the action you are undertaking is not allowed")
 
  #handle 404 errors
 def handle_404_error(err):
-    return return_error(404, "bad url format")
+    return return_error(404, "unrecognized resource request")
 
 
 def create_app(configuration):

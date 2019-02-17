@@ -37,13 +37,10 @@ class User(DatabaseSetup):
         else:
             return False
 
-    def get_user(self, email, password):
+    def get_user(self, email):
         """get a user whose id was passed."""
-        user = self.fetch_a_single_data_row('''SELECT * FROM users WHERE email='{}' AND \
-            password='{}';'''.format(email, password))
-        if user is not None:
-            return user
-        return "no user was found"
-
-
-
+        user = self.fetch_a_single_data_row('''SELECT * FROM users\
+             WHERE email='{}';'''.format(email))
+        if user:
+            user = {'email': user[4], 'password':user[7]}
+        return user

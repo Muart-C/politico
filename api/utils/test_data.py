@@ -122,6 +122,11 @@ new_user={
     "password":"secretpass",
 }
 
+user_login={
+    "email":"eded@email.com",
+    "password":"secretpass",
+}
+
 create_user_missing_data = {
     "firstname":"",
     "lastname":"",
