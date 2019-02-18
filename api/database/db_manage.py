@@ -74,7 +74,7 @@ def create_tables():
             FOREIGN KEY(candidate_id) REFERENCES users(id) ON DELETE CASCADE
         );"""
 
-    return [users, votes, parties, candidates, offices, petitions]
+    return [users, parties, offices, candidates, petitions, votes]
 
 
 
