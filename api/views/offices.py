@@ -153,6 +153,7 @@ def create_candidate(office_id):
                 "office" : office_id,
                 "user":candidate_id,
             }]
+
         }),201)
     else:
         return return_error(400, "the candidate is already registered")

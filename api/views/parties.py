@@ -96,7 +96,8 @@ def change_name(party_id):
 
         if(validate_string_data_type(name)== False):
             return return_error(400, "the name should contain a character of words")
-
+        if(sanitize_input(name) is False):
+            return return_error(400, "please enter a valid name i.e should not contain spaces or unrecognized characters")
     except KeyError as e:
             return return_error(400, "an error the party {} is missing".format(e.args[0]))
 
@@ -110,7 +111,7 @@ def change_name(party_id):
     if updated_party:
         return return_response(200, "the party name was updated", updated_party)
     #incase the request is unsuccessful json error response is returned
-    return return_error(400, "the party you are trying to modify does not exist")
+    return return_error(404, "the party you are trying to modify does not exist")
 
 #delete a party route
 @PARTY_BLUEPRINT.route('/parties/<int:party_id>', methods=['DELETE'])
