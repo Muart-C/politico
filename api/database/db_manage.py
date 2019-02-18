@@ -20,61 +20,61 @@ def create_tables():
             is_admin  boolean NOT NULL DEFAULT TRUE
         );"""
 
-    #create parties sql query definition
-    # parties = """
-    #     CREATE TABLE parties(
-    #         id SERIAL PRIMARY KEY,
-    #         name VARCHAR(100) NOT NULL,
-    #         hq_address VARCHAR(200) NOT NULL,
-    #         logo_url VARCHAR(256) NOT NULL
-    #     );"""
+    # create parties sql query definition
+    parties = """
+        CREATE TABLE parties(
+            id SERIAL PRIMARY KEY,
+            name VARCHAR(100) NOT NULL,
+            hq_address VARCHAR(200) NOT NULL,
+            logo_url VARCHAR(256) NOT NULL
+        );"""
 
-    # #create offices sql query definition
-    # offices = """
-    #     CREATE TABLE offices(
-    #         id SERIAL PRIMARY KEY,
-    #         name VARCHAR(100) NOT NULL,
-    #         office_type VARCHAR(100) NOT NULL
-    #     );"""
+    #create offices sql query definition
+    offices = """
+        CREATE TABLE offices(
+            id SERIAL PRIMARY KEY,
+            name VARCHAR(100) NOT NULL,
+            office_type VARCHAR(100) NOT NULL
+        );"""
 
-    # # create candidates sql query definition
-    # candidates = """
-    #     CREATE TABLE candidates(
-    #         id SERIAL PRIMARY KEY,
-    #         office_id INTEGER,
-    #         party_id INTEGER,
-    #         candidate_id INTEGER,
-    #         FOREIGN KEY(office_id) REFERENCES offices(id) ON DELETE CASCADE,
-    #         FOREIGN KEY(party_id) REFERENCES parties(id) ON DELETE CASCADE,
-    #         FOREIGN KEY(candidate_id) REFERENCES users(id) ON DELETE CASCADE
-    #     );"""
+    # create candidates sql query definition
+    candidates = """
+        CREATE TABLE candidates(
+            id SERIAL PRIMARY KEY,
+            office_id INTEGER,
+            party_id INTEGER,
+            candidate_id INTEGER,
+            FOREIGN KEY(office_id) REFERENCES offices(id) ON DELETE CASCADE,
+            FOREIGN KEY(party_id) REFERENCES parties(id) ON DELETE CASCADE,
+            FOREIGN KEY(candidate_id) REFERENCES users(id) ON DELETE CASCADE
+        );"""
 
-    # # create petitions sql query definition
-    # petitions = """
-    #     CREATE TABLE petitions(
-    #         id SERIAL PRIMARY KEY,
-    #         created_on TIMESTAMP NOT NULL DEFAULT now(),
-    #         created_by INTEGER,
-    #         office_id INTEGER,
-    #         petition_description TEXT NOT NULL,
-    #         FOREIGN KEY(created_by) REFERENCES users(id) ON DELETE CASCADE,
-    #         FOREIGN KEY(office_id) REFERENCES offices(id) ON DELETE CASCADE
-    #     );"""
+    # create petitions sql query definition
+    petitions = """
+        CREATE TABLE petitions(
+            id SERIAL PRIMARY KEY,
+            created_on TIMESTAMP NOT NULL DEFAULT now(),
+            created_by INTEGER,
+            office_id INTEGER,
+            petition_description TEXT NOT NULL,
+            FOREIGN KEY(created_by) REFERENCES users(id) ON DELETE CASCADE,
+            FOREIGN KEY(office_id) REFERENCES offices(id) ON DELETE CASCADE
+        );"""
 
-    # # create votes sql query definition
-    # votes = """
-    #     CREATE TABLE votes(
-    #         id SERIAL PRIMARY KEY,
-    #         created_on TIMESTAMP NOT NULL DEFAULT now(),
-    #         created_by INTEGER,
-    #         office_id INTEGER,
-    #         candidate_id INTEGER,
-    #         FOREIGN KEY(created_by) REFERENCES users(id) ON DELETE CASCADE,
-    #         FOREIGN KEY(office_id) REFERENCES offices(id) ON DELETE CASCADE,
-    #         FOREIGN KEY(candidate_id) REFERENCES users(id) ON DELETE CASCADE
-    #     );"""
+    # create votes sql query definition
+    votes = """
+        CREATE TABLE votes(
+            id SERIAL PRIMARY KEY,
+            created_on TIMESTAMP NOT NULL DEFAULT now(),
+            created_by INTEGER,
+            office_id INTEGER,
+            candidate_id INTEGER,
+            FOREIGN KEY(created_by) REFERENCES users(id) ON DELETE CASCADE,
+            FOREIGN KEY(office_id) REFERENCES offices(id) ON DELETE CASCADE,
+            FOREIGN KEY(candidate_id) REFERENCES users(id) ON DELETE CASCADE
+        );"""
 
-    return [users]
+    return [users, votes, parties, candidates, offices, petitions]
 
 
 

@@ -3,8 +3,7 @@ import os
 import psycopg2
 from flask import current_app as app
 from api.utils.validator import return_error
-from api.database.db_manage import create_tables,\
-     drop_data_from_tables
+from api.database.db_manage import create_tables, drop_data_from_tables
 
 class DatabaseSetup:
     """setup database instance of postgres"""
