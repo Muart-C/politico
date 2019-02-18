@@ -32,9 +32,6 @@ def create_app(configuration):
     #set configuration
     app.config.from_object(app_config[configuration])
 
-    # choose database according to the app configuration chosen
-    if app_config[configuration] == "testing":
-         db_name = app_config[configuration].DATABASE_POLITICO_TEST
 
 
 

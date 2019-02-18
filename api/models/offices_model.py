@@ -4,6 +4,7 @@ from api.database.database import DatabaseSetup
 class Office(DatabaseSetup):
     """offices model"""
     def __init__(self, name, office_type):
+        super().__init__()
         self.name = name
         self.office_type = office_type
 
