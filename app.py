@@ -18,6 +18,10 @@ def handle_405_error(err):
 def handle_404_error(err):
     return return_error(404, "unrecognized resource request")
 
+ #handle 500 errors
+def handle_500_error(err):
+    return return_error(500, "a server error occurred please wait we figure out what went wrong")
+
 
 def create_app(configuration):
     """create an instance of the flask app given the passed environment variable and return."""
@@ -29,6 +33,8 @@ def create_app(configuration):
     app.register_error_handler(405, handle_405_error)
     #register 404 error handler
     app.register_error_handler(404, handle_404_error)
+     #register 500 error handler
+    app.register_error_handler(500, handle_500_error)
     #set configuration
     app.config.from_object(app_config[configuration])
 

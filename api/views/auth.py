@@ -92,8 +92,9 @@ def login():
 
     user = User()
     check_user = user.get_user(email, )
-    print(check_user)
-    if check_user:
+    check_password= check_user.check_password_match(check_user.password, \
+        password)
+    if check_password:
         """generate token for user"""
         token = encode_auth_token(email)
         if token:

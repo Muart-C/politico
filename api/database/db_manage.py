@@ -94,5 +94,5 @@ def drop_data_from_tables():
 
 def drop_tables_if_exists():
     # drop existing tables if there are any
-    users = '''DROP TABLE IF EXISTS users CASCADE;'''
-    return [users]
+    drop_tables = '''DROP TABLE IF EXISTS users,parties,offices,candidates,petitions,votes CASCADE;'''
+    return [drop_tables]

@@ -1,4 +1,5 @@
 """#!api/models/parties_model.py"""
+import json
 from werkzeug.security import generate_password_hash
 from api.database.database import DatabaseSetup
 class Party(DatabaseSetup):
@@ -38,8 +39,9 @@ class Party(DatabaseSetup):
         """get a party whose id was passed."""
         self.cursor.execute('''SELECT * FROM parties WHERE id='{}';'''.format(party_id))
         party=self.cursor.fetchone()
-        party = {'name': party[1], 'hq_address': party[2], 'logo_url': party[3]}
-        return party
+        self.connection.commit()
+        self.cursor.close()
+        return json.dumps(party, default=str)
 
     def patch_party_name(self, party_id):
 	    """updates the name of a party."""

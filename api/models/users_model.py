@@ -1,7 +1,8 @@
 """#!api/models/users_model.py"""
-from werkzeug.security import generate_password_hash
-from psycopg2.extras import RealDictCursor
+import json
+from werkzeug.security import generate_password_hash, check_password_hash
 from api.database.database import DatabaseSetup
+from api.utils.validator import return_error
 class User(DatabaseSetup):
     """users model"""
     def __init__(self, **kwargs):
@@ -13,7 +14,7 @@ class User(DatabaseSetup):
         self.othername = kwargs.get('othername')
         self.passport_url = kwargs.get('passport_url')
         self.phone_number =  kwargs.get('phone_number')
-        self.password =  kwargs.get('password')
+        self.hash_password =  kwargs.get('password')
 
     def create_user(self):
         """create a user if one does not exist."""
@@ -26,7 +27,7 @@ class User(DatabaseSetup):
                     passport_url, phone_number) VALUES ('{}','{}','{}', '{}','{}',\
                     '{}','{}','{}') RETURNING firstname, lastname,\
                         othername, email'''.format(self.email, \
-                        self.password, self.is_admin,\
+                        self.hash_password, self.is_admin,\
                             self.firstname, self.lastname,self.othername, \
                                 self.passport_url,self.phone_number)
 
@@ -39,8 +40,20 @@ class User(DatabaseSetup):
 
     def get_user(self, email):
         """get a user whose id was passed."""
-        user = self.fetch_a_single_data_row('''SELECT * FROM users\
+        user = self.cursor.execute('''SELECT * FROM users\
              WHERE email='{}';'''.format(email))
-        if user:
-            user = {'email': user[4], 'password':user[7]}
-        return user
+        self.connection.commit()
+        self.cursor.close()
+        return json.dumps(user, default=str)
+
+    @staticmethod
+    def check_password_match(self, password_hash, password):
+        return check_password_hash(password_hash, str(password))
+
+    def get_user_by_id(self, user_id):
+        """get results of a particular user."""
+        self.cursor.execute('''SELECT * FROM users WHERE id='{}';'''.format(user_id))
+        user=self.cursor.fetchone()
+        self.connection.commit()
+        self.cursor.close()
+        return json.dumps(user, default=str)

@@ -1,9 +1,11 @@
 #!api/database/database.py
 import os
 import psycopg2
+from psycopg2.extras import RealDictCursor
 from flask import current_app as app
 from api.utils.validator import return_error
-from api.database.db_manage import create_tables, drop_data_from_tables
+from api.database.db_manage import create_tables, drop_data_from_tables,\
+    drop_tables_if_exists
 
 class DatabaseSetup:
     """setup database instance of postgres"""
@@ -21,6 +23,14 @@ class DatabaseSetup:
     def drop_data_from_tables(self):
         """drop tables if exist"""
         tables = drop_data_from_tables()
+        for table in tables:
+            self.cursor.execute(table)
+        self.connection.commit()
+        self.connection.close()
+ 
+    def drop_tables_if_exists(self):
+        """drop tables if exist"""
+        tables = drop_tables_if_exists()
         for table in tables:
             self.cursor.execute(table)
         self.connection.commit()
@@ -56,7 +66,7 @@ class DatabaseSetup:
         """retrieve a single data row."""
         print(self.cursor.execute(query))
         row = self.cursor.fetchone()
-        self.cursor.close()
+        # self.cursor.close()
         return row
 
     def fetch_all_data_rows(self, query):

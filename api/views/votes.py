@@ -12,7 +12,7 @@ def create_vote():
     """cast a new vote."""
     key_errors=check_json_new_votes_keys(request)
     if key_errors:
-        return return_error(400, "Invalid keys provided")
+        return return_error(400, "please provide valid json keys")
     try:
         data = request.get_json()
         # validate data from the request
