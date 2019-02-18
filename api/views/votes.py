@@ -41,6 +41,6 @@ def create_vote():
                 "voter": user_id
             }]
         }))
-        return return_error(400, "failed")
+        return return_error(400, "failed to vote successfully")
 
 

@@ -1,4 +1,3 @@
-"""#!api/models/candidates_model.py"""
 from werkzeug.security import generate_password_hash
 from api.database.database import DatabaseSetup
 from api.models.offices_model import Office
@@ -11,9 +10,6 @@ class Candidate(DatabaseSetup):
         self.candidate_id = candidate_id
 
     def create_a_candidate(self):
-        """check if an office exists first."""
-        # office = Office(name=None,office_type=None).get_office(self.office_id)
-        # print(office)
         """create a candidate."""
         insert_candidate = '''INSERT INTO candidates(office_id,\
                  party_id, candidate_id)VALUES ('{}','{}', '{}')\

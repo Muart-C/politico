@@ -13,6 +13,5 @@ class BaseTest(unittest.TestCase):
         self.app = create_app("testing")
         self.client = self.app.test_client()
 
-    #clear the list to be empty
     def tearDown(self):
         DatabaseSetup().drop_data_from_tables()

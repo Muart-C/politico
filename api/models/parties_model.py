@@ -1,4 +1,3 @@
-"""#!api/models/parties_model.py"""
 import json
 from werkzeug.security import generate_password_hash
 from api.database.database import DatabaseSetup

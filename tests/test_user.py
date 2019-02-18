@@ -102,13 +102,4 @@ class Users(BaseTest):
         data = json.loads(response.data.decode("utf-8"))
         self.assertEqual(response.status_code, 400)
 
-    # def test_successful_login(self):
-    #     response=self.client.post(
-    #         "/api/v2/auth/login",
-    #         data=json.dumps(user_login),
-    #         content_type="application/json",
 
-    #     )
-    #     data = json.loads(response.data.decode("utf-8"))
-    #     self.assertTrue(data['token'])
-    #     self.assertEqual(response.status_code, 200)

@@ -1,4 +1,3 @@
-""""!api/admin/office/offices/py """
 import json
 from flask import Blueprint, request, make_response, jsonify
 from api.models.offices_model import Office
@@ -20,7 +19,7 @@ def add_offices():
 
     key_errors=check_json_office_keys(request)
     if key_errors:
-        return return_error(400, "Invalid keys provided")
+        return return_error(400, "invalid keys for creating the office json object")
     try:
         data = request.get_json()
         # validate data from the request
@@ -28,14 +27,14 @@ def add_offices():
         office_type=data['office_type']
 
         if(validate_string_data_type(name) == False):
-            return return_error(400, "the name should be a string")
+            return return_error(400, "the name should contain characters that form a word")
         if(validate_string_data_type(office_type) == False):
-            return return_error(400, "the office type should be of type string")
+            return return_error(400, "the office type should contain characters that form a word")
 
         if(sanitize_input(name) == False):
-            return return_error(400, "provide a valid name")
+            return return_error(400, "provide a valid name i.e it should not contain spaces in between characters other than a word that makes sense")
         if(sanitize_input(office_type) == False):
-            return return_error(400, "provide a valid office type")
+            return return_error(400, "provide a valid office type i.e it should not contain spaces in between characters other than a word that makes sense")
         if(validate_office_type(office_type) == False):
             return return_error(400, "should be either legislative, federal, state or local")
     except KeyError as e:
@@ -70,7 +69,7 @@ def get_offices():
     if political_offices:
         return return_response(200, "request was successful", political_offices)
     #incase the request is unsuccessful json error response is returned
-    return return_error(400, "there are no offices registered")
+    return return_error(400, "there are no offices registered yet kindly register them")
 
 #get a particular office route endpoint
 @OFFICE_BLUEPRINT.route('/offices/<int:id>', methods=['GET'])
@@ -79,7 +78,7 @@ def get_office(id):
     if(validate_int_data_type(id) == False):
         return return_error(400, "please provide id which is a number")
 
-    #initialize an office data structure
+    #initialize an office model
     political_office = Office(name=None, office_type=None)
 
     #get an office with the id passed
@@ -101,7 +100,7 @@ def create_candidate(office_id):
     """create a new candidate."""
     key_errors=check_json_new_candidate_keys(request)
     if key_errors:
-        return return_error(400, "Invalid keys provided")
+        return return_error(400, "invalid json keys for creating a candidate json object")
     try:
         data = request.get_json()
         # validate data from the request
@@ -141,37 +140,15 @@ def create_candidate(office_id):
         if new:
             return make_response(jsonify({
             "status":201,
-            "message":"candidate created",
+            "message":"the candidate was created",
             "data": [{
                 "office" : office_id,
                 "user":candidate_id,
             }]
         }))
-        return return_error(400, "candidate already exist")
+        return return_error(400, "the candidate already exist")
     else:
         return return_error(400, "you cannot register a candidate if either a user or party or office is not registered ")
-
-
-
-# # create candidate route
-# @OFFICE_BLUEPRINT.route('/offices/<int:office_id>/results', methods=["GET"])
-# def get_results(office_id):
-#     """gets the results of an election."""
-#     if(validate_int_data_type(office_id) is False):
-#         return return_error(400, "provide a office id")
-
-#     office = Office()
-#     result = office.get_office(office_id)
-#     if result:
-#         vote = Vote(office_id=office_id, user_id=None, candidate_id=None)
-# 	    #check if candidate is already registered
-# 	    election_result = vote.get_vote_results(office_id)
-# 	    if election_result:
-#             return return_error(200, "request successful results found", election_result)
-#     	return return_error(400, "an error occurred while fetching results")
-#     return return_error(400, "no such office that exists therefore no results")
-
-
 
 
 

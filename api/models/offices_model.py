@@ -1,7 +1,7 @@
-"""#!api/models/offices_model.py"""
+import json
 from werkzeug.security import generate_password_hash
 from api.database.database import DatabaseSetup
-import json
+
 class Office(DatabaseSetup):
     """offices model"""
     def __init__(self, name, office_type):

@@ -1,4 +1,3 @@
-"""#!api/models/votes_model.py"""
 from werkzeug.security import generate_password_hash
 from api.database.database import DatabaseSetup
 class Vote(DatabaseSetup):
@@ -28,7 +27,7 @@ class Vote(DatabaseSetup):
         pass
 
 
-    def get_offget_vote_resultsices(self):
+    def get_results_of_a_particular_office(self):
         """get results"""
         self.cursor.execute('''SELECT * FROM votes WHERE office_id='{}';'''.format(self.office_id))
         votes=self.cursor.fetchall()

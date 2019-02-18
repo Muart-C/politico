@@ -75,7 +75,7 @@ def create_user():
                 }
             }]
         }))
-    return return_error(409, "user already exists")
+    return return_error(409, "the user you are trying to register already exists")
 
 # login
 @AUTH_BLUEPRINT.route('/auth/login', methods=["POST"])

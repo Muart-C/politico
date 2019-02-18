@@ -1,4 +1,3 @@
-"""#!api/models/users_model.py"""
 import json
 from werkzeug.security import generate_password_hash, check_password_hash
 from api.database.database import DatabaseSetup
@@ -20,7 +19,6 @@ class User(DatabaseSetup):
         """create a user if one does not exist."""
         self.cursor.execute('''SELECT * FROM users WHERE email='{}';'''.format(self.email))
         user=self.cursor.fetchone()
-        print(user)
         if user is None:
             insert_user= '''INSERT INTO users(\
                 email, password, is_admin, firstname, lastname, othername,\

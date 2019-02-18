@@ -108,9 +108,6 @@ office_with_empty_fields = {
     "office_type" : "",
  }
 
-# #an empty offices list for testing
-# empty_offices_list = []
-
 # test data for new user
 new_user={
     "firstname":"firstname",
