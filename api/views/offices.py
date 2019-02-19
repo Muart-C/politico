@@ -122,33 +122,40 @@ def create_candidate(office_id):
     result = user.get_user_by_id(candidate_id)
     user = json.loads(result)
 
+    if not user:
+        return return_error(404, "user does not exist")
+
     # check if party whose id was given exists before attempting candidate registration
     party = Party(name=None,hq_address=None, logo_url=None)
     result = party.get_party(party_id)
     party = json.loads(result)
 
+    if not party:
+        return return_error(404, "the party does not exist")
+
     # check if an whose id was given exists before attempting candidate registration
     office = Office(name=None, office_type=None)
     result = office.get_office(office_id)
     office = json.loads(result)
+    if not office:
+        return return_error(404, "the office does not exist")
 
-    if office and party and user:
-        candidate = Candidate(office_id=office_id, candidate_id=candidate_id,\
+    candidate = Candidate(office_id=office_id, candidate_id=candidate_id,\
              party_id=party_id)
-	    #check if candidate is already registered
-        new = candidate.create_a_candidate()
-        if new:
-            return make_response(jsonify({
+    
+	#check if candidate is already registered
+    new = candidate.create_a_candidate()
+    if new:
+        return make_response(jsonify({
             "status":201,
             "message":"the candidate was created",
             "data": [{
                 "office" : office_id,
                 "user":candidate_id,
             }]
-        }))
-        return return_error(400, "the candidate already exist")
+        }),201)
     else:
-        return return_error(400, "you cannot register a candidate if either a user or party or office is not registered ")
+        return return_error(400, "the candidate is already registered")
 
 
 
