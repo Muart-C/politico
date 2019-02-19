@@ -6,20 +6,24 @@ from api.views.auth import AUTH_BLUEPRINT
 from api.views.parties import PARTY_BLUEPRINT
 from api.views.offices import OFFICE_BLUEPRINT
 from api.views.votes import VOTE_BLUEPRINT
+from api.database.database import DatabaseSetup
 from api.utils.validator import return_error
 
- 
+
  #handle 405 errors
 def handle_405_error(err):
-    return return_error(405, "method not allowed")
+    return return_error(405, "the action you are undertaking is not allowed")
 
  #handle 404 errors
 def handle_404_error(err):
-    return return_error(404, "bad url format")
+    return return_error(404, "unrecognized resource request")
 
-environment = os.getenv("FLASK_ENV")
+ #handle 500 errors
+def handle_500_error(err):
+    return return_error(500, "a server error occurred please wait we figure out what went wrong")
 
-def create_app(environment):
+
+def create_app(configuration):
     """create an instance of the flask app given the passed environment variable and return."""
 
     #instantiate the app
@@ -29,8 +33,12 @@ def create_app(environment):
     app.register_error_handler(405, handle_405_error)
     #register 404 error handler
     app.register_error_handler(404, handle_404_error)
+     #register 500 error handler
+    app.register_error_handler(500, handle_500_error)
     #set configuration
-    app.config.from_object(app_config[environment])
+    app.config.from_object(app_config[configuration])
+
+
 
 
     #url prefix for api version 1

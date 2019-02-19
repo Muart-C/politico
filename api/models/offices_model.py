@@ -1,6 +1,7 @@
-"""#!api/models/offices_model.py"""
+import json
 from werkzeug.security import generate_password_hash
 from api.database.database import DatabaseSetup
+
 class Office(DatabaseSetup):
     """offices model"""
     def __init__(self, name, office_type):
@@ -25,9 +26,10 @@ class Office(DatabaseSetup):
         """get results of a particular office."""
         self.cursor.execute('''SELECT * FROM offices WHERE id='{}';'''.format(office_id))
         office=self.cursor.fetchone()
-        office = {'name': office[1], 'office_type': office[2]}
-        return office
- 
+        self.connection.commit()
+        self.cursor.close()
+        return json.dumps(office, default=str)
+
     def get_offices(self):
         """get all offices"""
         self.cursor.execute('''SELECT * FROM offices;''')

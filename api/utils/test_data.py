@@ -108,17 +108,19 @@ office_with_empty_fields = {
     "office_type" : "",
  }
 
-# #an empty offices list for testing
-# empty_offices_list = []
-
 # test data for new user
-create_user={
+new_user={
     "firstname":"firstname",
     "lastname":"lastname",
     "othername":"othername",
-    "email":"demo@email.com",
+    "email":"eded@email.com",
     "phone_number":"+213425435",
     "passport_url":"https://goo.gl/images/B9U4PK",
+    "password":"secretpass",
+}
+
+user_login={
+    "email":"eded@email.com",
     "password":"secretpass",
 }
 

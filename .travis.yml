@@ -3,12 +3,18 @@ python:
 - 3.6.7
 install:
 - pip install -r requirements.txt
+
+cache: pip
+
 services:
   - postgresql
 
 before_script:
-  - psql -c "CREATE DATABASE testing_politico;" -U postgres
-  - psql -c "CREATE USER politico WITH PASSWORD 'politico';" -U postgres
+  - psql -c "CREATE DATABASE test_politico;" -U postgres
+  - psql -c "CREATE DATABASE politico;" -U postgres
+  - psql -c "ALTER user postgres PASSWORD 'postgres';" -U postgres
+  - flask createtables
+  - flask createadmin
 
 script:
 - pytest --cov=api tests/ -v

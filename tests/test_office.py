@@ -83,21 +83,5 @@ class TestOffice(BaseTest):
         self.assertEqual(response.status_code, 200)
         self.assertIsInstance(data['data'], list)
 
-    def test_get_an_office(self):
-        """tests if can get a office"""
-        self.client.post(
-            '/api/v2/offices',
-            data = json.dumps(office_with_correct_data),
-            content_type = "application/json",
-        )
-
-        get_office = self.client.get(
-            '/api/v2/offices/1',
-            content_type = "application/json",
-        )
-        data = json.loads(get_office.data.decode("utf-8"))
-        print(data)
-        self.assertEqual(data["status"], 200)
-        self.assertEqual(data["message"], "request was successful")
 
 

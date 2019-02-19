@@ -48,77 +48,7 @@ class TestParty(BaseTest):
 
         self.assertEqual(data["status"], 200)
 
-    def test_get_party(self):
-        """tests to get a party"""
-        self.client.post(
-            '/api/v2/parties',
-            data=json.dumps(party_with_data),
-            content_type="application/json",
-        )
-        self.client.post(
-            '/api/v2/parties',
-            data=json.dumps(party_with_data),
-            content_type="application/json",
-        )
-        response = self.client.get(
-            '/api/v2/parties/1',
-            content_type = "application/json",
-        )
 
-        data = json.loads(response.data.decode("utf-8"))
-        self.assertEqual(data["status"], 200)
-
-    def test_updating_party_name(self):
-        """test update party name."""
-
-        self.client.post(
-            '/api/v2/parties',
-            data=json.dumps(party_with_data),
-            content_type="application/json"
-        )
-
-        response = self.client.patch(
-            '/api/v2/parties/{}/name'.format(1),
-            data=json.dumps({
-                "name":"party name"
-            }),
-            content_type = "application/json",
-        )
-        data = json.loads(response.data.decode())
-        self.assertEqual(data["status"], 200)
-
-    def test_updating_party_name_of_party_that_does_not_exist(self):
-        """test update name of a party that does not exist."""
-
-        response = self.client.patch(
-            '/api/v2/parties/{}/name'.format(100),
-            data=json.dumps(party_with_data),
-            content_type="application/json",
-        )
-        data = json.loads(response.data.decode())
-        self.assertEqual(data["status"], 400)
-
-    def test_delete_party(self):
-        """ensure a party is deleted."""
-        self.client.post(
-            '/api/v2/parties',
-            data=json.dumps(party_with_data),
-            content_type="application/json",
-        )
-
-        result_delete=self.client.delete(
-            '/api/v2/parties/1',
-            content_type="application/json",
-        )
-        self.assertEqual(result_delete.status_code, 200)
-
-    def test_getting_non_existing_party(self):
-        """ensure an error is returned for non existing party"""
-        result=self.client.get(
-            '/api/v2/parties/24'
-        )
-        data=json.loads(result.data.decode("utf-8"))
-        self.assertEqual(data["status"], 404)
 
     def test_party_with_name_of_wrong_data_type(self):
         """ensure to only add name of correct data type"""
