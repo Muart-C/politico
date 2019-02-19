@@ -1,4 +1,3 @@
-#!api/database/database.py
 import os
 import psycopg2
 from psycopg2.extras import RealDictCursor
@@ -8,7 +7,6 @@ from api.database.db_manage import create_tables, drop_data_from_tables,\
     drop_tables_if_exists
 
 class DatabaseSetup:
-    """setup database instance of postgres"""
     def __init__(self):
         self.dbname=os.getenv("DATABASE_POLITICO")
         self.user=os.getenv("DATABASE_USERNAME")
@@ -21,7 +19,6 @@ class DatabaseSetup:
         self.cursor = self.connection.cursor()
 
     def drop_data_from_tables(self):
-        """drop tables if exist"""
         tables = drop_data_from_tables()
         for table in tables:
             self.cursor.execute(table)
@@ -29,7 +26,6 @@ class DatabaseSetup:
         self.connection.close()
  
     def drop_tables_if_exists(self):
-        """drop tables if exist"""
         tables = drop_tables_if_exists()
         for table in tables:
             self.cursor.execute(table)
@@ -37,7 +33,6 @@ class DatabaseSetup:
         self.connection.close()
 
     def create_all_tables(self):
-        """create tables."""
         tables = create_tables()
         for table in tables:
             self.cursor.execute(table)
@@ -45,7 +40,6 @@ class DatabaseSetup:
         self.connection.close()
 
     def create_admin_if_does_not_exist(self):
-        """create an admin."""
         self.cursor.execute('''SELECT * FROM users WHERE email='ndirangu@gmail.com';''')
         user=self.cursor.fetchone()
         if user is not None:
@@ -61,5 +55,3 @@ class DatabaseSetup:
         self.cursor.execute(create_admin)
         self.connection.commit()
         self.cursor.close()
-
-

@@ -2,7 +2,6 @@ from werkzeug.security import generate_password_hash
 from api.database.database import DatabaseSetup
 from api.models.offices_model import Office
 class Candidate(DatabaseSetup):
-    """candidates model"""
     def __init__(self, office_id, party_id, candidate_id):
         super().__init__()
         self.office_id = office_id
@@ -10,7 +9,6 @@ class Candidate(DatabaseSetup):
         self.candidate_id = candidate_id
 
     def create_a_candidate(self):
-        """create a candidate."""
         insert_candidate = '''INSERT INTO candidates(office_id,\
                  party_id, candidate_id)VALUES ('{}','{}', '{}')\
                       RETURNING office_id, candidate_id, party_id'''\
@@ -22,7 +20,6 @@ class Candidate(DatabaseSetup):
         return self
 
     def get_candidate(self, candidate_id):
-        """get a candidate whose id was passed."""
         self.cursor.execute('''SELECT * FROM candidates WHERE id='{}';'''.format(candidate_id))
         candidate=self.cursor.fetchone()
         if candidate is not None:
@@ -31,7 +28,6 @@ class Candidate(DatabaseSetup):
 	        return False
 
     def check_if_candidate_exists_before_creating_one(self, candidate_id):
-        """checks if a candidate exists before attempting to create one"""
         self.cursor.execute('''SELECT * FROM candidates WHERE candidate_id='{}';'''.format(self.candidate_id))
         candidate=self.cursor.fetchone()
         if candidate is None:

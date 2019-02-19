@@ -4,7 +4,6 @@ from api.utils.validator import sanitize_input, validate_string_data_type, check
 from api.utils.validator import validate_int_data_type, return_response
 
 class TestValidators(unittest.TestCase):
-    """define test cases for validations."""
     def test_sanitize_input(self):
         self.assertEqual(sanitize_input("*`92 "), False)
 

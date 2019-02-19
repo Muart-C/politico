@@ -5,8 +5,6 @@ from api.utils.test_data import party_with_data, party_with_empty_fields, party_
 from api.utils.test_data import party_with_wrong_address_input, party_with_wrong_logo_url
 from api.utils.test_data import party_with_invalid_key_name, party_with_invalid_key_address, party_with_wrong_name_input, party_with_wrong_address_type
 class TestParty(BaseTest):
-    """test the endpoints for the Party and edge cases"""
-
     def test_add_party(self):
         """test creation of a party."""
         response = self.client.post(
@@ -19,7 +17,6 @@ class TestParty(BaseTest):
         self.assertEqual(data["status"], 201)
 
     def test_add_party_with_missing_input(self):
-        """test user cannot create party with missing fields"""
         response = self.client.post(
             '/api/v2/parties',
             data = json.dumps(party_with_empty_fields),
@@ -30,7 +27,6 @@ class TestParty(BaseTest):
         self.assertEqual(data["status"], 400)
 
     def test_get_all_parties(self):
-        """tests if parties are returned."""
         self.client.post(
             '/api/v2/parties',
             data=json.dumps(party_with_data),
@@ -51,7 +47,6 @@ class TestParty(BaseTest):
 
 
     def test_party_with_name_of_wrong_data_type(self):
-        """ensure to only add name of correct data type"""
         response = self.client.post(
             "/api/v2/parties",
             data=json.dumps(party_with_wrong_name_type),
@@ -62,7 +57,6 @@ class TestParty(BaseTest):
         self.assertEqual(data["status"], 400)
 
     def test_party_party_with_wrong_name_input(self):
-        """ensure to only add name of correct data type"""
         response = self.client.post(
             "/api/v2/parties",
             data=json.dumps(party_with_wrong_name_input),
@@ -73,7 +67,6 @@ class TestParty(BaseTest):
         self.assertEqual(data["status"], 400)
 
     def test_party_with_wrong_address_input(self):
-        """ensure to only add address that is correct"""
         response = self.client.post(
             "/api/v2/parties",
             data=json.dumps(party_with_wrong_address_input),
@@ -84,7 +77,6 @@ class TestParty(BaseTest):
         self.assertEqual(data["status"], 400)
 
     def test_party_with_wrong_address_type(self):
-        """ensure to only add address that is correct"""
         response = self.client.post(
             "/api/v2/parties",
             data=json.dumps(party_with_wrong_address_type),
@@ -95,7 +87,6 @@ class TestParty(BaseTest):
         self.assertEqual(data["status"], 400)
 
     def test_party_with_the_wrong_url_format(self):
-        """ensure to only add url of correct format."""
         response = self.client.post(
             "/api/v2/parties",
             data=json.dumps(party_with_wrong_logo_url),
@@ -106,7 +97,6 @@ class TestParty(BaseTest):
         self.assertEqual(data["status"], 400)
 
     def test_party_with_invalid_key_name(self):
-        """ensure key of name attribute is correct."""
         response = self.client.post(
             "/api/v2/parties",
             data=json.dumps(party_with_invalid_key_name),
@@ -117,7 +107,6 @@ class TestParty(BaseTest):
         self.assertEqual(data["status"], 400)
 
     def test_party_with_invalid_key_address(self):
-        """ensure key of name attribute is correct."""
         response = self.client.post(
             "/api/v2/parties",
             data=json.dumps(party_with_invalid_key_address),

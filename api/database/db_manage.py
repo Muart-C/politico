@@ -5,8 +5,6 @@ from psycopg2.extras import DictCursor
 from api.utils.validator import return_error
 
 def create_tables():
-    """create data tables for the api."""
-    # create users query definition
     users = """
         CREATE TABLE users(
             id SERIAL PRIMARY KEY,
@@ -20,7 +18,6 @@ def create_tables():
             is_admin  boolean NOT NULL DEFAULT TRUE
         );"""
 
-    # create parties sql query definition
     parties = """
         CREATE TABLE parties(
             id SERIAL PRIMARY KEY,
@@ -29,7 +26,6 @@ def create_tables():
             logo_url VARCHAR(256) NOT NULL
         );"""
 
-    #create offices sql query definition
     offices = """
         CREATE TABLE offices(
             id SERIAL PRIMARY KEY,
@@ -37,7 +33,6 @@ def create_tables():
             office_type VARCHAR(100) NOT NULL
         );"""
 
-    # create candidates sql query definition
     candidates = """
         CREATE TABLE candidates(
             id SERIAL PRIMARY KEY,
@@ -49,7 +44,6 @@ def create_tables():
             FOREIGN KEY(candidate_id) REFERENCES users(id) ON DELETE CASCADE
         );"""
 
-    # create petitions sql query definition
     petitions = """
         CREATE TABLE petitions(
             id SERIAL PRIMARY KEY,
@@ -61,7 +55,6 @@ def create_tables():
             FOREIGN KEY(office_id) REFERENCES offices(id) ON DELETE CASCADE
         );"""
 
-    # create votes sql query definition
     votes = """
         CREATE TABLE votes(
             id SERIAL PRIMARY KEY,
@@ -76,9 +69,6 @@ def create_tables():
 
     return [users, parties, offices, candidates, petitions, votes]
 
-
-
-#to be used during testing database operations
 def drop_data_from_tables():
     delete_user_data = '''DELETE FROM users;'''
     delete_parties_data = '''DELETE FROM parties;'''
@@ -93,7 +83,6 @@ def drop_data_from_tables():
 
 
 def drop_tables_if_exists():
-    # drop existing tables if there are any
     drop_tables = '''DROP TABLE IF EXISTS users,parties,offices,\
         candidates,petitions,votes CASCADE;'''
     return [drop_tables]

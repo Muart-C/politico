@@ -2,7 +2,6 @@ import json
 from werkzeug.security import generate_password_hash
 from api.database.database import DatabaseSetup
 class Party(DatabaseSetup):
-    """parties model"""
     def __init__(self, name, hq_address, logo_url):
         super().__init__()
         self.name = name
@@ -10,7 +9,6 @@ class Party(DatabaseSetup):
         self.logo_url = logo_url
 
     def create_a_party(self):
-        """create a party."""
         self.cursor.execute('''SELECT * FROM parties WHERE name='{}';'''.format(self.name))
         party=self.cursor.fetchone()
         if party is None:
@@ -25,7 +23,6 @@ class Party(DatabaseSetup):
             return False
 
     def get_parties(self):
-        """get all parties"""
         self.cursor.execute('''SELECT * FROM parties;''')
         parties=self.cursor.fetchall()
         parties_list = []
@@ -35,7 +32,6 @@ class Party(DatabaseSetup):
         return parties_list
 
     def get_party(self, party_id):
-        """get a party whose id was passed."""
         self.cursor.execute('''SELECT * FROM parties WHERE id='{}';'''.format(party_id))
         party=self.cursor.fetchone()
         self.connection.commit()
@@ -43,7 +39,6 @@ class Party(DatabaseSetup):
         return json.dumps(party, default=str)
 
     def patch_party_name(self, party_id):
-	    """updates the name of a party."""
 	    self.cursor.execute('''SELECT * FROM parties WHERE id='{}';'''.format(party_id))
 	    party=self.cursor.fetchone()
 	    if party:
