@@ -35,8 +35,9 @@ class User(DatabaseSetup):
             return False
 
     def get_user(self, email):
-        user = self.cursor.execute('''SELECT * FROM users\
+        self.cursor.execute('''SELECT * FROM users\
              WHERE email='{}';'''.format(email))
+        user=self.cursor.fetchone()
         self.connection.commit()
         self.cursor.close()
         return json.dumps(user, default=str)

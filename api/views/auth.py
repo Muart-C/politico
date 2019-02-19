@@ -1,4 +1,4 @@
-"""authentication endpoints"""
+import json
 import re
 from flask import Blueprint, request, make_response, jsonify
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -13,7 +13,6 @@ AUTH_BLUEPRINT = Blueprint("auth", __name__)
 
 @AUTH_BLUEPRINT.route('/auth/signup', methods=["POST"])
 def create_user():
-    """create a new user."""
     key_errors=check_json_new_user_keys(request)
     if key_errors:
         return return_error(400, "Invalid keys provided")
@@ -75,7 +74,6 @@ def create_user():
 # login
 @AUTH_BLUEPRINT.route('/auth/login', methods=["POST"])
 def login():
-    """login as a user."""
     data = request.get_json()
     email = data['email']
     password = data['password']
@@ -85,20 +83,23 @@ def login():
     if(validate_password(password) is False):
         return return_error(400,"password should be more than six characters")
 
-    user = User()
-    check_user = user.get_user(email, )
-    check_password= check_user.check_password_match(check_user.password, \
-        password)
+    user = User(email=None, password=None, firstname=None,\
+        lastname=None, othername=None, phone_number=None,\
+             passport_url=None)
+    check_user = user.get_user(email=email)
+    user = json.loads(check_user)
+    if not user:
+        return return_error(404, "the user you are trying to get does not exist")
+    check_password= check_password_hash(user[7],password)
     if check_password:
-        """generate token for user"""
         token = encode_auth_token(email)
         if token:
             return make_response(jsonify({
                     "status":200,
-                    "token": token.decode("utf-8"),
-                    "user":[{
-                        "user":{
-                            "email":email
-                        }
+                    "data":[{
+                            "email":email,
+                            "token": token.decode("utf-8"),
                     }],
             }), 200)
+    else:
+        return return_error(404, "ensure you input valid email and password")
