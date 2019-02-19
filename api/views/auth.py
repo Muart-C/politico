@@ -9,11 +9,8 @@ from api.utils.validator import check_json_new_user_keys,\
 from api.utils.validator import validate_password, encode_auth_token
 from api.models.users_model import User
 
-# add auth blueprint
 AUTH_BLUEPRINT = Blueprint("auth", __name__)
 
-
-# create user route
 @AUTH_BLUEPRINT.route('/auth/signup', methods=["POST"])
 def create_user():
     """create a new user."""
@@ -22,7 +19,6 @@ def create_user():
         return return_error(400, "Invalid keys provided")
     try:
         data = request.get_json()
-        # validate data from the request
         firstname=data['firstname']
         lastname=data['lastname']
         othername=data['othername']
@@ -33,7 +29,6 @@ def create_user():
 
         if(check_email_validity(email) is False):
             return return_error(400, "enter the correct email format i.e should contain @ and .")
-
         if(validate_string_data_type(firstname) is False):
             return return_error(400, "the first name should contain character of words")
         if(validate_string_data_type(lastname) is False):
@@ -74,7 +69,7 @@ def create_user():
                     "firstname": user.firstname,
                 }
             }]
-        }))
+        }),201)
     return return_error(409, "the user you are trying to register already exists")
 
 # login
@@ -106,4 +101,4 @@ def login():
                             "email":email
                         }
                     }],
-            }))
+            }), 200)

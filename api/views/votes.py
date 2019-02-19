@@ -4,9 +4,9 @@ from api.models.candidates_model import Candidate
 from api.utils.validator import check_json_new_votes_keys, sanitize_input
 from api.utils.validator import return_response, validate_string_data_type, check_json_party_keys
 from api.utils.validator import return_error, validate_int_data_type, sanitize_input
-#initialize a party blueprint
+
 VOTE_BLUEPRINT = Blueprint('votes', __name__)
-# create candidate route
+
 @VOTE_BLUEPRINT.route('/votes', methods=["POST"])
 def create_vote():
     """cast a new vote."""
@@ -15,7 +15,6 @@ def create_vote():
         return return_error(400, "please provide valid json keys")
     try:
         data = request.get_json()
-        # validate data from the request
         candidate_id=data['candidate_id']
         user_id=data['user_id']
         office_id=data['office_id']
@@ -40,7 +39,5 @@ def create_vote():
                 "candidate":candidate_id,
                 "voter": user_id
             }]
-        }))
+        }),201)
         return return_error(400, "failed to vote successfully")
-
-

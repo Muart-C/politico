@@ -3,7 +3,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from api.database.database import DatabaseSetup
 from api.utils.validator import return_error
 class User(DatabaseSetup):
-    """users model"""
     def __init__(self, **kwargs):
         super().__init__()
         self.is_admin = False
@@ -16,7 +15,6 @@ class User(DatabaseSetup):
         self.hash_password =  kwargs.get('password')
 
     def create_user(self):
-        """create a user if one does not exist."""
         self.cursor.execute('''SELECT * FROM users WHERE email='{}';'''.format(self.email))
         user=self.cursor.fetchone()
         if user is None:
@@ -32,12 +30,11 @@ class User(DatabaseSetup):
             self.cursor.execute(insert_user)
             self.connection.commit()
             self.cursor.close()
-            return "user created"
+            return "user was created"
         else:
             return False
 
     def get_user(self, email):
-        """get a user whose id was passed."""
         user = self.cursor.execute('''SELECT * FROM users\
              WHERE email='{}';'''.format(email))
         self.connection.commit()
@@ -49,7 +46,6 @@ class User(DatabaseSetup):
         return check_password_hash(password_hash, str(password))
 
     def get_user_by_id(self, user_id):
-        """get results of a particular user."""
         self.cursor.execute('''SELECT * FROM users WHERE id='{}';'''.format(user_id))
         user=self.cursor.fetchone()
         self.connection.commit()

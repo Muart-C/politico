@@ -3,14 +3,12 @@ from werkzeug.security import generate_password_hash
 from api.database.database import DatabaseSetup
 
 class Office(DatabaseSetup):
-    """offices model"""
     def __init__(self, name, office_type):
         super().__init__()
         self.name = name
         self.office_type = office_type
 
     def create_office(self):
-        """create an office."""
         self.cursor.execute('''SELECT * FROM offices WHERE name='{}';'''.format(self.name))
         office=self.cursor.fetchone()
         if office is None:
@@ -23,7 +21,6 @@ class Office(DatabaseSetup):
             return False
 
     def get_office(self, office_id):
-        """get results of a particular office."""
         self.cursor.execute('''SELECT * FROM offices WHERE id='{}';'''.format(office_id))
         office=self.cursor.fetchone()
         self.connection.commit()
@@ -31,7 +28,6 @@ class Office(DatabaseSetup):
         return json.dumps(office, default=str)
 
     def get_offices(self):
-        """get all offices"""
         self.cursor.execute('''SELECT * FROM offices;''')
         offices=self.cursor.fetchall()
         offices_list = []
