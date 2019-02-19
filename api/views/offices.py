@@ -88,7 +88,14 @@ def get_office(id):
 
     #if the office exists then return it as json response
     if office:
-        return return_response(200, "request was successful", office)
+        return make_response(jsonify({
+            "status":200,
+            "message":"office was successfully retrieved",
+            "data": [{
+                "name" : office[1],
+                "office_type":office[2]
+            }]
+        }))
     #return error response
     return return_error(404,"no office with that id was found")
 

@@ -62,23 +62,4 @@ class DatabaseSetup:
         self.connection.commit()
         self.cursor.close()
 
-    def fetch_a_single_data_row(self, query):
-        """retrieve a single data row."""
-        print(self.cursor.execute(query))
-        row = self.cursor.fetchone()
-        # self.cursor.close()
-        return row
 
-    def fetch_all_data_rows(self, query):
-        """retrieve rows of data in table."""
-        self.cursor.execute(query)
-        rows = self.cursor.fetchall()
-        self.cursor.close()
-        return rows
-
-    def save_data_row(self, query):
-        """save data of a row."""
-        self.cursor.execute(query)
-        self.connection.commit()
-        self.cursor.close()
-        self.connection.close()

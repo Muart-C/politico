@@ -52,8 +52,7 @@ class Party(DatabaseSetup):
                 return {'name': party[1], 'hq_address': party[2], 'logo_url': party[3]}
 
     def delete_party(self, party_id):
-        if self.get_party(party_id) is not None:
-	        self.cursor.execute('''DELETE FROM parties WHERE id='{}';'''.format(party_id))
-	        self.connection.commit()
-        return False
+        self.cursor.execute('''DELETE FROM parties WHERE id='{}';'''.format(party_id))
+        self.connection.commit()
+        self.cursor.close()
 

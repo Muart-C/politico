@@ -1,4 +1,4 @@
-"""!#api/admin/party"""
+import json
 from flask import Blueprint, request, make_response, jsonify
 from api.models.parties_model import Party
 from api.utils.validator import return_response, validate_string_data_type, check_json_party_keys
@@ -79,10 +79,17 @@ def get_party(id):
 
     #get a party
     party = political_party.get_party(id)
-
+    party = json.loads(party)
     #checks if the party exists then returns the party as a json response
     if party:
-        return return_response(200, "a party with the id was returned", party)
+        return make_response(jsonify({
+            "status":200,
+            "message":"party was successfully retrieved",
+            "data": [{
+                "name" : party[1],
+                "hq_address":party[2]
+            }]
+        }))
 
     #incase the request is unsuccessful json error response is returned
     return return_error(404, "no party with that id was found")
@@ -124,8 +131,13 @@ def delete_party(party_id):
     #initialize the party model
     party = Party(name=None, hq_address=None,logo_url=None)
 
+    # check if the party you are to delete exists
+    party = party.get_party(party_id)
+    # party = json.loads(party)
+    # return party
     # delete the party
-    if party.delete_party(party_id):
+    if party:
+        party.delete_party(party_id)
         return return_response(200, "the party was deleted successfully")
     #if party was not found
     return return_error(404, "party of that id does not exist create one before attempting to delete")
