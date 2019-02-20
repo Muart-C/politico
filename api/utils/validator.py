@@ -80,13 +80,6 @@ def check_json_new_user_keys(request):
             errors.append(key)
         return errors
 
-def check_json_new_candidate_keys(request):
-    candidate_keys = ["candidate_id","office_id","party_id"]
-    errors = []
-    for key in candidate_keys:
-        if not key in request.json:
-            errors.append(key)
-        return errors
 
 def check_json_new_votes_keys(request):
     vote_keys = ["candidate_id","office_id","user_id"]

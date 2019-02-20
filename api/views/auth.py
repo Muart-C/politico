@@ -1,3 +1,4 @@
+import datetime
 import json
 import re
 from flask import Blueprint, request, make_response, jsonify
@@ -94,8 +95,7 @@ def login():
     if check_password:
         token = create_access_token({
             'user_id': user[0], 'is_admin':user[8]
-        })
-        print(user[0])
+        }, expires_delta=datetime.timedelta(minutes=15))
         if token:
             return make_response(jsonify({
                     "status":200,
