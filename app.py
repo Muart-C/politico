@@ -1,5 +1,6 @@
 import os
 from flask import Flask
+from flask_jwt_extended import JWTManager
 from config import app_config
 from api.views.auth import AUTH_BLUEPRINT
 from api.views.parties import PARTY_BLUEPRINT
@@ -19,6 +20,8 @@ def handle_500_error(err):
 
 def create_app(configuration):
     app = Flask(__name__, instance_relative_config=True)
+
+    JWTManager(app)
 
     app.register_error_handler(405, handle_405_error)
     app.register_error_handler(404, handle_404_error)

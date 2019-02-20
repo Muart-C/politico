@@ -2,6 +2,7 @@ import os
 import psycopg2
 from psycopg2.extras import RealDictCursor
 from flask import current_app as app
+from werkzeug.security import generate_password_hash
 from api.utils.validator import return_error
 from api.database.db_manage import create_tables, drop_data_from_tables,\
     drop_tables_if_exists
@@ -24,7 +25,7 @@ class DatabaseSetup:
             self.cursor.execute(table)
         self.connection.commit()
         self.connection.close()
- 
+
     def drop_tables_if_exists(self):
         tables = drop_tables_if_exists()
         for table in tables:
@@ -48,9 +49,9 @@ class DatabaseSetup:
             create_admin= '''INSERT INTO users(\
                     email, password, is_admin, firstname, lastname, othername,\
                         passport_url, phone_number) VALUES \
-                            ('muathe.ndirangu@gmail.com', 'ndirangu', 'True',\
-                                'muathe', 'ndirangu','muathe', \
-                                    'https://mypassport.com','+2342343');'''
+                            ('muathe.ndirangu@gmail.com', '{}', 'True',\
+                                'muathe', 'ndirangu','charles', \
+                                    'https://mypassport.com','+2342343');'''.format(generate_password_hash('ndirangu'))
 
         self.cursor.execute(create_admin)
         self.connection.commit()
