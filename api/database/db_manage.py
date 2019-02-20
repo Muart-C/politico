@@ -39,7 +39,6 @@ def create_tables():
             office_id INTEGER,
             party_id INTEGER,
             candidate_id INTEGER,
-            PRIMARY KEY(id, office_id),
             FOREIGN KEY(office_id) REFERENCES offices(id) ON DELETE CASCADE,
             FOREIGN KEY(party_id) REFERENCES parties(id) ON DELETE CASCADE,
             FOREIGN KEY(candidate_id) REFERENCES users(id) ON DELETE CASCADE
