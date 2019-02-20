@@ -105,8 +105,9 @@ def delete_party(party_id):
 
     party = Party(name=None, hq_address=None,logo_url=None)
     party = party.get_party(party_id)
+    party = json.loads(party)
     if party:
-        party.delete_party(party_id)
-        return return_response(200, "the party was deleted successfully")
-
+        party_del = Party(name=None, hq_address=None,logo_url=None)
+        party_del.delete_party(party_id)
+        return return_error(204, "the party was deleted successfully")
     return return_error(404, "party of that id does not exist create one before attempting to delete")
