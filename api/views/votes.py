@@ -1,5 +1,6 @@
 import json
 from flask import Blueprint, request, make_response, jsonify
+from flask_jwt_extended import jwt_required, get_jwt_identity
 from api.models.votes_model import Vote
 from api.models.candidates_model import Candidate
 from api.models.offices_model import Office
@@ -11,15 +12,16 @@ from api.utils.validator import return_error, validate_int_data_type, sanitize_i
 VOTE_BLUEPRINT = Blueprint('votes', __name__)
 
 @VOTE_BLUEPRINT.route('/votes', methods=["POST"])
+@jwt_required
 def create_vote():
-    """cast a new vote."""
     key_errors=check_json_new_votes_keys(request)
     if key_errors:
         return return_error(400, "please provide valid json keys")
     try:
+        current_user = get_jwt_identity()
         data = request.get_json()
         candidate_id=data['candidate_id']
-        user_id=data['user_id']
+        user_id=current_user['user_id']
         office_id=data['office_id']
 
         if(validate_int_data_type(candidate_id) == False):
@@ -31,12 +33,6 @@ def create_vote():
     except KeyError as e:
         return return_error(400, "An error occurred {} is missing".format(e.args[0]))
 
-    user = User()
-    result = user.get_user_by_id(user_id)
-    user = json.loads(result)
-
-    if not user:
-        return return_error(404, "Ensure the voter is registered")
 
     office = Office(name=None, office_type=None)
     result = office.get_office(office_id)
@@ -48,7 +44,6 @@ def create_vote():
     candidate = Candidate(office_id=None, party_id=None, candidate_id=None)
     result = candidate.get_candidate(candidate_id)
     candidate = json.dumps(result)
-
     if not candidate:
         return return_error(404, "The candidate was not found.")
 
