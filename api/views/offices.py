@@ -1,5 +1,6 @@
 import json
 from flask import Blueprint, request, make_response, jsonify
+from flask_jwt_extended import jwt_required, get_jwt_identity
 from api.models.offices_model import Office
 from api.models.candidates_model import Candidate
 from api.models.users_model import User
@@ -12,45 +13,46 @@ from api.utils.validator import validate_int_data_type, validate_office_type,\
 OFFICE_BLUEPRINT = Blueprint('offices', __name__)
 
 @OFFICE_BLUEPRINT.route('/offices', methods=['POST'])
+@jwt_required
 def add_offices():
     """post office"""
+    current_user = get_jwt_identity()
+    if current_user['is_admin']:
+        try:
+            data = request.get_json()
+            name=data['name']
+            office_type=data['office_type']
 
-    key_errors=check_json_office_keys(request)
-    if key_errors:
-        return return_error(400, "invalid keys for creating the office json object")
-    try:
-        data = request.get_json()
+            if(validate_string_data_type(name) == False):
+                return return_error(400, "the name should contain characters that form a word")
+            if(validate_string_data_type(office_type) == False):
+                return return_error(400, "the office type should contain characters that form a word")
+            if(sanitize_input(name) == False):
+                return return_error(400, "provide a valid name i.e it should not contain spaces in between characters other than a word that makes sense")
+            if(sanitize_input(office_type) == False):
+                return return_error(400, "provide a valid office type i.e it should not contain spaces in between characters other than a word that makes sense")
+            if(validate_office_type(office_type) == False):
+                return return_error(400, "should be either legislative, federal, state or local")
+        except KeyError as e:
+            return return_error(400, "an error occurred while creating office  {} is missing".format(e.args[0]))
 
-        name=data['name']
-        office_type=data['office_type']
-
-        if(validate_string_data_type(name) == False):
-            return return_error(400, "the name should contain characters that form a word")
-        if(validate_string_data_type(office_type) == False):
-            return return_error(400, "the office type should contain characters that form a word")
-
-        if(sanitize_input(name) == False):
-            return return_error(400, "provide a valid name i.e it should not contain spaces in between characters other than a word that makes sense")
-        if(sanitize_input(office_type) == False):
-            return return_error(400, "provide a valid office type i.e it should not contain spaces in between characters other than a word that makes sense")
-        if(validate_office_type(office_type) == False):
-            return return_error(400, "should be either legislative, federal, state or local")
-    except KeyError as e:
-        return return_error(400, "an error occurred while creating office  {} is missing".format(e.args[0]))
-
-    office = Office(name=name, office_type=office_type)
-    office = office.create_office()
-    if office:
+        office = Office(name=name, office_type=office_type)
+        office = office.create_office()
+        if office:
+            return make_response(jsonify({
+                "status":201,
+                "message":"office {} created successfully".format(name),
+                "data": [{
+                    "name" : name,
+                    "office_type":office_type
+                }]
+            }),201)
+        return return_error(400, "the office already exist create another office")
+    else:
         return make_response(jsonify({
-            "status":201,
-            "message":"office {} created successfully".format(name),
-            "data": [{
-                "name" : name,
-                "office_type":office_type
-            }]
-        }),201)
-    
-    return return_error(400, "the office already exist create another office")
+            "status":401,
+            "message": "you are not authorized to perform this action"
+        }), 401)
 
 
 @OFFICE_BLUEPRINT.route('/offices', methods=['GET'])

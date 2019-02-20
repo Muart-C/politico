@@ -2,6 +2,7 @@ import os
 
 class Config:
     DEBUG = False
+    JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY')
 
 
 class TestingConfiguration(Config):

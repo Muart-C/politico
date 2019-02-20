@@ -1,6 +1,7 @@
 import json
 import re
 from flask import Blueprint, request, make_response, jsonify
+from flask_jwt_extended import create_access_token
 from werkzeug.security import check_password_hash, generate_password_hash
 from api.utils.validator import check_json_new_user_keys,\
      return_error, validate_string_data_type,\
@@ -58,10 +59,8 @@ def create_user():
         lastname=lastname, othername=othername, phone_number=phone_number,\
              passport_url=passport_url)
     if user.create_user():
-        token = encode_auth_token(email)
         return make_response(jsonify({
             "status":201,
-            "token":token.decode("utf-8"),
             "data" :[{
                 "user":{
                     "email":user.email,
@@ -88,17 +87,21 @@ def login():
              passport_url=None)
     check_user = user.get_user(email=email)
     user = json.loads(check_user)
+    print(user[0])
     if not user:
         return return_error(404, "User is not found")
     check_password= check_password_hash(user[7],password)
     if check_password:
-        token = encode_auth_token(email)
+        token = create_access_token({
+            'user_id': user[0], 'is_admin':user[8]
+        })
+        print(user[0])
         if token:
             return make_response(jsonify({
                     "status":200,
                     "data":[{
                             "email":email,
-                            "token": token.decode("utf-8"),
+                            "token": token,
                     }],
             }), 200)
     else:
