@@ -32,7 +32,7 @@ def create_vote():
         return return_error(400, "an error occurred {} is missing".format(e.args[0]))
 
     user = User()
-    result = user.get_user_by_id(candidate_id)
+    result = user.get_user_by_id(user_id)
     user = json.loads(result)
 
     if not user:
@@ -52,6 +52,13 @@ def create_vote():
     if not candidate:
         return return_error(404, "ensure the candidate you are choosing already exists")
 
+    vote = Vote(office_id=None,user_id=None, candidate_id=None)
+    result =  vote.check_if_has_voted(user_id, office_id)
+    vote = json.dumps(result)
+
+    if vote:
+        return return_error(409, "you cannot vote twice since you have voted already")
+
     vote = Vote(office_id=office_id,user_id=user_id, candidate_id=candidate_id)
     new = vote.vote_for_a_candidate()
     if new:
@@ -63,4 +70,4 @@ def create_vote():
                 "voter": user_id
             }]
         }),201)
-    return return_error(400, "failed to vote successfully")
+    return return_error(400, "your attempt to vote failed please try again")
