@@ -57,14 +57,15 @@ def create_tables():
 
     votes = """
         CREATE TABLE votes(
-            id SERIAL PRIMARY KEY,
+            id SERIAL NOT NULL,
             created_on TIMESTAMP NOT NULL DEFAULT now(),
             created_by INTEGER,
             office_id INTEGER,
             candidate_id INTEGER,
+            PRIMARY KEY(id, created_by),
             FOREIGN KEY(created_by) REFERENCES users(id) ON DELETE CASCADE,
             FOREIGN KEY(office_id) REFERENCES offices(id) ON DELETE CASCADE,
-            FOREIGN KEY(candidate_id) REFERENCES users(id) ON DELETE CASCADE
+            FOREIGN KEY(candidate_id) REFERENCES candidates(id) ON DELETE CASCADE
         );"""
 
     return [users, parties, offices, candidates, petitions, votes]
