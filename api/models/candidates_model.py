@@ -1,3 +1,4 @@
+import json
 from werkzeug.security import generate_password_hash
 from api.database.database import DatabaseSetup
 from api.models.offices_model import Office
@@ -22,16 +23,8 @@ class Candidate(DatabaseSetup):
     def get_candidate(self, candidate_id):
         self.cursor.execute('''SELECT * FROM candidates WHERE id='{}';'''.format(candidate_id))
         candidate=self.cursor.fetchone()
-        if candidate is not None:
-            return True
-        else:
-	        return False
-
-    def check_if_candidate_exists_before_creating_one(self, candidate_id):
-        self.cursor.execute('''SELECT * FROM candidates WHERE candidate_id='{}';'''.format(self.candidate_id))
-        candidate=self.cursor.fetchone()
-        if candidate is None:
-            return False
-        return True
+        self.connection.commit()
+        self.cursor.close()
+        return json.dumps(candidate, default=str)
 
 
