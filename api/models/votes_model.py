@@ -32,11 +32,16 @@ class Vote(DatabaseSetup):
         return json.dumps(vote, default=str)
 
 
-    def get_results_of_a_particular_office(self):
-        self.cursor.execute('''SELECT candidate_id, COUNT(*) FROM votes WHERE candidate_id='{}';'''.format(self.office_id))
-        votes=self.cursor.fetchall()
-        votes_list = []
-        for vote in votes:
-            vote = { "voter": vote[2],'office': vote[3], 'candidate': vote[4]}
-            votes_list.append(vote)
-        return votes_list
+    def get_results_of_a_particular_office(self, office_id):
+        self.cursor.execute('''SELECT email as candidate\
+             from users inner join votes on users.id = votes.candidate_id'''.format(office_id))
+        total_votes=self.cursor.fetchall()
+        # self.connection.commit()
+        # self.cursor.close()
+        # return json.dumps(total_votes, default=str)
+
+        results = []
+        for votes in total_votes:
+            votes = {'office': votes[3], 'candidate': votes[4]}
+            results.append(votes)
+        return results

@@ -50,7 +50,6 @@ def create_vote():
     vote = Vote(office_id=None,user_id=None, candidate_id=None)
     result =  vote.check_if_has_voted(user_id, office_id)
     vote = json.dumps(result)
-
     if vote:
         return return_error(409, "You have already voted.")
 

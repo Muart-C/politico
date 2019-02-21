@@ -5,6 +5,7 @@ from api.models.offices_model import Office
 from api.models.candidates_model import Candidate
 from api.models.users_model import User
 from api.models.parties_model import Party
+from api.models.votes_model import Vote
 from api.utils.validator import return_response, return_error, check_json_office_keys
 from api.utils.validator import validate_string_data_type, sanitize_input
 from api.utils.validator import validate_int_data_type, validate_office_type
@@ -63,6 +64,22 @@ def get_offices():
     if political_offices:
         return return_response(200, "Request was successful", political_offices)
     return return_error(400, "There are no offices found")
+
+
+@OFFICE_BLUEPRINT.route('/offices/<int:id>/result', methods=['GET'])
+def get_results(id):
+    office = Office(name=None, office_type=None)
+    office = office.get_office(id)
+    office = json.loads(office)
+    if not office:
+        return return_error(404, "no result of that office was found")
+    vote = Vote(office_id=None,user_id=None, candidate_id=None)
+    results = vote.get_results_of_a_particular_office(id)
+    if results:
+        return make_response(jsonify({
+                "office": results
+        }), 200)
+    return return_error(400, "There are no results")
 
 
 @OFFICE_BLUEPRINT.route('/offices/<int:id>', methods=['GET'])
@@ -125,11 +142,13 @@ def create_candidate(office_id):
         if not office:
             return return_error(404, "The office does not exist")
 
-        candidate = Candidate(office_id=office_id, candidate_id=candidate_id,\
-                party_id=party_id)
+        candidate = Candidate(office_id=None, candidate_id=None,\
+                party_id=None)
         result = candidate.get_candidate(candidate_id)
         candidate = json.loads(result)
         if not candidate:
+            candidate = Candidate(office_id=office_id, candidate_id=candidate_id,\
+                party_id=party_id)
             new = candidate.create_a_candidate()
             if new:
                 return make_response(jsonify({
