@@ -30,6 +30,7 @@ def create_app(configuration):
 
     url_prefix_version_2 = "/api/v2"
     DatabaseSetup().create_all_tables()
+    DatabaseSetup().create_admin_if_does_not_exist()
 
     app.register_blueprint(AUTH_BLUEPRINT, url_prefix=url_prefix_version_2)
     app.register_blueprint(PARTY_BLUEPRINT, url_prefix=url_prefix_version_2)
