@@ -1,8 +1,7 @@
 """ manage database set up """
 import os
 import psycopg2
-from psycopg2.extras import DictCursor
-from api.utils.validator import return_error
+
 
 def create_tables():
     users = """

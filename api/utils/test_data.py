@@ -11,7 +11,14 @@ party_with_data = {
 }
 
 
-#a party with empty fields
+
+cast_vote = {
+    "candidate_id" : 1,
+    "user_id" : 1,
+    "office_id" : 1,
+}
+
+
 party_with_empty_fields = {
     "name" : "",
     "hqAddress" : "",
@@ -102,26 +109,77 @@ office_with_invalid_key_office_type = {
     "name" : "name",
     "office" : "legislative",
 }
-#an office with empty fields
-office_with_empty_fields = {
+
+office_with_empty_name = {
     "name" : "",
-    "office_type" : "",
+    "office_type" : "legislative",
  }
 
+office_with_empty_office_type = {
+    "name" : "senate",
+    "office_type" : "",
+ }
+office_with_wrong_office_type = {
+    "name" : "senate",
+    "office_type" : "wrong",
+ }
 # test data for new user
 new_user={
     "firstname":"firstname",
     "lastname":"lastname",
     "othername":"othername",
-    "email":"eded@email.com",
+    "email":"you@email.com",
     "phone_number":"+213425435",
     "passport_url":"https://goo.gl/images/B9U4PK",
     "password":"secretpass",
 }
-
+new_user_2={
+    "firstname":"firstname",
+    "lastname":"lastname",
+    "othername":"othername",
+    "email":"muathe.ndirangu@email.com",
+    "phone_number":"+213425435",
+    "passport_url":"https://goo.gl/images/B9U4PK",
+    "password":"ndirangu",
+}
 user_login={
-    "email":"eded@email.com",
+    "email":"you@email.com",
     "password":"secretpass",
+}
+
+user_login_wrong_email={
+    "email":"me@email.com",
+    "password":"secretpass",
+}
+
+user_login_wrong_password={
+    "email":"you@email.com",
+    "password":"secretpassing",
+}
+
+user_login_empty_email={
+    "email":"",
+    "password":"secretpassing",
+}
+
+user_login_wrong_email_format={
+    "email":"you@emailcom",
+    "password":"secretpassing",
+}
+
+user_login_blank_password={
+    "email":"you@emailcom",
+    "password":"",
+}
+
+user_login_password_less_than_six_characters={
+    "email":"you@emailcom",
+    "password":"you",
+}
+
+admin_login={
+    "email":"muathe.ndirangu@gmail.com",
+    "password":"ndirangu",
 }
 
 create_user_missing_data = {

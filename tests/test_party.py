@@ -11,20 +11,22 @@ class TestParty(BaseTest):
             "/api/v2/parties",
             data=json.dumps(party_with_data),
             content_type="application/json",
+            headers=self.super_token
         )
         data = json.loads(response.data.decode("utf-8"))
-
-        self.assertEqual(data["status"], 201)
+        print(data)
+        self.assertEqual(response.status_code, 201)
 
     def test_add_party_with_missing_input(self):
         response = self.client.post(
             '/api/v2/parties',
             data = json.dumps(party_with_empty_fields),
             content_type = "application/json",
+            headers=self.super_token
         )
         data = json.loads(response.data.decode())
 
-        self.assertEqual(data["status"], 400)
+        self.assertEqual(response.status_code, 400)
 
     def test_get_all_parties(self):
         self.client.post(
@@ -39,10 +41,8 @@ class TestParty(BaseTest):
         )
 
         response = self.client.get('/api/v2/parties')
-
         data = json.loads(response.data)
-
-        self.assertEqual(data["status"], 200)
+        self.assertEqual(response.status_code, 200)
 
 
 
@@ -51,67 +51,52 @@ class TestParty(BaseTest):
             "/api/v2/parties",
             data=json.dumps(party_with_wrong_name_type),
             content_type="application/json",
+            headers=self.super_token
         )
 
         data = json.loads(response.data.decode("utf-8"))
-        self.assertEqual(data["status"], 400)
+        self.assertEqual(response.status_code, 400)
 
     def test_party_party_with_wrong_name_input(self):
         response = self.client.post(
             "/api/v2/parties",
             data=json.dumps(party_with_wrong_name_input),
             content_type="application/json",
+            headers=self.super_token
         )
 
         data = json.loads(response.data.decode("utf-8"))
-        self.assertEqual(data["status"], 400)
+        self.assertEqual(response.status_code, 400)
 
     def test_party_with_wrong_address_input(self):
         response = self.client.post(
             "/api/v2/parties",
             data=json.dumps(party_with_wrong_address_input),
             content_type="application/json",
+            headers=self.super_token
         )
 
         data = json.loads(response.data.decode("utf-8"))
-        self.assertEqual(data["status"], 400)
+        self.assertEqual(response.status_code, 400)
 
     def test_party_with_wrong_address_type(self):
         response = self.client.post(
             "/api/v2/parties",
             data=json.dumps(party_with_wrong_address_type),
             content_type="application/json",
+            headers=self.super_token
         )
 
         data = json.loads(response.data.decode("utf-8"))
-        self.assertEqual(data["status"], 400)
+        self.assertEqual(response.status_code, 400)
 
     def test_party_with_the_wrong_url_format(self):
         response = self.client.post(
             "/api/v2/parties",
             data=json.dumps(party_with_wrong_logo_url),
             content_type="application/json",
+            headers=self.super_token
         )
 
         data = json.loads(response.data.decode("utf-8"))
-        self.assertEqual(data["status"], 400)
-
-    def test_party_with_invalid_key_name(self):
-        response = self.client.post(
-            "/api/v2/parties",
-            data=json.dumps(party_with_invalid_key_name),
-            content_type="application/json",
-        )
-
-        data = json.loads(response.data.decode("utf-8"))
-        self.assertEqual(data["status"], 400)
-
-    def test_party_with_invalid_key_address(self):
-        response = self.client.post(
-            "/api/v2/parties",
-            data=json.dumps(party_with_invalid_key_address),
-            content_type="application/json",
-        )
-
-        data = json.loads(response.data.decode("utf-8"))
-        self.assertEqual(data["status"], 400)
+        self.assertEqual(response.status_code, 400)
