@@ -118,7 +118,16 @@ new_user={
     "passport_url":"https://goo.gl/images/B9U4PK",
     "password":"secretpass",
 }
-
+admin={
+    "firstname":"firstname",
+    "lastname":"lastname",
+    "othername":"othername",
+    "email":"admin@email.com",
+    "phone_number":"+213425435",
+    "passport_url":"https://goo.gl/images/B9U4PK",
+    "password":"secretpass",
+    "is_admin" : True
+}
 user_login={
     "email":"eded@email.com",
     "password":"secretpass",

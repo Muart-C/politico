@@ -4,19 +4,12 @@ from tests.test_base import BaseTest
 from api.utils.test_data import new_user,\
      create_user_missing_data,create_user_wrong_email_input,\
          create_user_wrong_firstname_input, create_user_wrong_lastname_input
-from api.utils.test_data import create_user_wrong_phone_number_input, create_user_wrong_passport_url_input, user_login
+from api.utils.test_data import create_user_wrong_phone_number_input,\
+     create_user_wrong_passport_url_input, user_login, admin
 from api.models.users_model import User
 
+
 class Users(BaseTest):
-    def get_auth_token(self):
-        response=self.client.post(
-            "/api/v2/auth/signup",
-            data=json.dumps(new_user),
-            content_type="application/json",
-        )
-        auth_token = json.loads(response.data.get_data("utf-8"))['token']
-        header = {'Authorization': 'Bearer {}'.format(auth_token)}
-        return header
 
     def test_user_sign_up(self):
         response=self.client.post(
