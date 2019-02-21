@@ -22,7 +22,7 @@ class DatabaseSetup:
             self.cursor.execute(table)
         self.connection.commit()
         self.connection.close()
-
+ 
     def drop_tables_if_exists(self):
         tables = drop_tables_if_exists()
         for table in tables:
