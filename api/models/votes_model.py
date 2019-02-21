@@ -33,7 +33,7 @@ class Vote(DatabaseSetup):
 
 
     def get_results_of_a_particular_office(self):
-        self.cursor.execute('''SELECT * FROM votes WHERE office_id='{}';'''.format(self.office_id))
+        self.cursor.execute('''SELECT candidate_id, COUNT(*) FROM votes WHERE candidate_id='{}';'''.format(self.office_id))
         votes=self.cursor.fetchall()
         votes_list = []
         for vote in votes:

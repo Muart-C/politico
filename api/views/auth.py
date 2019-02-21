@@ -88,7 +88,6 @@ def login():
              passport_url=None)
     check_user = user.get_user(email=email)
     user = json.loads(check_user)
-    print(user[0])
     if not user:
         return return_error(404, "User is not found")
     check_password= check_password_hash(user[7],password)
@@ -98,11 +97,8 @@ def login():
         }, expires_delta=datetime.timedelta(minutes=15))
         if token:
             return make_response(jsonify({
-                    "status":200,
-                    "data":[{
-                            "email":email,
-                            "token": token,
-                    }],
+                "email":email,
+                "token": token,
             }), 200)
     else:
         return return_error(401, "Ensure you input valid email and password")
