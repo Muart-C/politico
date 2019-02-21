@@ -13,9 +13,6 @@ before_script:
   - psql -c "CREATE DATABASE test_politico;" -U postgres
   - psql -c "CREATE DATABASE politico;" -U postgres
   - psql -c "ALTER user postgres PASSWORD 'postgres';" -U postgres
-  - export DATABASE_POLITICO=postgresql://postgres:postgres@localhost:5432/politico
-  - export DATABASE_POLITICO_TEST_LOCAL=postgresql://postgres:postgres@localhost:5432/test_politico
- 
 
 script:
 - pytest --cov=api tests/ -v
