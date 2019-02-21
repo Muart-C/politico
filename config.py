@@ -15,7 +15,7 @@ class DevelopmentConfiguration(Config):
 
 class ProductionConfiguration(Config):
     DEBUG=False
-
+    DATABASE_POLITICO=os.getenv("DATABASE_URL")
 app_config = {
     'testing': TestingConfiguration,
     'development' : DevelopmentConfiguration,
