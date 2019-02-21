@@ -26,6 +26,7 @@ def create_app(configuration):
     app.config.from_object(app_config[configuration])
 
     url_prefix_version_2 = "/api/v2"
+    DatabaseSetup().create_all_tables()
 
     app.register_blueprint(AUTH_BLUEPRINT, url_prefix=url_prefix_version_2)
     app.register_blueprint(PARTY_BLUEPRINT, url_prefix=url_prefix_version_2)

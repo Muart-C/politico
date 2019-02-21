@@ -5,18 +5,16 @@ from flask import current_app as app
 from api.utils.validator import return_error
 from api.database.db_manage import create_tables, drop_data_from_tables,\
     drop_tables_if_exists
+from config import app_config
 
+configuration = os.getenv('FLASK_ENV')
+
+URL = app_config[configuration].DATABASE_POLITICO
 class DatabaseSetup:
     def __init__(self):
-        self.dbname=os.getenv("DATABASE_POLITICO")
-        self.user=os.getenv("DATABASE_USERNAME")
-        self.password=os.getenv("DATABASE_PASSWORD")
-        self.host=os.getenv("DATABASE_HOST")
-        self.port=os.getenv("DATABASE_PORT")
-        self.connection = psycopg2.connect(dbname=self.dbname,\
-                user=self.user,host=self.host,\
-                     password=self.password, port=self.port)
+        self.connection = psycopg2.connect(URL)
         self.cursor = self.connection.cursor()
+
 
     def drop_data_from_tables(self):
         tables = drop_data_from_tables()
