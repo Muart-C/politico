@@ -7,15 +7,15 @@ class Config:
 class TestingConfiguration(Config):
     TESTING = True
     DEBUG = True
-    DATABASE_POLITICO = os.getenv("DATABASE_TEST_POLITICO_URL")
+    DATABASE_POLITICO = os.getenv("DATABASE_POLITICO_TEST_LOCAL")
 
 class DevelopmentConfiguration(Config):
     DEBUG=True
-    DATABASE_POLITICO=os.getenv("DATABASE_POLITICO_URL")
+    DATABASE_POLITICO=os.getenv("DATABASE_POLITICO_DEV")
 
 class ProductionConfiguration(Config):
     DEBUG=False
-    DATABASE_POLITICO_URI=os.getenv('DATABASE_POLITICO_URI')
+    DATABASE_POLITICO=os.getenv('DATABASE_POLITICO_URI')
 
 app_config = {
     'testing': TestingConfiguration,
