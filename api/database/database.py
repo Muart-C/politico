@@ -17,6 +17,7 @@ class DatabaseSetup:
                 user=self.user,host=self.host,\
                      password=self.password, port=self.port)
         self.cursor = self.connection.cursor()
+        
 
     def drop_data_from_tables(self):
         tables = drop_data_from_tables()
