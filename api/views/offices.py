@@ -47,7 +47,7 @@ def add_offices():
                     "office_type":office_type
                 }]
             }),201)
-        return return_error(400, "The office already exist create another office")
+        return return_error(409, "The office already exist create another office")
 
     return make_response(jsonify({
             "status":401,
