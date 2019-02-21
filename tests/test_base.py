@@ -12,6 +12,8 @@ class BaseTest(unittest.TestCase):
     def setUp(self):
         self.app = create_app("testing")
         self.client = self.app.test_client()
-
-    def tearDown(self):
-        DatabaseSetup().drop_data_from_tables()
+        self.app_context = self.app.app_context()
+        with self.app.app_context():
+            DatabaseSetup().drop_tables_if_exists()
+            DatabaseSetup().create_all_tables()
+            DatabaseSetup().create_admin_if_does_not_exist()

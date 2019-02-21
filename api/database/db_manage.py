@@ -6,7 +6,7 @@ from api.utils.validator import return_error
 
 def create_tables():
     users = """
-        CREATE TABLE users(
+        CREATE TABLE IF NOT EXISTS users(
             id SERIAL PRIMARY KEY,
             firstname VARCHAR(128) NULL,
             lastname VARCHAR(128) NULL,
@@ -19,7 +19,7 @@ def create_tables():
         );"""
 
     parties = """
-        CREATE TABLE parties(
+        CREATE TABLE IF NOT EXISTS parties(
             id SERIAL PRIMARY KEY,
             name VARCHAR(100) NOT NULL,
             hq_address VARCHAR(200) NOT NULL,
@@ -27,14 +27,14 @@ def create_tables():
         );"""
 
     offices = """
-        CREATE TABLE offices(
+        CREATE TABLE IF NOT EXISTS offices(
             id SERIAL PRIMARY KEY,
             name VARCHAR(100) NOT NULL,
             office_type VARCHAR(100) NOT NULL
         );"""
 
     candidates = """
-        CREATE TABLE candidates(
+        CREATE TABLE IF NOT EXISTS candidates(
             id SERIAL PRIMARY KEY,
             office_id INTEGER,
             party_id INTEGER,
@@ -45,7 +45,7 @@ def create_tables():
         );"""
 
     petitions = """
-        CREATE TABLE petitions(
+        CREATE TABLE IF NOT EXISTS petitions(
             id SERIAL PRIMARY KEY,
             created_on TIMESTAMP NOT NULL DEFAULT now(),
             created_by INTEGER,
@@ -56,7 +56,7 @@ def create_tables():
         );"""
 
     votes = """
-        CREATE TABLE votes(
+        CREATE TABLE IF NOT EXISTS votes(
             id SERIAL NOT NULL,
             created_on TIMESTAMP NOT NULL DEFAULT now(),
             created_by INTEGER,
