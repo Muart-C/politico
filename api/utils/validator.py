@@ -7,7 +7,8 @@ from flask import jsonify, make_response
 
 
 def validate_password(password):
-    if re.match('[a-zA-Z0-9@#$&^%+=-]{6,}', password) is None:
+    passd=re.compile("(?=\D*\d)(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])[A-Za-z0-9]{6,}$")
+    if re.match(passd, password) is None:
         return False
     return True
 
@@ -93,6 +94,11 @@ def check_email_validity(email):
     if re.match(r"(^[a-zA-Z0-9\.\+_-]+@[a-zA-Z0-9\._-]+\.[a-zA-Z0-9-.]+$)",
                email):
        return True
+    return False
+
+def check_phone_number_validity(phone):
+    if re.match(r"^(?:254|\+254|0)?(7(?:(?:[12][0-9])|(?:0[0-8])|(9[0-2]))[0-9]{6})$", phone):
+        return True
     return False
 
 def encode_auth_token(email):
