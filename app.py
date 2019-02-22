@@ -32,9 +32,9 @@ def create_app(configuration):
     DatabaseSetup().create_all_tables()
     DatabaseSetup().create_admin_if_does_not_exist()
     
-    @app.route('/')
-    def docs():
-        return redirect(url_for('apidocs'))
+    # @app.route('/')
+    # def docs():
+    #     return redirect(url_for('apidocs'))
 
 
     app.register_blueprint(AUTH_BLUEPRINT, url_prefix=url_prefix_version_2)
