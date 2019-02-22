@@ -52,7 +52,7 @@ def create_user():
             return return_error(400, "Provide a valid other name,it should not contain any spaces ")
         if(validate_password(password) == False):
             return return_error(400,\
-                 "Password should be more than six characters contain at leas a number and uppercase letter")
+                 "Password should be more than six characters contain at least a number and uppercase letter")
 
     except KeyError as e:
         return return_error(400, "An error occurred while creating user  {} is missing".format(e.args[0]))

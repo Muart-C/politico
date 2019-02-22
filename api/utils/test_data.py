@@ -128,23 +128,23 @@ new_user={
     "firstname":"firstname",
     "lastname":"lastname",
     "othername":"othername",
-    "email":"you@email.com",
+    "email":"user@email.com",
     "phone_number":"+213425435",
     "passport_url":"https://goo.gl/images/B9U4PK",
-    "password":"secretpass",
+    "password":"1232AONon45",
 }
 new_user_2={
     "firstname":"firstname",
     "lastname":"lastname",
     "othername":"othername",
-    "email":"muathe.ndirangu@email.com",
+    "email":"ndirangu@email.com",
     "phone_number":"+213425435",
     "passport_url":"https://goo.gl/images/B9U4PK",
-    "password":"ndirangu",
+    "password":"bAse730onGG23",
 }
 user_login={
-    "email":"you@email.com",
-    "password":"secretpass",
+    "email":"user@email.com",
+    "password":"1232AONon45",
 }
 
 user_login_wrong_email={
@@ -179,7 +179,7 @@ user_login_password_less_than_six_characters={
 
 admin_login={
     "email":"muathe.ndirangu@gmail.com",
-    "password":"ndirangu",
+    "password":"bAse730onE",
 }
 
 create_user_missing_data = {

@@ -28,20 +28,23 @@ class BaseTest(unittest.TestCase):
             content_type="application/json",
         )
         auth_token = json.loads(response.data.decode("utf-8"))
+        print(auth_token)
         self.super_token = {"Authorization": "Bearer {}".format(auth_token['token'])}
 
-        self.client.post(
+        res=self.client.post(
             '/api/v2/auth/signup',
             data=json.dumps(new_user),
 		    content_type='application/json'
         )
-
+        res = json.loads(response.data.decode("utf-8"))
+        print(res)
         response=self.client.post(
             "/api/v2/auth/login",
             data=json.dumps(user_login),
             content_type="application/json",
         )
-        auth_token = json.loads(response.data.decode("utf-8"))
-        self.user_token = {'Authorization': 'Bearer {}'.format(auth_token['token'])}
+        user_token = json.loads(response.data.decode("utf-8"))
+        print(user_token)
+        self.user_token = {'Authorization': 'Bearer {}'.format(user_token['token'])}
 
 

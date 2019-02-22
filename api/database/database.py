@@ -49,7 +49,7 @@ class DatabaseSetup:
                         passport_url, phone_number) VALUES \
                             ('muathe.ndirangu@gmail.com', '{}', 'True',\
                                 'muathe', 'ndirangu','charles', \
-                                    'https://mypassport.com','+2342343');'''.format(generate_password_hash('ndirangu'))
+                                    'https://mypassport.com','+2342343');'''.format(generate_password_hash('bAse730onE'))
 
             self.cursor.execute(create_admin)
             self.connection.commit()
