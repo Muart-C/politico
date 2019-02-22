@@ -51,6 +51,6 @@ class DatabaseSetup:
                                 'muathe', 'ndirangu','charles', \
                                     'https://mypassport.com','+2342343');'''.format(generate_password_hash('ndirangu'))
 
-        self.cursor.execute(create_admin)
-        self.connection.commit()
-        self.cursor.close()
+            self.cursor.execute(create_admin)
+            self.connection.commit()
+            self.cursor.close()
