@@ -34,7 +34,7 @@ class Vote(DatabaseSetup):
 
     def get_results_of_a_particular_office(self, office_id):
         self.cursor.execute('''SELECT email as candidate\
-             from users inner join votes on users.id = votes.candidate_id'''.format(office_id))
+             from users inner join votes on users.id = votes.candidate_id;'''.format(office_id))
         total_votes=self.cursor.fetchall()
         # self.connection.commit()
         # self.cursor.close()
