@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, redirect, url_for
 from flask_jwt_extended import JWTManager
 from config import app_config
 from api.views.auth import AUTH_BLUEPRINT
@@ -31,6 +31,11 @@ def create_app(configuration):
     url_prefix_version_2 = "/api/v2"
     DatabaseSetup().create_all_tables()
     DatabaseSetup().create_admin_if_does_not_exist()
+    
+    @app.route('/')
+    def docs():
+        return redirect(url_for('flasgger.apidocs'))
+
 
     app.register_blueprint(AUTH_BLUEPRINT, url_prefix=url_prefix_version_2)
     app.register_blueprint(PARTY_BLUEPRINT, url_prefix=url_prefix_version_2)
