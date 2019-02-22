@@ -8,7 +8,7 @@ from api.utils.validator import check_json_new_user_keys,\
      return_error, validate_string_data_type,\
          sanitize_input, check_email_validity, check_is_valid_url\
 
-from api.utils.validator import validate_password, encode_auth_token
+from api.utils.validator import validate_password
 from api.models.users_model import User
 
 AUTH_BLUEPRINT = Blueprint("auth", __name__)

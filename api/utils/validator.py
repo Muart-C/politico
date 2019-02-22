@@ -25,8 +25,6 @@ def validate_string_data_type(data_passed):
     if not isinstance(data_passed, str):
         return False
     return True
-def generate_id(list_of_items):
-    return len(list_of_items) +1
 
 def return_error(status_code, message):
     response = {
@@ -95,24 +93,3 @@ def check_email_validity(email):
        return True
     return False
 
-def encode_auth_token(email):
-    try:
-        payload ={
-            'exp': datetime.datetime.now() + \
-                datetime.timedelta(minutes=40),
-            'iat':datetime.datetime.now(),
-            'sub':email
-        }
-        return jwt.encode(payload,"secret", algorithm='HS256')
-
-    except Exception as err:
-        return return_error(404, "an authentication error occurred")
-
-def decode_auth_token(token):
-    try:
-        payload = jwt.decode(token, options={'verify_iat': False})
-        return payload
-    except jwt.ExpiredSignatureError:
-        return "your token signature already expired"
-    except jwt.InvalidTokenError:
-        return "your token is invalid"
