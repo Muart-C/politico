@@ -34,7 +34,7 @@ def create_app(configuration):
     
     @app.route('/')
     def docs():
-        return redirect(url_for('flasgger.apidocs'))
+        return redirect(url_for('apidocs'))
 
 
     app.register_blueprint(AUTH_BLUEPRINT, url_prefix=url_prefix_version_2)
