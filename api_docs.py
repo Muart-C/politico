@@ -129,7 +129,7 @@ def create_office():
       '400':
         description: Ensure enter the details correctly
       '401':
-        description: You are not allowed to perfom this action
+        description: You are not allowed to perform this action
       '409':
         description: The office already exists
     """
