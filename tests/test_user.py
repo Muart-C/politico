@@ -71,8 +71,6 @@ class Users(BaseTest):
         response=self.client.post(
             "/api/v2/auth/signup",
             data=json.dumps(create_user_wrong_phone_number_input),
-            content_type="application/json",
-
         )
 
         data = json.loads(response.data.decode("utf-8"))
@@ -112,7 +110,7 @@ class Users(BaseTest):
             content_type="application/json",
         )
         data = json.loads(response.data.decode("utf-8"))
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 400)
 
     def test_user_login_wrong_email_format(self):
         response=self.client.post(

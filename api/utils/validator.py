@@ -96,7 +96,7 @@ def check_email_validity(email):
 
 
 def check_phone_number_validity(phone):
-    if re.match(r"^(?:254|\+254|0)?(7(?:(?:[12][0-9])|(?:0[0-8])|(9[0-2]))[0-9]{6})$", phone):
+    if re.match(r"^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$", phone):
         return True
     return False
 

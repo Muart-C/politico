@@ -31,7 +31,7 @@ class BaseTest(unittest.TestCase):
         print(auth_token)
         self.super_token = {"Authorization": "Bearer {}".format(auth_token['token'])}
 
-        res=self.client.post(
+        response=self.client.post(
             '/api/v2/auth/signup',
             data=json.dumps(new_user),
 		    content_type='application/json'

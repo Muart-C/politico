@@ -129,7 +129,7 @@ new_user={
     "lastname":"lastname",
     "othername":"othername",
     "email":"user@email.com",
-    "phone_number":"+213425435",
+    "phone_number":"2134254435",
     "passport_url":"https://goo.gl/images/B9U4PK",
     "password":"1232AONon45",
 }
@@ -138,7 +138,7 @@ new_user_2={
     "lastname":"lastname",
     "othername":"othername",
     "email":"ndirangu@email.com",
-    "phone_number":"+213425435",
+    "phone_number":"4213425435",
     "passport_url":"https://goo.gl/images/B9U4PK",
     "password":"bAse730onGG23",
 }
@@ -243,7 +243,7 @@ create_user_wrong_phone_number_input = {
     "lastname":"lastname",
     "othername":"othername",
     "email":"e@email.com",
-    "phone_number":2|3,
+    "phone_number":2543,
     "passport_url":"https://goo.gl/images/B9U4PK",
     "password":"secretpass",
 }
@@ -254,7 +254,7 @@ create_user_wrong_passport_url_input = {
     "lastname":"lastname",
     "othername":"othername",
     "email":"e@email.com",
-    "phone_number":2|3,
-    "passport_url":"oo.g/images/B9U4PK",
+    "phone_number":2453,
+    "passport_url":"images/B9U4PK",
     "password":"secretpass",
 }
