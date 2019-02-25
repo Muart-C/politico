@@ -99,4 +99,3 @@ def check_phone_number_validity(phone):
     if re.match(r"^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$", phone):
         return True
     return False
-

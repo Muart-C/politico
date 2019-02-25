@@ -243,7 +243,7 @@ create_user_wrong_phone_number_input = {
     "lastname":"lastname",
     "othername":"othername",
     "email":"e@email.com",
-    "phone_number":2543,
+    "phone_number":"76676",
     "passport_url":"https://goo.gl/images/B9U4PK",
     "password":"secretpass",
 }
@@ -254,7 +254,7 @@ create_user_wrong_passport_url_input = {
     "lastname":"lastname",
     "othername":"othername",
     "email":"e@email.com",
-    "phone_number":2453,
+    "phone_number":"2453",
     "passport_url":"images/B9U4PK",
     "password":"secretpass",
 }
