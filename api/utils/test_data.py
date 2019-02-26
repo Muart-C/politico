@@ -128,23 +128,23 @@ new_user={
     "firstname":"firstname",
     "lastname":"lastname",
     "othername":"othername",
-    "email":"you@email.com",
-    "phone_number":"+213425435",
+    "email":"user@email.com",
+    "phone_number":"2134254435",
     "passport_url":"https://goo.gl/images/B9U4PK",
-    "password":"secretpass",
+    "password":"1232AONon45",
 }
 new_user_2={
     "firstname":"firstname",
     "lastname":"lastname",
     "othername":"othername",
-    "email":"muathe.ndirangu@email.com",
-    "phone_number":"+213425435",
+    "email":"ndirangu@email.com",
+    "phone_number":"4213425435",
     "passport_url":"https://goo.gl/images/B9U4PK",
-    "password":"ndirangu",
+    "password":"bAse730onGG23",
 }
 user_login={
-    "email":"you@email.com",
-    "password":"secretpass",
+    "email":"user@email.com",
+    "password":"1232AONon45",
 }
 
 user_login_wrong_email={
@@ -179,7 +179,7 @@ user_login_password_less_than_six_characters={
 
 admin_login={
     "email":"muathe.ndirangu@gmail.com",
-    "password":"ndirangu",
+    "password":"bAse730onE",
 }
 
 create_user_missing_data = {
@@ -243,7 +243,7 @@ create_user_wrong_phone_number_input = {
     "lastname":"lastname",
     "othername":"othername",
     "email":"e@email.com",
-    "phone_number":2|3,
+    "phone_number":"76676",
     "passport_url":"https://goo.gl/images/B9U4PK",
     "password":"secretpass",
 }
@@ -254,7 +254,7 @@ create_user_wrong_passport_url_input = {
     "lastname":"lastname",
     "othername":"othername",
     "email":"e@email.com",
-    "phone_number":2|3,
-    "passport_url":"oo.g/images/B9U4PK",
+    "phone_number":"2453",
+    "passport_url":"images/B9U4PK",
     "password":"secretpass",
 }

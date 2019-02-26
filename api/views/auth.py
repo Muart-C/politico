@@ -6,9 +6,9 @@ from flask_jwt_extended import create_access_token
 from werkzeug.security import check_password_hash, generate_password_hash
 from api.utils.validator import check_json_new_user_keys,\
      return_error, validate_string_data_type,\
-         sanitize_input, check_email_validity, check_is_valid_url\
+         sanitize_input, check_email_validity, check_is_valid_url,\
+             check_phone_number_validity,validate_password
 
-from api.utils.validator import validate_password
 from api.models.users_model import User
 
 AUTH_BLUEPRINT = Blueprint("auth", __name__)
@@ -38,8 +38,8 @@ def create_user():
             return return_error(400, "The other name should contain character of words")
         if(check_email_validity(email) is False):
             return return_error(400, "Enter the correct email format")
-        if(validate_string_data_type(phone_number) is False):
-            return return_error(400, "Enter a correct phone number")
+        if(check_phone_number_validity(phone_number) is False):
+            return return_error(400, "Enter a correct phone number starts with a zero or +254")
         if(check_is_valid_url(passport_url) is False):
             return return_error(400, "The passport url should be of correct format should be of format https://myimage.com")
 
@@ -51,7 +51,7 @@ def create_user():
             return return_error(400, "Provide a valid other name,it should not contain any spaces ")
         if(validate_password(password) == False):
             return return_error(400,\
-                 "Password should be more than six characters")
+                 "Password should be more than six characters contain at least a number and uppercase letter")
 
     except KeyError as e:
         return return_error(400, "An error occurred while creating user  {} is missing".format(e.args[0]))

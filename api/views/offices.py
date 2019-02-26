@@ -74,7 +74,8 @@ def get_results(id):
     if not office:
         return return_error(404, "no result of that office was found")
     vote = Vote(office_id=None,user_id=None, candidate_id=None)
-    results = vote.get_results_of_a_particular_office(id)
+    result = vote.get_results_of_a_particular_office(id)
+    results = json.loads(result)
     if results:
         return make_response(jsonify({
                 "office": results
