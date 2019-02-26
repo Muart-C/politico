@@ -71,6 +71,7 @@ class Users(BaseTest):
         response=self.client.post(
             "/api/v2/auth/signup",
             data=json.dumps(create_user_wrong_phone_number_input),
+            content_type="application/json"
         )
 
         data = json.loads(response.data.decode("utf-8"))
