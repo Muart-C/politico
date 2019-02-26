@@ -15,8 +15,31 @@ class TestOffice(BaseTest):
             content_type = "application/json",
             headers=self.super_token
         )
-        data = json.loads(response.data)
         self.assertEqual(response.status_code, 201)
+
+    def test_add_office_while_unauthorized(self):
+        response = self.client.post(
+            '/api/v2/offices',
+            data = json.dumps(office_with_correct_data),
+            content_type = "application/json",
+            headers=self.user_token
+        )
+        self.assertEqual(response.status_code, 401)
+
+    def test_add_office_twice(self):
+        self.client.post(
+            '/api/v2/offices',
+            data = json.dumps(office_with_correct_data),
+            content_type = "application/json",
+            headers=self.super_token
+        )
+        response = self.client.post(
+            '/api/v2/offices',
+            data = json.dumps(office_with_correct_data),
+            content_type = "application/json",
+            headers=self.super_token
+        )
+        self.assertEqual(response.status_code, 409)
 
     def test_add_office_with_wrong_type(self):
         response = self.client.post(
@@ -25,7 +48,6 @@ class TestOffice(BaseTest):
             content_type = "application/json",
             headers=self.super_token
         )
-        data = json.loads(response.data)
         self.assertEqual(response.status_code, 400)
 
     def test_add_office_with_wrong_office_name_data(self):
@@ -35,7 +57,6 @@ class TestOffice(BaseTest):
             content_type = "application/json",
             headers=self.super_token
         )
-        data = json.loads(response.data)
         self.assertEqual(response.status_code, 400)
 
     def test_add_office_with_invalid_key_name(self):
@@ -45,7 +66,6 @@ class TestOffice(BaseTest):
             content_type = "application/json",
             headers=self.super_token
         )
-        data = json.loads(response.data)
         self.assertEqual(response.status_code, 400)
 
     def test_add_office_with_invalid_key_office_type(self):
@@ -55,7 +75,6 @@ class TestOffice(BaseTest):
             content_type = "application/json",
             headers=self.super_token
         )
-        data = json.loads(response.data)
         self.assertEqual(response.status_code, 400)
 
     def test_add_office_with_wrong_office_type_type_input(self):
@@ -65,9 +84,8 @@ class TestOffice(BaseTest):
             content_type = "application/json",
             headers=self.super_token
         )
-        data = json.loads(response.data)
         self.assertEqual(response.status_code, 400)
-    
+
     def test_add_office_with_empty_name(self):
         response = self.client.post(
             '/api/v2/offices',
@@ -75,7 +93,6 @@ class TestOffice(BaseTest):
             content_type = "application/json",
             headers=self.super_token
         )
-        data = json.loads(response.data)
         self.assertEqual(response.status_code, 400)
 
     def test_add_office_with_empty_office_type(self):
@@ -85,7 +102,6 @@ class TestOffice(BaseTest):
             content_type = "application/json",
             headers=self.super_token
         )
-        data = json.loads(response.data)
         self.assertEqual(response.status_code, 400)
 
 
@@ -96,7 +112,6 @@ class TestOffice(BaseTest):
             content_type = "application/json",
             headers=self.super_token
         )
-        data = json.loads(response.data)
         self.assertEqual(response.status_code, 400)
 
     def test_get_offices(self):
@@ -112,9 +127,8 @@ class TestOffice(BaseTest):
             content_type = "application/json",
         )
 
-        data = json.loads(response.data)
         self.assertEqual(response.status_code, 200)
-    
+
     def test_get_office_that_does_not_exist(self):
         response = self.client.get(
             '/api/v2/offices/123',

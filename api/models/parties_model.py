@@ -46,6 +46,7 @@ class Party(DatabaseSetup):
                 self.connection.commit()
                 return {'name': party[1], 'hq_address': party[2], 'logo_url': party[3]}
 
+
     def delete_party(self, party_id):
         self.cursor.execute('''DELETE FROM parties WHERE id='{}';'''.format(party_id))
         self.connection.commit()

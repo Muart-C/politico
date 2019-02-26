@@ -56,7 +56,6 @@ def add_parties():
 def get_parties():
     parties = Party(name=None, hq_address=None, logo_url=None)
     registered_parties=parties.get_parties()
-
     if registered_parties:
         return return_response(200, "The request to get a list for parties was successful", registered_parties)
     return return_error(200, "There are no parties registered yet")
