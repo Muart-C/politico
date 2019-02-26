@@ -47,6 +47,12 @@ def create_vote():
     if not candidate:
         return return_error(404, "The candidate was not found.")
 
+    vote = Vote(office_id=None,user_id=None, candidate_id=None)
+    result =  vote.check_if_has_voted(user_id, office_id)
+    vote = json.dumps(result)
+    if vote:
+        return return_error(409, "You have already voted.")
+
     vote = Vote(office_id=office_id,user_id=user_id, candidate_id=candidate_id)
     new = vote.vote_for_a_candidate()
     if new:

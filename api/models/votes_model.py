@@ -23,21 +23,25 @@ class Vote(DatabaseSetup):
             return self
         return True
 
-
-    def get_results_of_a_particular_office(self, office_id):
-        self.cursor.execute('''SELECT concat_ws(' ',users.firstname,users.lastname) AS candidate,
-            offices.name as office,
-            (SELECT COUNT(*)
-              FROM  votes As v
-              WHERE v.candidate_id = e.candidate_id
-              GROUP BY v.candidate_id
-            ) AS results
-            FROM votes AS e
-            INNER JOIN users on users.id = e.candidate_id
-            INNER JOIN offices ON offices.id = e.office_id
-            WHERE office_id = '{}'
-            GROUP BY e.candidate_id,users.firstname,users.lastname,offices.name'''.format(office_id))
-        total_votes=self.cursor.fetchall()
+    def check_if_has_voted(self, user_id, office_id):
+        self.cursor.execute('''SELECT * FROM votes WHERE created_by='{}'\
+             AND office_id='{}';'''.format(user_id, office_id))
+        vote=self.cursor.fetchone()
         self.connection.commit()
         self.cursor.close()
-        return json.dumps(total_votes, default=str)
+        return json.dumps(vote, default=str)
+
+
+    def get_results_of_a_particular_office(self, office_id):
+        self.cursor.execute('''SELECT email as candidate\
+             from users inner join votes on users.id = votes.candidate_id'''.format(office_id))
+        total_votes=self.cursor.fetchall()
+        # self.connection.commit()
+        # self.cursor.close()
+        # return json.dumps(total_votes, default=str)
+
+        results = []
+        for votes in total_votes:
+            votes = {'office': votes[3], 'candidate': votes[4]}
+            results.append(votes)
+        return results

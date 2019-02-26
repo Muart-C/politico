@@ -1,6 +1,6 @@
 from app import create_app
 from flasgger import Swagger
-from flask_cors import CORS
+from flask import CORS
 
 
 app = create_app('production')
@@ -35,6 +35,7 @@ def signup():
     ---
     tags:
         - User
+        - Authentication
     parameters:
       - in: body
         name: User
@@ -77,6 +78,7 @@ def login():
     ---
     tags:
         - User
+	- Login
     parameters:
       - in: body
         name: User
@@ -102,6 +104,7 @@ def create_office():
     ---
     tags:
         - Offices
+        - Government Office
     parameters:
       -
           name: authorization
@@ -129,7 +132,7 @@ def create_office():
       '400':
         description: Ensure enter the details correctly
       '401':
-        description: You are not allowed to perform this action
+        description: You are not allowed to perfom this action
       '409':
         description: The office already exists
     """
@@ -139,6 +142,7 @@ def get_offices():
     ---
     tags:
         - Offices
+        - All
     responses:
       '200':
         description: Some offices were found
@@ -330,7 +334,7 @@ def cast_vote():
     """ vote for a candidate.
     ---
     tags:
-        - Votes
+        - Vote
     parameters:
       - in: body
         name: Vote
@@ -346,7 +350,7 @@ def cast_vote():
               example: 1
     responses:
       '201':
-        description: You have voted successfully
+        description: You have voted successfuly
       '409':
         description: You have already cast your vote.
       '400':
@@ -354,7 +358,7 @@ def cast_vote():
       '404':
         description: Either the office or the user with that id was not found
     """
-@app.route('/api/v2/office/<int:office_id>/result', methods=['GET'])
+    @app.route('/api/v2/office/<int:office_id>/result', methods=['GET'])
 def get_results(office_id):
     """ get results.
     ---
@@ -368,6 +372,6 @@ def get_results(office_id):
     responses:
       '200':
         description: Results were returned
-    """
+    """    
 if __name__ == "__main__":
     app.run()

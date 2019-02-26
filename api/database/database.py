@@ -49,8 +49,8 @@ class DatabaseSetup:
                         passport_url, phone_number) VALUES \
                             ('muathe.ndirangu@gmail.com', '{}', 'True',\
                                 'muathe', 'ndirangu','charles', \
-                                    'https://mypassport.com','+2342343');'''.format(generate_password_hash('bAse730onE'))
+                                    'https://mypassport.com','+2342343');'''.format(generate_password_hash('ndirangu'))
 
-            self.cursor.execute(create_admin)
-            self.connection.commit()
-            self.cursor.close()
+        self.cursor.execute(create_admin)
+        self.connection.commit()
+        self.cursor.close()
