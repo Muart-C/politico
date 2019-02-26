@@ -1,19 +1,7 @@
 import json
 from tests.test_base import BaseTest
-
-register_candidate={
-	"party_id":1,
-	"candidate_id": 1
-}
-
-register_candidate_no_party={
-	"candidate_id": 1
-}
-
-register_candidate_no_user={
-	"party_id": 1
-}
-
+from api.utils.test_data import register_candidate,\
+     register_candidate_no_party, register_candidate_no_user
 class TestCandidate(BaseTest):
     def test_add_candidate_no_office(self):
         response = self.client.post(
@@ -22,7 +10,6 @@ class TestCandidate(BaseTest):
             content_type = "application/json",
             headers=self.super_token
         )
-        data = json.loads(response.data)
         self.assertEqual(response.status_code, 404)
     def test_get_results_for_office_does_not_exist(self):
         response=self.client.get(

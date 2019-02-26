@@ -63,7 +63,6 @@ def get_offices():
     political_offices = offices.get_offices()
     if political_offices:
         return return_response(200, "Request was successful", political_offices)
-    return return_error(400, "There are no offices found")
 
 
 @OFFICE_BLUEPRINT.route('/offices/<int:id>/result', methods=['GET'])
@@ -78,9 +77,8 @@ def get_results(id):
     results = json.loads(result)
     if results:
         return make_response(jsonify({
-                "office": results
+            "office": results
         }), 200)
-    return return_error(400, "There are no results")
 
 
 @OFFICE_BLUEPRINT.route('/offices/<int:id>', methods=['GET'])
@@ -118,7 +116,6 @@ def create_candidate(office_id):
                 return return_error(400, "Provide an Id for party that is a number")
             if(validate_int_data_type(candidate_id) == False):
                 return return_error(400, "Provide an Id for a candidate that is a number")
-
         except KeyError as e:
             return return_error(400, "An error occurred {}\
                 is missing".format(e.args[0]))

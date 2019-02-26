@@ -10,7 +10,19 @@ party_with_data = {
     "logoUrl" : "https://goo.gl/images/B9U4PK",
 }
 
+update_party_name_without_request_object = {}
 
+update_party_name = {
+    "name" : "ODM",
+}
+
+update_blank_party_name = {
+    "name" : " ",
+}
+
+update_party_name_not_string = {
+    "name" : 13243,
+}
 
 cast_vote = {
     "candidate_id" : 1,
@@ -24,7 +36,6 @@ party_with_empty_fields = {
     "hqAddress" : "",
 }
 
-#a party with a name of wrong data type
 party_with_wrong_name_type = {
     "name" : 54654,
     "hqAddress" : "Machakos",
@@ -42,22 +53,18 @@ party_with_wrong_address_input = {
     "logoUrl" : "https://goo.gl/images/3RKgQ6",
 }
 
-#a party with an address of wrong data type
 party_with_wrong_address_type = {
     "name" : "name",
     "hqAddress" : 123423,
     "logoUrl" : "https://goo.gl/images/3RKgQ6",
 }
 
-
-#a party with a wrong logo url
 party_with_wrong_logo_url = {
     "name" : "name",
     "hqAddress" : "Hello",
     "logoUrl" : "/images/3RKgQ6",
 }
 
-#an office with a name of wrong data type
 party_with_name_of_wrong_data_type = {
     "name" : 4564,
     "hqAddress" : "Machakos",
@@ -123,7 +130,7 @@ office_with_wrong_office_type = {
     "name" : "senate",
     "office_type" : "wrong",
  }
-# test data for new user
+
 new_user={
     "firstname":"firstname",
     "lastname":"lastname",
@@ -257,4 +264,50 @@ create_user_wrong_passport_url_input = {
     "phone_number":"2453",
     "passport_url":"images/B9U4PK",
     "password":"secretpass",
+}
+
+create_candidate_user_does_not_exist = {
+    "candidate_id":123,
+    "party_id":1
+}
+create_candidate_party_does_not_exist = {
+    "candidate_id":1,
+    "party_id":12132
+}
+
+cast_vote={
+	"office_id":1,
+	"candidate_id":1
+}
+
+cast_vote_wrong_candidate={
+	"office_id":1,
+	"candidate_id":"candid"
+}
+
+cast_vote_wrong_office={
+	"office_id":"office",
+	"candidate_id":1
+}
+
+
+cast_vote_no_office={
+	"candidate_id": 1
+}
+
+cast_vote_no_user={
+	"office_id": 1
+}
+
+register_candidate={
+	"party_id":1,
+	"candidate_id": 1
+}
+
+register_candidate_no_party={
+	"candidate_id": 1
+}
+
+register_candidate_no_user={
+	"party_id": 1
 }

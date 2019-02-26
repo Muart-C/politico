@@ -39,7 +39,7 @@ def create_user():
         if(check_email_validity(email) is False):
             return return_error(400, "Enter the correct email format")
         if(check_phone_number_validity(phone_number) is False):
-            return return_error(400, "Enter a correct phone number starts with a zero or +254")
+            return return_error(400, "Enter a correct phone number with the following format 123-123-3333")
         if(check_is_valid_url(passport_url) is False):
             return return_error(400, "The passport url should be of correct format should be of format https://myimage.com")
 
