@@ -28,7 +28,6 @@ class BaseTest(unittest.TestCase):
             content_type="application/json",
         )
         auth_token = json.loads(response.data.decode("utf-8"))
-        print(auth_token)
         self.super_token = {"Authorization": "Bearer {}".format(auth_token['token'])}
 
         response=self.client.post(
@@ -43,8 +42,6 @@ class BaseTest(unittest.TestCase):
             data=json.dumps(user_login),
             content_type="application/json",
         )
-        user_token = json.loads(response.data.decode("utf-8"))
-        print(user_token)
-        self.user_token = {'Authorization': 'Bearer {}'.format(user_token['token'])}
-
+        auth_token = json.loads(response.data.decode("utf-8"))
+        self.user_token = {'Authorization': 'Bearer {}'.format(auth_token['token'])}
 

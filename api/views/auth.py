@@ -7,7 +7,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from api.utils.validator import check_json_new_user_keys,\
      return_error, validate_string_data_type,\
          sanitize_input, check_email_validity, check_is_valid_url,\
-             check_phone_number_validity, validate_password
+             check_phone_number_validity,validate_password
 
 from api.models.users_model import User
 
