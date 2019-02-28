@@ -79,4 +79,118 @@ header h1 .heading-style{
 }
 .login-area a:hover{
     color: gray;
+
 }
+
+.input-field{
+    margin-top: 30px;
+}
+
+/*Table styles*/
+table{
+    width: 100%;
+    margin:auto;
+    margin-top:30px;
+    border-collapse: collapse;
+    overflow-x: scroll;
+}
+
+th{
+    text-align: left;
+    padding-top: 8px;
+    background-color: #35424a;
+    color: #ffffff;
+}
+
+th, td{
+    border: 1px solid orangered;
+    padding: 10px;
+    text-align: center;
+}
+
+table a{
+    border: .5px solid #000000;
+    border-radius: 3px;
+    color: #ffffff;
+    padding: 5px;
+    text-decoration: none;
+    margin: 0 10px 0 0;
+
+}
+
+
+table a.button-edit{
+    background-color: chocolate;
+}
+
+table a.button-edit:hover{
+    background-color: green;
+    color: #ffffff;
+}
+
+table a.button-delete{
+    background-color: red;
+}
+
+table a.button-delete:hover{
+    background-color: green;
+    color: #ffffff;
+}
+
+ a.button-add{
+    background-color: #35424a;
+    margin-top: 30px;
+    width: 50px;
+    height: 10px;
+    padding: 6px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #ffffff;
+}
+a.button-add:hover{
+    background-color: green;
+    color: #ffffff;
+}
+
+select{
+    width: 100%;
+    background: none;
+    border:none;
+    width: 350px;
+    margin:20px 10px 20px 10px;
+    min-height: 40px;
+    cursor: pointer;
+}
+
+select:focus{
+    outline: none;
+}
+
+.select{
+    position: relative;
+    border: 1px solid orangered;
+    background: gray;
+    cursor: pointer;
+}
+
+.select option{
+    text-align: center;
+}
+
+/* Status bar notification */
+#status {
+    visibility: hidden;
+    min-width: 200px;
+    margin-left: -100px;
+    color: #ffffff;
+    text-align: center;
+    padding: 5px 10px 5px 10px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    top: 80%;
+    font-size: 15px;
+  }
+  #status.show{
+      visibility: visible;
+  }
