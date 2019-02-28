@@ -6,6 +6,8 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sign Up</title>
+    <script src="js/utility.js"></script>
+    <script src="js/sign_up.js"></script>
 </head>
 <body>
         <header>
@@ -13,20 +15,34 @@
                     <h1>Poli<span class="heading-style">Tico</span> ~ Election Services Portal</h1>
                 </div>
         </header>
-            <div class="login-area">
-                <h4>Create an Account</h4>
-                    <form action=""  class="login">
+                <div class="login-area">
+                    <h4>Create an Account</h4>
+                    <form onsubmit="userSignUp();"  class="login">
+
                         <div>
                             <label for="email" class="input-field">Email</label>
                             <input type="email" name="email" id="email" required>
                         </div>
                         <div>
-                            <label for="names">Full Names</label>
-                            <input type="text" name="names" id="names" required>
+                            <label for="first_name">First Name</label>
+                            <input type="text" name="first_name" id="first_name" required>
                         </div>
                         <div>
-                            <label for="id_number">Identification Number</label>
-                            <input type="text" name="id_number" id="id_number" required>
+                            <label for="last_name">Last Name</label>
+                            <input type="text" name="last_name" id="last_name" required>
+                        </div>
+                        <div>
+                            <label for="other_name">Other Name</label>
+                            <input type="text" name="other_name" id="other_name" required>
+                        </div>
+                        <div>
+                            <label for="passport_url">Passport URL</label>
+                            <input type="text" name="passport_url" id="passport_url" required placeholder="should be of the format http://site.com/my_image.png">
+                        </div>
+                        <div>
+                            <label for="phone_number">Phone Number</label>
+                            <input type="text" name="phone_number" id="phone_number" required placeholder="should be of the format 123-123-1234">
+
                         </div>
                         <div>
                             <label for="password"class="input-field">Password</label>
@@ -36,12 +52,13 @@
                             <label for="confirm-password"class="input-field">Confirm Password</label>
                             <input type="password" name="confirm-password" id="confirm-password" required>
                         </div>
-                        
                         <input type="submit" class="log-auth" value="Register">
-                        
+                        <a href="login.html">Click here Login if you already have an account</a>
+                       
                         <center><a href="index.html">Click here Login if you already have an account</a></center>
                     </form>
                 </div>
+                <div id="notification_status"><!--notification message goes here--></div>
             </div>
 </body>
 </html>

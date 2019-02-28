@@ -230,3 +230,21 @@ select:focus{
 .select option{
     text-align: center;
 }
+
+/* Status bar notification */
+#notification_status {
+    visibility: hidden;
+    min-width: 200px;
+    margin-left: -100px;
+    color: #ffffff;
+    text-align: center;
+    padding: 5px 10px 5px 10px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    top: 80%;
+    font-size: 15px;
+  }
+ #notification_status.make_visible{
+     visibility: visible;
+ }
