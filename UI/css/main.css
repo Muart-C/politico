@@ -5,15 +5,15 @@ body{
     background-color: #f4f4f4;
     font-size: 13px;
 }
-
-header .brand{
-    text-align: center;
+.container{
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
 }
 
-header .brand p{
-    font-size:20px;
-}
+/*Header section*/
 header .brand h1{
+    text-align: center;
     font-size:30px;
 }
 header h1{
@@ -24,6 +24,49 @@ header h1 .heading-style{
     color: orangered;
     font-weight: 300;
 }
+
+header#dashboard{
+    background: #35424a;
+    color: #ffffff;
+}
+
+header ul{
+    margin: 0;
+    padding: 0;
+}
+header li{
+    float: left;
+    display: inline;
+    padding-right: 10px;
+}
+
+header #top-nav-brand{
+    float: left; 
+}
+header a{
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 19px;
+}
+
+header a:hover{
+    color: #ffffff;
+}
+header nav{
+    float: right;
+    margin-top: 25px;
+}
+
+header .log-auth{
+    color: orangered;
+    font-weight: 700;
+}
+
+header #dash-header{
+    color: #ffffff;
+}
+
+/*Form Styles*/
 .login-area{
     background: #35424a;
     width: 370px;
@@ -54,6 +97,18 @@ header h1 .heading-style{
     color: #f4f4f4;
     font-size: 14px;
 }
+.login-area textarea{
+    border:none;
+    background:gray;
+    border-bottom: 1px solid orangered;
+    outline:none;
+    color: #f4f4f4;
+    font-size: 14px;
+    width: 350px;
+    margin:20px 10px 20px 10px;
+    text-align: center;
+    border-radius: 10px;
+}
 .login-area input[type="submit"]{
     border:none;
     outline:none;
@@ -79,7 +134,6 @@ header h1 .heading-style{
 }
 .login-area a:hover{
     color: gray;
-
 }
 
 .input-field{
@@ -191,6 +245,6 @@ select:focus{
     top: 80%;
     font-size: 15px;
   }
-  #notification_status.make_visible{
-      visibility: visible;
-  }
+ #notification_status.make_visible{
+     visibility: visible;
+ }

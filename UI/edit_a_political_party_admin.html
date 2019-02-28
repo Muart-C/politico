@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Edit a Political Party</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+</head>
+<body>
+   <header id="dashboard">
+       <div class="container">
+            <div id="top-nav-brand">
+                <h1 id="dash-header">Poli<span class="heading-style">Tico</span> ~ Election Services Portal</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a class="log-auth" href="index.html">Log out</a></li>
+                </ul>
+            </nav>
+       </div>
+   </header> 
+   <div class="login-area">
+        <h4>Edit a Political Party</h4>
+        
+            <form action="">
+                <div class="input-field">
+                   <center><label for="party_mail">Political party Email</label></center> 
+                    <input type="email" name="party_mail" id="party_mail">
+                </div>
+                <div>
+                    <center><label for="party_name">Political Party Name</label></center>
+                    <input type="text" name="party_name" id="party_name">
+                </div>
+                <div>
+                    <center><label for="slogan">Political Party Slogan</label></center>
+                    <input type="text" name="slogan" id="slogan" >
+                </div>
+                <div>
+                    <center><label for="party_bio">A brief Bio for the Party</label></center>
+                    <textarea name="party_bio" id="party_bio" cols="40" rows="5" required></textarea>
+                </div>
+                
+                <input type="submit" class="log-auth" value="Update the details">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
