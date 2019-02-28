@@ -178,7 +178,7 @@ select:focus{
 }
 
 /* Status bar notification */
-#status {
+#notification_status {
     visibility: hidden;
     min-width: 200px;
     margin-left: -100px;
@@ -191,6 +191,6 @@ select:focus{
     top: 80%;
     font-size: 15px;
   }
-  #status.show{
+  #notification_status.make_visible{
       visibility: visible;
   }

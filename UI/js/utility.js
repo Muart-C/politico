@@ -2,21 +2,21 @@ const BASE_API_URL = "https://api-politico-v2.herokuapp.com/api/v2/"
 
 
 function showErrorMessage(message){
-    document.getElementById('status').innerText = message
-    document.getElementById('status').style.backgroundColor = '#FC2D2D';
-    showStatus();
+    document.getElementById('notification_status').innerText = message
+    document.getElementById('notification_status').style.backgroundColor = '#FC2D2D';
+    showNotificationStatus();
 }
 
 function showSuccessMessage(message){
-    document.getElementById('status').innerText = message
-    document.getElementById('status').style.backgroundColor = '#4FC984';
-    showStatus();
+    document.getElementById('notification_status').innerText = message
+    document.getElementById('notification_status').style.backgroundColor = '#4FC984';
+    showNotificationStatus();
 }
 
-function showStatus() {
-    var statusClass = document.getElementById("status");
-    statusClass.className = "show";
+function showNotificationStatus() {
+    var notificationStatus = document.getElementById("notification_status");
+    notificationStatus.className = "make_visible";
     setTimeout(function(){
-        statusClass.className = statusClass.className.replace("show", "");
+        notificationStatus.className = notificationStatus.className.replace("make_visible", "");
     }, 5000);
   }
