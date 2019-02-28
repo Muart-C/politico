@@ -24,6 +24,7 @@ function userSignUp() {
         password: password,
         is_admin: false
     })
+    console.log(user_data)
 
     fetch(`${BASE_API_URL}/auth/signup`, {
         method:'POST',
@@ -33,6 +34,7 @@ function userSignUp() {
         body : user_data
     }).then(response => response.json())
     .then(data => {
+        console.log(user_data)
         if(data['data']){
             showSuccessMessage(`${user_data.firstName}, your account was successfully created you can now login into your account`)
             window.location.replace('login.html')
