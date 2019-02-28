@@ -1,5 +1,8 @@
 .env
+venv/
 .vscode/
 .coverage
 .pytest_cache/
 .sonarlint/
+__pycache__/
+api/

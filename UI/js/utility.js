@@ -1,4 +1,4 @@
-const BASE_API_URL = "https://api-politico-v2.herokuapp.com/api/v2/"
+const BASE_API_URL = "https://api-politico-v2.herokuapp.com/api/v2"
 
 
 function showErrorMessage(message){

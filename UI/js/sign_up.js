@@ -1,3 +1,4 @@
+const create_user_url = 'https://api-politico-v2.herokuapp.com/api/v2/auth/signup';
 function userSignUp() {
     let first_password = document.getElementById('password').value;
     let confirm_password = document.getElementById('confirm-password').value;
@@ -24,18 +25,22 @@ function userSignUp() {
         password: password,
         is_admin: false
     })
-
-    fetch(`${BASE_API_URL}/auth/signup`, {
+    let post_user ={
         method:'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body : user_data
-    }).then(response => response.json())
-    .then(data => {
-        if(data['data']){
-            showSuccessMessage(`${user_data.firstName}, your account was successfully created you can now login into your account`)
-            window.location.replace('login.html')
-        }
+        body : user_data,
+        headers: new Headers(
+            {
+                'Content-Type': 'application/json',
+            }
+        )
+    }
+    fetch(create_user_url, post_user)
+    .then(res => res.json())
+    .then((data) => {
+        if (data.status == 201) {
+            showSuccessMessage(`${user_data.firstName} you successfully created your account go ahead and login to your account`);
+            window.location.replace('index.html');
+        }else{}
     })
+    .catch(error => console.error('Error:', error));
 }

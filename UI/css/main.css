@@ -72,7 +72,7 @@ header #dash-header{
     width: 370px;
     color: #ffffff;
     padding: 10px;
-    top: 50%;
+    margin: 340px auto;
     left: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
