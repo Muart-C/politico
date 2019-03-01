@@ -17,6 +17,6 @@ function showNotificationStatus() {
     var notificationStatus = document.getElementById("notification_status");
     notificationStatus.className = "make_visible";
     setTimeout(function(){
-        notificationStatus.className = notificationStatus.className.replace("make_visible", "");
+    notificationStatus.className = notificationStatus.className.replace("make_visible", "");
     }, 5000);
   }

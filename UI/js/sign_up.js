@@ -38,8 +38,8 @@ function userSignUp() {
     .then(res => res.json())
     .then((data) => {
         if (data.status == 201) {
-            window.location.replace('index.html');
             showSuccessMessage(`${user_data.firstName} you successfully created your account go ahead and login to your account`);
+            window.location.replace('index.html');
         }else{
             showErrorMessage("An error occurred while creating a new user");
             console.log(data.status);
