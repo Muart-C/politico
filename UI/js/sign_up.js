@@ -39,7 +39,9 @@ function userSignUp() {
     .then((data) => {
         if (data.status == 201) {
             showSuccessMessage(`${user_data.firstName} you successfully created your account go ahead and login to your account`);
-            window.location.replace('index.html');
+            setTimeout(function () {
+                window.location.replace("index.html");
+            }, 4000);
         }else{
             showErrorMessage("An error occurred while creating a new user");
             console.log(data.status);
