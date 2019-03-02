@@ -1,8 +1,9 @@
 const login_user = 'https://api-politico-v2.herokuapp.com/api/v2/auth/login';
 
-if(window.localStorage.getItem('email') !== undefined){
+if(window.localStorage.getItem('email') !== null){
     document.getElementById('notification_status').innerText = `You successfully created your account go ahead and login to your account`;
     document.getElementById('notification_status').style.backgroundColor = '#4FC984';
+    document.getElementById('notification_status').className = "make_visible";
 }
 
 function userLogin() {
@@ -24,10 +25,9 @@ function userLogin() {
     fetch(login_user, post_user)
     .then(res => res.json())
     .then((data) => {
-        if (data.status == 200) {
-            let admin = data['data'][0]['user']['is_admin'];
-            let auth_token = data['data'][0]['token'];
-            window.localStorage.setItem('token', auth_token);
+        if (data['token']) {
+            let token = data['token'];
+            window.localStorage.setItem('token', token);
             window.localStorage.setItem('admin', admin);
             if(admin){
                 window.location.replace('admin.html');
@@ -36,7 +36,7 @@ function userLogin() {
             }
         }else{
             showErrorMessage("An error occurred while logging in to your account");
-            console.log(data.status);
+            //console.log(data.status);
         }
     })
     .catch(error => console.error('Error:', error));
