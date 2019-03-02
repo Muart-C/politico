@@ -21,7 +21,7 @@ def handle_500_error(err):
 def create_app(configuration):
     app = Flask(__name__, instance_relative_config=True)
 
-    JWTManager(app)
+    jwt = JWTManager(app)
 
     app.register_error_handler(405, handle_405_error)
     app.register_error_handler(404, handle_404_error)
