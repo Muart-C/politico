@@ -10,6 +10,7 @@ function showErrorMessage(message){
 function showSuccessMessage(message){
     document.getElementById('notification_status').innerText = message;
     document.getElementById('notification_status').style.backgroundColor = '#4FC984';
+    showNotificationStatus();
 }
 
 function showNotificationStatus() {

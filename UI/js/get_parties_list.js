@@ -12,11 +12,11 @@ function initParties() {
         fetch(`${BASE_API_URL}/parties`, get_parties)
         .then(res => res.json())
         .then((data) => {
-            if(data['data']){
+            if(data.length > 0){
                 getAllParties(data);
-            }else{
                 console.log(data);
-                showErrorMessage(data['error']);
+            }else{
+                showSuccessMessage("No parties were registered kindly add one");
             }
         })
         function getAllParties(data){
