@@ -1,5 +1,4 @@
 function getAllParties(data){
-    console.log(data);
     let dataBodyHolder = document.getElementsByTagName('tbody')[0];
     for (let index = 0; index < data.length; index++) {
         let dataRow = `
@@ -7,7 +6,7 @@ function getAllParties(data){
             <td><img src="${data[index].logo_url}" alt="${data[index].name} Logo"> </td>
             <td>${data[index].name}</td>
             <td>${data[index].hq_address}</td>
-            <td><a class="button-edit" href="edit_a_political_party_admin.html">Edit</a><a class="button-delete" href="http://delete">Delete</a></td>
+            <td><a class="button-edit" href="edit_a_political_party_admin.html?party_id=${data[index]}">Edit</a><a class="button-delete" href="http://delete">Delete</a></td>
         </tr>
        `
        dataBodyHolder.insertAdjacentHTML('afterbegin', dataRow);
@@ -27,7 +26,6 @@ function initParties() {
         .then(res => res.json())
         .then((data) => {
             if(data['data'].length > 0){
-                console.log(data['data']);
                 getAllParties(data['data']);
             }else{
                 showSuccessMessage("No parties were registered kindly add one");
