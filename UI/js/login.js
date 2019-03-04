@@ -27,16 +27,17 @@ function userLogin() {
     .then((data) => {
         if (data['token']) {
             let token = data['token'];
-            window.localStorage.setItem('token', token);
-            window.localStorage.setItem('admin', admin);
-            if(admin){
-                window.location.replace('admin.html');
+            let admin = data['is_admin'];
+            sessionStorage.setItem('token', token);
+            sessionStorage.setItem('admin', admin);
+            if(admin == true){
+                window.location.replace('view_list_of_political_parties_admin.html');
             }else{
-                window.location.replace('user.html');
+                window.location.replace('view_list_of_vying_politicians.html');
             }
         }else{
-            showErrorMessage("An error occurred while logging in to your account");
-            //console.log(data.status);
+            showErrorMessage(data['error']);
+            console.log(data.status);
         }
     })
     .catch(error => console.error('Error:', error));

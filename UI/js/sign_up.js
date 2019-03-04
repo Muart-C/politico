@@ -41,7 +41,7 @@ function userSignUp() {
             window.localStorage.setItem('email', email);
             window.location.replace("index.html");
         }else{
-            showErrorMessage("An error occurred while creating a new user");
+            showErrorMessage(data['error']);
             console.log(data.status);
         }
     })
