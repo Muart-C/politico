@@ -58,7 +58,7 @@ def get_parties():
     registered_parties=parties.get_parties()
     if registered_parties:
         return return_response(200, "The request to get a list for parties was successful", registered_parties)
-    return return_error(200, "There are no parties registered yet")
+    return return_response(200, "No parties were found register a party", registered_parties)
 
 @PARTY_BLUEPRINT.route('/parties/<int:id>', methods=['GET'])
 def get_party(id):

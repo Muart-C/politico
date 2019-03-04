@@ -63,7 +63,7 @@ def get_offices():
     political_offices = offices.get_offices()
     if political_offices:
         return return_response(200, "Request was successful", political_offices)
-
+    return return_response(200, "No government offices were found register an office", political_offices)
 
 @OFFICE_BLUEPRINT.route('/offices/<int:id>/result', methods=['GET'])
 def get_results(id):
@@ -71,7 +71,7 @@ def get_results(id):
     office = office.get_office(id)
     office = json.loads(office)
     if not office:
-        return return_error(404, "no result of that office was found")
+        return return_error(404, "no result of that office was found please register a new office")
     vote = Vote(office_id=None,user_id=None, candidate_id=None)
     result = vote.get_results_of_a_particular_office(id)
     results = json.loads(result)
