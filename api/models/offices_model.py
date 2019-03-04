@@ -32,7 +32,7 @@ class Office(DatabaseSetup):
         offices=self.cursor.fetchall()
         offices_list = []
         for office in offices:
-            office = {'name': office[1], 'office_type': office[2]}
+            office = {'office_id': office[0], 'name': office[1], 'office_type': office[2]}
             offices_list.append(office)
         return offices_list
 

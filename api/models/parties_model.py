@@ -27,7 +27,7 @@ class Party(DatabaseSetup):
         parties=self.cursor.fetchall()
         parties_list = []
         for party in parties:
-            party = {'name': party[1], 'hq_address': party[2], 'logo_url': party[3]}
+            party = {'party_id': party[0],'name': party[1], 'hq_address': party[2], 'logo_url': party[3]}
             parties_list.append(party)
         return parties_list
 
