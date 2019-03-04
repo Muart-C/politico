@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
     <title>View Political parties</title>
+    <script src="js/utility.js"></script>
+    <script src="js/get_parties_list.js"></script>
+    <script>
+        triggerAdminDefaults();
+    </script>
 </head>
 <body>
         <header id="dashboard">
@@ -21,9 +26,8 @@
                 </div>
             </header>
             <div class="container">
-                <center><h3>Political Parties</h3></center>
+                <h3>Political Parties</h3>
                 <div><a class="button-add" href="create_a_political_party_admin.html">Add a Party</a><span>||</span><a class="button-add" href="create_a_government_office_admin.html">Add a Government office</a></div>
-                
                 <table>
                     <thead>
                         <tr>
@@ -34,24 +38,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>narckenya@c.com</td>
-                            <td>Narc Kenya</td>
-                            <td>We are one</td>
-                            <td><a class="button-edit" href="edit_a_political_party_admin.html">Edit</a><a class="button-delete" href="http://delete">Delete</a></td>
-                        </tr>
-                        <tr>
-                                <td>narckenya@c.com</td>
-                                <td>Narc Kenya</td>
-                                <td>We are one</td>
-                                <td><a class="button-edit" href="edit_a_political_party_admin.html">Edit</a><a class="button-delete" href="http://delete">Delete</a></td>
-                            </tr>
-                            <tr>
-                            <td>narckenya@c.com</td>
-                            <td>Narc Kenya</td>
-                            <td>We are one</td>
-                            <td><a class="button-edit" href="edit_a_political_party_admin.html">Edit</a><a class="button-delete" href="http://delete">Delete</a></td>
-                        </tr>
+                       <!-- List of parties goes here -->
                     </tbody>
                     <tfoot>
                         <tr>

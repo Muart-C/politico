@@ -19,3 +19,7 @@ function showNotificationStatus() {
     notificationStatus.className = notificationStatus.className.replace("make_visible", "");
     }, 5000);
   }
+
+  function triggerAdminDefaults(){
+    initParties();
+  }
