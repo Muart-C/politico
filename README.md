@@ -6,7 +6,7 @@
 -----------------------------------------------------
 Politico is a platform that gives citizen an opportunity to vote for politicians running for different government offices while building trust in the process via the platform.
 
-The project UI Templates are hosted [here](https://muart-c.github.io/politico/UI/)
+The project UI Templates are hosted [here](https://muart-c.github.io/politico/UI/index.html)
 
 Pivotal Tracker An Agile Management tool contains the breakdown of the project breakdown and can be accessed via this [link here](https://www.pivotaltracker.com/n/projects/2241887)
 
