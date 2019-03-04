@@ -6,6 +6,8 @@
     <title>Politico</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+    <script src="js/utility.js"></script>
+    <script src="js/login.js"></script>
 </head>
 <body>
     <header>
@@ -16,7 +18,7 @@
             <div id="notification_status"><!--notification message goes here--></div>
             <div class="login-area">
                 <h4>Log In</h4>
-                <form action="" class="login">
+                <form onsubmit="userLogin(); return false;" class="login">
                     <div>
                         <label for="email" class="input-field">Email</label>
                         <input type="email" name="email" id="email" required>
@@ -26,8 +28,8 @@
                         <input type="password" name="password" id="password" required>
                     </div>
                     <input type="submit" class="log-auth" value="Log In">
-                <center><a href="password_reset.html">click here to reset your password</a><br></center>
-                <center><a href="signup.html">click here to create an account</a></center>
+                <a href="password_reset.html">click here to reset your password</a><br>
+                <a href="signup.html">click here to create an account</a>
                 </form>
             </div>
         </div>
