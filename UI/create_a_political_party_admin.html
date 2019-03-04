@@ -6,6 +6,8 @@
     <title>Create a Political Party</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+    <script src="js/utility.js"></script>
+    <script src="js/create_party.js"></script>
 </head>
 <body>
    <header id="dashboard">
@@ -19,29 +21,25 @@
                 </ul>
             </nav>
        </div>
-   </header> 
+   </header>
+   <div id="notification_status"><!--notification message goes here--></div>
    <div class="login-area">
         <h4>Create a Political Party</h4>
-        
-            <form action="">
+            <form onsubmit="createParty(); return false;">
                 <div class="input-field">
-                   <center><label for="party_mail">Political party Email</label></center> 
-                    <input type="email" name="party_mail" id="party_mail" required>
+                   <label for="logo_url">Political Logo URL</label>
+                    <input type="text" name="logo_url" id="logo_url" required>
                 </div>
-                <div>
-                    <center><label for="party_name">Political Party Name</label></center>
+                <div> 
+                    <label for="party_name">Political Party Name</label>
                     <input type="text" name="party_name" id="party_name" required>
                 </div>
                 <div>
-                    <center><label for="slogan">Political Party Slogan</label></center>
-                    <input type="text" name="slogan" id="slogan" required>
-                </div>
-                <div>
-                    <center><label for="party_bio">A brief Bio for the Party</label></center>
-                    <textarea name="party_bio" id="party_bio" cols="40" rows="5" required></textarea>
+                    <label for="hq_address">Political Party HQ Address</label>
+                    <input type="text" name="hq_address" id="hq_address" required>
                 </div>
                 <input type="submit" class="log-auth" value="Register the party">
-                <center><a href="view_list_of_political_parties_admin.html">Go back to view parties</a></center>
+                <a href="view_list_of_political_parties_admin.html">Go back to view parties</a>
             </form>
         </div>
     </div>

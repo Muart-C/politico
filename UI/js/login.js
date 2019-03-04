@@ -1,9 +1,7 @@
 const login_user = 'https://api-politico-v2.herokuapp.com/api/v2/auth/login';
 
 if(window.localStorage.getItem('email') !== null){
-    document.getElementById('notification_status').innerText = `You successfully created your account go ahead and login to your account`;
-    document.getElementById('notification_status').style.backgroundColor = '#4FC984';
-    document.getElementById('notification_status').className = "make_visible";
+    showSuccessMessage("You successfully created an account, Now login");
 }
 
 function userLogin() {
