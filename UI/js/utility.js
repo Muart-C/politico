@@ -10,6 +10,7 @@ function showErrorMessage(message){
 function showSuccessMessage(message){
     document.getElementById('notification_status').innerText = message;
     document.getElementById('notification_status').style.backgroundColor = '#4FC984';
+    showNotificationStatus();
 }
 
 function showNotificationStatus() {
@@ -18,4 +19,8 @@ function showNotificationStatus() {
     setTimeout(function(){
     notificationStatus.className = notificationStatus.className.replace("make_visible", "");
     }, 5000);
+  }
+
+  function triggerAdminDefaults(){
+    initParties();
   }
