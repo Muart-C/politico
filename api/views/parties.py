@@ -41,6 +41,7 @@ def add_parties():
                 "status":201,
                 "message":"Party {} created successfully".format(name),
                 "data": [{
+                    "party_id" : party[0],
                     "name" : name,
                     "hq_address":hqAddress
                 }]
