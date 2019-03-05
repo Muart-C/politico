@@ -6,6 +6,8 @@
     <title>Create a Government Office</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+    <script src="js/utility.js"></script>
+    <script src="js/create_office.js"></script>
 </head>
 <body>
    <header id="dashboard">
@@ -19,22 +21,26 @@
                 </ul>
             </nav>
        </div>
-   </header> 
+   </header>
+   <div id="notification_status"><!--notification message goes here--></div>
    <div class="login-area">
         <h4>Create a Government Office</h4>
-        
-            <form action="">
+            <form onsubmit="createOffice(); return false;">
                 <div class="input-field">
-                    <center><label for="office_name">office Name</label></center>
+                    <label for="office_name">office Name</label>
                     <input type="text" name="office_name" id="office_name" required>
                 </div>
-                <div>
-                    <center><label for="office_role">A brief description about the Office role</label></center>
-                    <textarea name="office_role" id="office_role" cols="40" rows="5" required></textarea>
+                <div class="input-field">
+                    <label for="office_name">Choose the office Type</label>
+                    <select name="office_type" id="office_type" required class="select">
+                        <option value="local">Local</option>
+                        <option value="federal">Federal</option>
+                        <option value="state">State</option>
+                        <option value="legislative">Legislative</option>
+                    </select>
                 </div>
-                
                 <input type="submit" class="log-auth" value="Create a Government Office">
-                <center><a href="view_list_of_political_parties_admin.html">Go back to view parties</a></center>
+                <a href="view_list_of_political_parties_admin.html">Go back to view parties</a>
             </form>
         </div>
     </div>
