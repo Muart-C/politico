@@ -6,7 +6,7 @@ function getAllParties(data){
             <td><img src="${data[index].logo_url}" alt="${data[index].name} Logo"> </td>
             <td>${data[index].name}</td>
             <td>${data[index].hq_address}</td>
-            <td><a class="button-edit" href="edit_a_political_party_admin.html?party_id=${data[index].party_id}">Edit</a><a class="button-delete" href="http://delete">Delete</a></td>
+            <td><a class="button-edit" href="edit_a_political_party_admin.html?party_id=${data[index].id}">Edit</a><a class="button-delete" href="http://delete">Delete</a></td>
         </tr>
        `
        dataBodyHolder.insertAdjacentHTML('afterbegin', dataRow);

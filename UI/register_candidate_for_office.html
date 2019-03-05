@@ -6,6 +6,11 @@
     <title>Vie for Office</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+    <script src="js/utility.js"></script>
+    <script src="js/create_candidate.js"></script>
+    <script>
+        populateCandidatesPage();
+    </script>
 </head>
 <body>
    <header id="dashboard">
@@ -15,6 +20,8 @@
             </div>
             <nav>
                 <ul>
+                        <li><a class="log-auth" href="view_list_of_political_parties_admin.html">Political Parties</a></li>
+                        <li><a class="log-auth" href="view_government_offices.html">Government Offices</a></li>
                     <li><a class="log-auth" href="index.html">Log out</a></li>
                 </ul>
             </nav>
@@ -22,31 +29,29 @@
    </header>
    <div class="login-area">
         <h4>Apply to vie for an Office seat</h4>
-            <form action="">
+            <form onsubmit="createCandidate(); return false;">
+                <div class="input-field">
+                    <label for="user">Choose a User to register as Candidate</label>
+                    <select name="user" id="user" required class="select">
+                        <option value="">Choose Candidate</option>
+                        <!-- Users will be populated here -->
+                    </select>
+                </div>
                 <div class="input-field">
                     <label for="office_name">Choose the office to vie for</label>
                     <select name="office_name" id="office_name" required class="select">
-                        <option value="">President</option>
-                        <option value="">Vice President</option>
-                        <option value="">Governor</option>
-                        <option value="">MCA</option>
+                        <option value="">Choose office</option>
+                        <!-- Offices will be populated here -->
                     </select>
                 </div>
                 <div>
                     <label for="party_name">Select your political party</label>
                     <select name="party_name" id="party_name" required class="select">
-                        <option value="">Narc Kenya</option>
-                        <option value="">Wiper</option>
-                        <option value="">Maendeleo chapchap</option>
-                        <option value="">ANC</option>
+                        <option value="">Choose Party</option>
+                        <!-- Parties will be populated here -->
                     </select>
                 </div>
-                <div>
-                    <label for="politician_manifesto">A brief bio about you and your manifesto</label>
-                    <textarea name="politician_manifesto" id="politician_manifesto" cols="40" rows="5" required></textarea>
-                </div>
-                
-                <input type="submit" class="log-auth" value="Vie for Office">
+                <input type="submit" class="log-auth" value="Register Candidate for Office">
             </form>
         </div>
     </div>
