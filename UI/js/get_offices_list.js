@@ -5,7 +5,7 @@ function getAllOffices(data){
         <tr>
             <td>${data[index].name}</td>
             <td>${data[index].office_type}</td>
-            <td><a class="button-edit" href="view_government_office.html?office_id=${data[index].office_id}">View Details</a></td>
+            <td><a class="button-edit" href="view_government_office.html?office_id=${data[index].id}">View Details</a></td>
         </tr>
        `
        dataBodyHolder.insertAdjacentHTML('afterbegin', dataRow);
