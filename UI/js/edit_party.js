@@ -1,3 +1,4 @@
+let partyID = new URL(window.location.href).searchParams.get("party_id");
 function editPartyName() {
     if(sessionStorage.getItem('admin', true)){
         let token = sessionStorage.getItem('token');
@@ -15,14 +16,13 @@ function editPartyName() {
                 'Authorization': 'Bearer ' + token
             })
         };
-        fetch(`${BASE_API_URL}/parties/${partyId}/name`, patch_party)
+        fetch(`${BASE_API_URL}/parties/${partyID}/name`, patch_party)
         .then(res => res.json())
         .then((data) => {
-            if(data.status == 201){
+            if(data.status == 200){
                 showSuccessMessage(`Party Name Successfully Updated`);
             }else{
-                console.log(data['error']);
-                //showErrorMessage(data['error']);
+                showErrorMessage(data['error']);
             }
         })
     };

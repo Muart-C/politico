@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
     <script src="js/utility.js"></script>
+    <script src="js/get_party.js"></script>
+    <script>
+    let partyId = new URL(window.location.href).searchParams.get("party_id");
+    getPartyPartyName(partyId);
+    </script>
     <script src="js/edit_party.js"></script>
 </head>
 <body>
@@ -28,9 +33,11 @@
             <form onsubmit="editPartyName(); return false;" class="login">
                 <div>
                     <label for="party_name">Political Party Name</label>
-                    <input type="text" name="party_name" id="party_name">
+                    <input type="text" name="party_name" id="party_name" value="" >
                 </div>
                 <input type="submit" class="log-auth" value="Update Party Name">
+                <br>
+                <a href="view_list_of_political_parties_admin.html">View other Parties</a>
             </form>
         </div>
     </div>

@@ -1,4 +1,4 @@
-function getParty(partyId){
+function getPartyPartyName(partyId){
     let get_party ={
         method:'GET',
         headers: new Headers(
@@ -11,8 +11,9 @@ function getParty(partyId){
     .then(res => res.json())
     .then((data) => {
         if(data['data'].length > 0){
-            let party_name = data['data']['name'];
-            localStorage.setItem('name', party_name);
+            let party_name = data['data'][0]['name'];
+            let name = document.getElementById('party_name');
+            name.value = party_name
         }else{
             showSuccessMessage("No party with such an id was found");
         }
