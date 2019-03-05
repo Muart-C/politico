@@ -17,11 +17,12 @@ def create_vote():
     key_errors=check_json_new_votes_keys(request)
     if key_errors:
         return return_error(400, "please provide valid json keys")
+
     try:
-        current_user = get_jwt_identity()
         data = request.get_json()
+        current_user = get_jwt_identity()
         candidate_id=data['candidate_id']
-        user_id=current_user['user_id']
+        user_id=current_user['id']
         office_id=data['office_id']
 
         if(validate_int_data_type(candidate_id) == False):
@@ -35,15 +36,13 @@ def create_vote():
 
 
     office = Office(name=None, office_type=None)
-    result = office.get_office(office_id)
-    office = json.loads(result)
-
+    office = office.get_office(office_id)
     if not office:
         return return_error(404, "Ensure that the office exists")
 
     candidate = Candidate(office_id=None, party_id=None, candidate_id=None)
-    result = candidate.get_candidate(candidate_id)
-    candidate = json.dumps(result)
+    candidate = candidate.get_candidate(candidate_id)
+    print(candidate)
     if not candidate:
         return return_error(404, "The candidate was not found.")
 
@@ -56,6 +55,7 @@ def create_vote():
                 "office" : office_id,
                 "candidate":candidate_id,
                 "voter": user_id
-            }]
+            }],
+            "message": "You voted successfully"
         }),201)
     return return_error(400, "Ensure that you fill all the fields")

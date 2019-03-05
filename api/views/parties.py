@@ -66,15 +66,11 @@ def get_party(id):
         return return_error(400, "Please provide the id")
     political_party = Party(name=None, hq_address=None, logo_url=None)
     party = political_party.get_party(id)
-    party = json.loads(party)
     if party:
         return make_response(jsonify({
             "status":200,
             "message":"The party was found",
-            "data": [{
-                "name" : party[1],
-                "hq_address":party[2]
-            }]
+            "data": party
         }), 200)
     return return_error(404, "Party was not found")
 
@@ -116,7 +112,6 @@ def delete_party(party_id):
 
         party = Party(name=None, hq_address=None,logo_url=None)
         party = party.get_party(party_id)
-        party = json.loads(party)
         if party:
             party_del = Party(name=None, hq_address=None,logo_url=None)
             party_del.delete_party(party_id)

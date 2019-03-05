@@ -86,21 +86,20 @@ def login():
     user = User(email=None, password=None, firstname=None,\
         lastname=None, othername=None, phone_number=None,\
              passport_url=None)
-    check_user = user.get_user(email=email)
-    user = json.loads(check_user)
+    user = user.get_user(email=email)
     if not user:
         return return_error(404, "User is not found")
-    check_password= check_password_hash(user[7],password)
+    check_password= check_password_hash(user['password'],password)
     if check_password:
         token = create_access_token({
-            "id" : user[0],
-            "is_admin" : user[8]
+            "id" : user["id"],
+            "is_admin" : user["is_admin"]
         }, expires_delta=None)
         if token:
             return make_response(jsonify({
                 "email":email,
                 "token": token,
-                "is_admin": user[8],
+                "is_admin": user["is_admin"],
             }), 200)
         return return_error("An error occurred when forming a token")
     else:

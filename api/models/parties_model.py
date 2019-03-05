@@ -25,18 +25,14 @@ class Party(DatabaseSetup):
     def get_parties(self):
         self.cursor.execute('''SELECT * FROM parties;''')
         parties=self.cursor.fetchall()
-        parties_list = []
-        for party in parties:
-            party = {'party_id': party[0],'name': party[1], 'hq_address': party[2], 'logo_url': party[3]}
-            parties_list.append(party)
-        return parties_list
+        return parties
 
     def get_party(self, party_id):
         self.cursor.execute('''SELECT * FROM parties WHERE id='{}';'''.format(party_id))
         party=self.cursor.fetchone()
         self.connection.commit()
         self.cursor.close()
-        return json.dumps(party, default=str)
+        return party
 
     def patch_party_name(self, party_id):
 	    self.cursor.execute('''SELECT * FROM parties WHERE id='{}';'''.format(party_id))
@@ -44,7 +40,7 @@ class Party(DatabaseSetup):
 	    if party:
                 self.cursor.execute('''UPDATE parties SET name='{}' WHERE id='{}';'''.format(self.name, party_id))
                 self.connection.commit()
-                return {'name': party[1], 'hq_address': party[2], 'logo_url': party[3]}
+                return party
 
 
     def delete_party(self, party_id):

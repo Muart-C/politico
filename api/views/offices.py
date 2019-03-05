@@ -69,15 +69,13 @@ def get_offices():
 def get_results(id):
     office = Office(name=None, office_type=None)
     office = office.get_office(id)
-    office = json.loads(office)
     if not office:
         return return_error(404, "no result of that office was found please register a new office")
     vote = Vote(office_id=None,user_id=None, candidate_id=None)
     result = vote.get_results_of_a_particular_office(id)
-    results = json.loads(result)
-    if results:
+    if result:
         return make_response(jsonify({
-            "office": results
+            "office": result
         }), 200)
 
 
@@ -88,16 +86,13 @@ def get_office(id):
     political_office = Office(name=None, office_type=None)
 
     office = political_office.get_office(id)
-
-    office = json.loads(office)
-
     if office:
         return make_response(jsonify({
             "status":200,
             "message":"Office was successfully retrieved",
             "data": [{
-                "name" : office[1],
-                "office_type":office[2]
+                "name" : office["name"],
+                "office_type":office["office_type"]
             }]
         }), 200)
     return return_error(404,"No office with that id was found")
@@ -121,29 +116,24 @@ def create_candidate(office_id):
                 is missing".format(e.args[0]))
 
         user = User()
-        result = user.get_user_by_id(candidate_id)
-        user = json.loads(result)
-
+        user = user.get_user_by_id(candidate_id)
         if not user:
             return return_error(404, "User does not exist")
 
         party = Party(name=None,hq_address=None, logo_url=None)
-        result = party.get_party(party_id)
-        party = json.loads(result)
+        party = party.get_party(party_id)
 
         if not party:
             return return_error(404, "The party does not exist")
 
         office = Office(name=None, office_type=None)
-        result = office.get_office(office_id)
-        office = json.loads(result)
+        office = office.get_office(office_id)
         if not office:
             return return_error(404, "The office does not exist")
 
         candidate = Candidate(office_id=None, candidate_id=None,\
                 party_id=None)
-        result = candidate.get_candidate(candidate_id)
-        candidate = json.loads(result)
+        candidate = candidate.get_candidate(candidate_id)
         if not candidate:
             candidate = Candidate(office_id=office_id, candidate_id=candidate_id,\
                 party_id=party_id)

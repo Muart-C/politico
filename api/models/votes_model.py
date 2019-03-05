@@ -1,5 +1,6 @@
 import json
 from werkzeug.security import generate_password_hash
+from psycopg2.extras import RealDictCursor
 from api.database.database import DatabaseSetup
 class Vote(DatabaseSetup):
     """votes model"""
@@ -40,4 +41,4 @@ class Vote(DatabaseSetup):
         total_votes=self.cursor.fetchall()
         self.connection.commit()
         self.cursor.close()
-        return json.dumps(total_votes, default=str)
+        return total_votes

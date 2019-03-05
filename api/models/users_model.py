@@ -40,7 +40,7 @@ class User(DatabaseSetup):
         user=self.cursor.fetchone()
         self.connection.commit()
         self.cursor.close()
-        return json.dumps(user, default=str)
+        return user
 
     @staticmethod
     def check_password_match(self, password_hash, password):
