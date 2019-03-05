@@ -42,6 +42,11 @@ class User(DatabaseSetup):
         self.cursor.close()
         return user
 
+    def get_users(self):
+        self.cursor.execute('''SELECT * FROM users WHERE is_admin='f';''')
+        users=self.cursor.fetchall()
+        return users
+
     @staticmethod
     def check_password_match(self, password_hash, password):
         return check_password_hash(password_hash, str(password))
@@ -51,4 +56,4 @@ class User(DatabaseSetup):
         user=self.cursor.fetchone()
         self.connection.commit()
         self.cursor.close()
-        return json.dumps(user, default=str)
+        return user
