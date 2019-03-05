@@ -24,7 +24,7 @@ function createParty(){
         .then(res => res.json())
         .then((data) => {
             if(data.status == 201){
-                showSuccessMessage(`Party ${post_party.name} Created Successfully`);
+                showSuccessMessage(`Party Created Successfully`);
             }else{
                 showErrorMessage(data['error']);
             }

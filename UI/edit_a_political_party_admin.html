@@ -6,6 +6,13 @@
     <title>Edit a Political Party</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+    <script src="js/utility.js"></script>
+    <script src="js/get_party.js"></script>
+    <script>
+    let partyId = new URL(window.location.href).searchParams.get("party_id");
+    getPartyPartyName(partyId);
+    </script>
+    <script src="js/edit_party.js"></script>
 </head>
 <body>
    <header id="dashboard">
@@ -19,29 +26,18 @@
                 </ul>
             </nav>
        </div>
-   </header> 
+   </header>
+   <div id="notification_status"><!--notification message goes here--></div>
    <div class="login-area">
         <h4>Edit a Political Party</h4>
-        
-            <form action="">
-                <div class="input-field">
-                   <center><label for="party_mail">Political party Email</label></center> 
-                    <input type="email" name="party_mail" id="party_mail">
-                </div>
+            <form onsubmit="editPartyName(); return false;" class="login">
                 <div>
-                    <center><label for="party_name">Political Party Name</label></center>
-                    <input type="text" name="party_name" id="party_name">
+                    <label for="party_name">Political Party Name</label>
+                    <input type="text" name="party_name" id="party_name" value="" >
                 </div>
-                <div>
-                    <center><label for="slogan">Political Party Slogan</label></center>
-                    <input type="text" name="slogan" id="slogan" >
-                </div>
-                <div>
-                    <center><label for="party_bio">A brief Bio for the Party</label></center>
-                    <textarea name="party_bio" id="party_bio" cols="40" rows="5" required></textarea>
-                </div>
-                
-                <input type="submit" class="log-auth" value="Update the details">
+                <input type="submit" class="log-auth" value="Update Party Name">
+                <br>
+                <a href="view_list_of_political_parties_admin.html">View other Parties</a>
             </form>
         </div>
     </div>
