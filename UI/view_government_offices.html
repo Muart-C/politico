@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
-    <title>View Political parties</title>
+    <title>View Government Offices</title>
     <script src="js/utility.js"></script>
-    <script src="js/get_parties_list.js"></script>
+    <script src="js/get_offices_list.js"></script>
     <script>
-        triggerAdminDefaults();
+        initOffices();
     </script>
 </head>
 <body>
@@ -20,7 +20,7 @@
                      </div>
                      <nav>
                          <ul>
-                                <li><a class="log-auth" href="view_government_offices.html">Government Offices</a></li>
+                             <li><a class="log-auth" href="view_list_of_political_parties_admin.html">Political Parties</a></li>
                              <li><a class="log-auth" href="index.html">Log out</a></li>
                          </ul>
                      </nav>
@@ -28,26 +28,24 @@
             </header>
             <div id="notification_status"><!--notification message goes here--></div>
             <div class="container">
-                <h3>Political Parties</h3>
-                <div><a class="button-add" href="create_a_political_party_admin.html">Add a Party</a></div>
+                <h3>Government Offices</h3>
+                <div><a class="button-add" href="create_a_government_office_admin.html">Add a Government Office</a></div>
                 <table>
                     <thead>
                         <tr>
-                            <th>Political party Logo</th>
-                            <th>Political Party Name</th>
-                            <th>Political Party Headquarter</th>
-                            <th>Action</th>
+                            <th>Office name</th>
+                            <th>Office Type</th>
+                            <th>View More</th>
                         </tr>
                     </thead>
                     <tbody>
-                       <!-- List of parties goes here -->
+                       <!-- List of offices goes here -->
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>Political party Logo</th>
-                            <th>Political Party Name</th>
-                            <th>Political Party Headquarter</th>
-                            <th>Action</th>
+                            <th>Office name</th>
+                            <th>Office Type</th>
+                            <th>View More</th>
                         </tr>
                     </tfoot>
                 </table>
