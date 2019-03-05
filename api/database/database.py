@@ -14,7 +14,7 @@ URL = app_config[configuration].DATABASE_POLITICO
 class DatabaseSetup:
     def __init__(self):
         self.connection = psycopg2.connect(URL)
-        self.cursor = self.connection.cursor()
+        self.cursor = self.connection.cursor(cursor_factory=RealDictCursor)
 
 
     def drop_data_from_tables(self):

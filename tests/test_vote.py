@@ -30,7 +30,7 @@ class TestVote(BaseTest):
             '/api/v2/votes',
             data = json.dumps(cast_vote),
             content_type = "application/json",
-            headers=self.super_token
+            headers=self.user_token
         )
         self.assertEqual(response.status_code, 201)
 

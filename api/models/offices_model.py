@@ -25,14 +25,10 @@ class Office(DatabaseSetup):
         office=self.cursor.fetchone()
         self.connection.commit()
         self.cursor.close()
-        return json.dumps(office, default=str)
+        return office
 
     def get_offices(self):
         self.cursor.execute('''SELECT * FROM offices;''')
         offices=self.cursor.fetchall()
-        offices_list = []
-        for office in offices:
-            office = {'name': office[1], 'office_type': office[2]}
-            offices_list.append(office)
-        return offices_list
+        return offices
 

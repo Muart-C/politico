@@ -25,6 +25,6 @@ class Candidate(DatabaseSetup):
         candidate=self.cursor.fetchone()
         self.connection.commit()
         self.cursor.close()
-        return json.dumps(candidate, default=str)
+        return candidate
 
 

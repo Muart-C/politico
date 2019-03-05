@@ -81,24 +81,26 @@ def login():
     if(check_email_validity(email) is False):
         return return_error(400, "Add a valid email address")
     if(validate_password(password) is False):
-        return return_error(400,"Password should be more than six characters")
+        return return_error(400,"Password should be more than six characters, also must contain at least one upper case letter and a number")
 
     user = User(email=None, password=None, firstname=None,\
         lastname=None, othername=None, phone_number=None,\
              passport_url=None)
-    check_user = user.get_user(email=email)
-    user = json.loads(check_user)
+    user = user.get_user(email=email)
     if not user:
         return return_error(404, "User is not found")
-    check_password= check_password_hash(user[7],password)
+    check_password= check_password_hash(user['password'],password)
     if check_password:
         token = create_access_token({
-            'user_id': user[0], 'is_admin':user[8]
-        }, expires_delta=datetime.timedelta(minutes=15))
+            "id" : user["id"],
+            "is_admin" : user["is_admin"]
+        }, expires_delta=None)
         if token:
             return make_response(jsonify({
                 "email":email,
                 "token": token,
+                "is_admin": user["is_admin"],
             }), 200)
+        return return_error("An error occurred when forming a token")
     else:
         return return_error(401, "Ensure you input valid email and password")

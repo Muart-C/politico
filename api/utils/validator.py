@@ -81,7 +81,7 @@ def check_json_new_user_keys(request):
 
 
 def check_json_new_votes_keys(request):
-    vote_keys = ["candidate_id","office_id","user_id"]
+    vote_keys = ["candidate_id","office_id"]
     errors = []
     for key in vote_keys:
         if not key in request.json:
