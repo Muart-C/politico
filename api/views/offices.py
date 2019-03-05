@@ -44,7 +44,6 @@ def add_offices():
                 "status":201,
                 "message":"Office {} created successfully".format(name),
                 "data": [{
-                    "office_id" : office[0],
                     "name" : name,
                     "office_type":office_type
                 }]
