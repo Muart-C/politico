@@ -27,4 +27,16 @@ class Candidate(DatabaseSetup):
         self.cursor.close()
         return candidate
 
+    def get_all_registered_candidates(self, office_id):
+        self.cursor.execute('''SELECT concat_ws(' ', firstname, lastname) AS candidate,
+         offices.name as office,parties.name as party, candidates.id as candidate_id, offices.id as office_id,
+         users.passport_url
+         FROM candidates
+         INNER JOIN users ON users.id = candidates.candidate_id
+         INNER JOIN parties ON parties.id = candidates.party_id
+         INNER JOIN offices ON offices.id = candidates.office_id
+         WHERE candidates.office_id = '{}';'''.format(office_id))
+        candidates=self.cursor.fetchall()
+        return candidates
+
 

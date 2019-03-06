@@ -80,6 +80,18 @@ def get_results(office_id):
     return return_error(404, "No results were found")
 
 
+
+@OFFICE_BLUEPRINT.route('/offices/<int:office_id>/candidates', methods=['GET'])
+def get_registered_candidates(office_id):
+    candidate = Candidate(office_id=None, party_id=None, candidate_id=None)
+    candidates = candidate.get_all_registered_candidates(office_id)
+    if candidates:
+        return make_response(jsonify({
+            "data": candidates
+        }), 200)
+    return return_error(404, "No Candidates are currently registered")
+
+
 @OFFICE_BLUEPRINT.route('/offices/<int:id>', methods=['GET'])
 def get_office(id):
     if(validate_int_data_type(id) == False):
