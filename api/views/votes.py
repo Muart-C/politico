@@ -28,12 +28,23 @@ def create_vote():
         return return_error(400, "an error occurred {} is missing".format(e.args[0]))
 
     candidate = Candidate(office_id=None, party_id=None, candidate_id=None)
+<<<<<<< Updated upstream
     result = candidate.get_candidate(candidate_id)
     if result is True:
         vote = Vote(office_id=office_id,user_id=user_id, candidate_id=candidate_id)
         new = vote.vote_for_a_candidate()
         if new:
             return make_response(jsonify({
+=======
+    candidate = candidate.get_candidate(candidate_id)
+    if not candidate:
+        return return_error(404, "The candidate was not found.")
+
+    vote = Vote(office_id=office_id,user_id=user_id, candidate_id=candidate_id)
+    new = vote.vote_for_a_candidate()
+    if new:
+        return make_response(jsonify({
+>>>>>>> Stashed changes
             "status":201,
             "data": [{
                 "office" : office_id,

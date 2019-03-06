@@ -65,11 +65,25 @@ def get_offices():
     #get a list of all  offices
     political_offices = offices.get_offices()
 
+<<<<<<< Updated upstream
     #checks if a list of political offices exists then returns it
     if political_offices:
         return return_response(200, "request was successful", political_offices)
     #incase the request is unsuccessful json error response is returned
     return return_error(400, "there are no offices registered yet kindly register them")
+=======
+@OFFICE_BLUEPRINT.route('/offices/<int:office_id>/candidates', methods=['GET'])
+def get_registered_candidates(office_id):
+    candidate = Candidate(office_id=None, party_id=None, candidate_id=None)
+    candidates = candidate.get_all_registered_candidates(office_id)
+    if candidates:
+        return make_response(jsonify({
+            "data": candidates
+        }), 200)
+    return return_error(404, "No Candidates are currently registered")
+
+
+>>>>>>> Stashed changes
 
 #get a particular office route endpoint
 @OFFICE_BLUEPRINT.route('/offices/<int:id>', methods=['GET'])
