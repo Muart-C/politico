@@ -32,6 +32,7 @@ function initOffices() {
             }
         })
     }else{
+        window.localStorage.setItem("session_expired", "Your session has expired please log in");
         window.location.replace("index.html");
     }
 }

@@ -4,6 +4,11 @@ if(window.localStorage.getItem('email') !== null){
     showSuccessMessage("You successfully created an account, Now login");
 }
 
+if(window.localStorage.getItem('session_expired') !== null){
+    let message = window.localStorage.getItem('session_expired');
+    showSuccessMessage(message);
+}
+
 function userLogin() {
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
@@ -38,5 +43,7 @@ function userLogin() {
             console.log(data.status);
         }
     })
-    .catch(error => console.error('Error:', error));
+    .catch((error) => {
+        showErrorMessage('There is an issue with the internet please try again');
+    });
 }

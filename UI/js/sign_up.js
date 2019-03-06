@@ -45,5 +45,7 @@ function userSignUp() {
             console.log(data.status);
         }
     })
-    .catch(error => console.error('Error:', error));
+    .catch((error) => {
+        showErrorMessage('There is an issue with the internet please try again');
+    });
 }

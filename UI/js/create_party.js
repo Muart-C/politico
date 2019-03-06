@@ -25,9 +25,15 @@ function createParty(){
         .then((data) => {
             if(data.status == 201){
                 showSuccessMessage(`Party Created Successfully`);
-            }else{
+            }else if(data.status == 401){
+                window.localStorage.setItem("session_expired", "Your session has expired please log in");
+                window.location.replace("index.html")
+            }
+            else{
                 showErrorMessage(data['error']);
             }
-        })
+        }).catch((error) => {
+            showErrorMessage('There is an issue with the internet please try again');
+        });
     }
 }
