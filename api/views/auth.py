@@ -7,7 +7,8 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from api.utils.validator import check_json_new_user_keys,\
      return_error, validate_string_data_type,\
          sanitize_input, check_email_validity, check_is_valid_url,\
-             check_phone_number_validity,validate_password
+             check_phone_number_validity,validate_password,\
+             return_response
 
 from api.models.users_model import User
 
@@ -104,3 +105,14 @@ def login():
         return return_error("An error occurred when forming a token")
     else:
         return return_error(401, "Ensure you input valid email and password")
+
+@AUTH_BLUEPRINT.route('/users', methods=['GET'])
+def get_users():
+    """get all the users"""
+    user = User(email=None, password=None, firstname=None,\
+        lastname=None, othername=None, phone_number=None,\
+             passport_url=None)
+    users = user.get_users()
+    if users:
+        return return_response(200, "Request was successful", users)
+    return return_response(200, "No government users were found register an office", users)

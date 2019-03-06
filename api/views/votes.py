@@ -41,8 +41,8 @@ def create_vote():
         return return_error(404, "Ensure that the office exists")
 
     candidate = Candidate(office_id=None, party_id=None, candidate_id=None)
+
     candidate = candidate.get_candidate(candidate_id)
-    print(candidate)
     if not candidate:
         return return_error(404, "The candidate was not found.")
 
