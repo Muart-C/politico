@@ -8,10 +8,6 @@
     <title>View List of Vying Politicians</title>
     <script src="js/utility.js"></script>
     <script src="js/get_office.js"></script>
-    <script>
-    let officeId = new URL(window.location.href).searchParams.get("office_id");
-    getOfficeCandidates(officeId);
-    </script>
     <script src="js/vote.js"></script>
 </head>
 <body>
@@ -22,16 +18,16 @@
                      </div>
                      <nav>
                          <ul>
-                             <li><a class="log-auth" href="index.html">Log out</a></li>
+                            <li><a class="log-auth" href="view_offices.html">Offices</a></li>
+                            <li><a class="log-auth" href="index.html">Log out</a></li>
                          </ul>
                      </nav>
                 </div>
             </header>
             <div class="container">
                 <h3>List of Vying Politicians</h3>
+                <div><a class="button-add" href="view_offices.html">Vote for other Offices</a>
                 <div id="notification_status"><!--notification message goes here--></div>
-            <div class="container">
-                <h3>Government Offices</h3>
                 <table>
                     <thead>
                         <tr>

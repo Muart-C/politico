@@ -45,7 +45,7 @@ function getAllOfficesUsers(data){
         <tr>
             <td>${data[index].name}</td>
             <td>${data[index].office_type}</td>
-            <td><a class="button-edit" href="view_government_office.html?office_id=${data[index].id}">Proceed to vote</a></td>
+            <td><a class="button-edit" href="view_list_of_vying_politicians.html?office_id=${data[index].id}">Proceed to vote</a></td>
         </tr>
        `
        dataBodyHolder.insertAdjacentHTML('afterbegin', dataRow);
