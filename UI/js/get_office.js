@@ -1,4 +1,3 @@
-window.onload = () => {
     function getCandidates(data){
         let dataBodyHolder = document.getElementsByTagName('tbody')[0];
         for (let index = 0; index < data.length; index++) {
@@ -8,7 +7,7 @@ window.onload = () => {
                 <td>${data[index].candidate}</td>
                 <td>${data[index].office}</td>
                 <td>${data[index].party}</td>
-                <td><a class="button-edit" name="vote" party="jama" id="${data[index].candidate_id}">Vote</a></td>
+                <td><a class="button-edit" name="vote" party_id="${data[index].party_id}" candidate_id="${data[index].candidate_id}" office_id="${data[index].office_id}">Vote</a></td>
             </tr>
            `
            dataBodyHolder.insertAdjacentHTML('afterbegin', dataRow);
@@ -37,12 +36,4 @@ window.onload = () => {
     (() => {
         let officeId = new URL(window.location.href).searchParams.get("office_id");
         getOfficeCandidates(officeId);
-        let tableEl = document.getElementsByTagName("table")[0]
-        tableEl.addEventListener("click", (event) => {
-            if (event.target.name == "vote") {
-                console.log(event.target.attributes.party.nodeValue);
-                vote(parseInt(event.target.attributes.party.nodeValue))
-            }
-        })
     })()
-}
