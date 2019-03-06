@@ -114,7 +114,7 @@ window.onload = () => {
                     showSuccessMessage("Candidate registered successfully");
                 }else if(data.status == 409){
                     showErrorMessage('Candidate is already registered');
-                }else if(data.status == 401){
+                }else{
                     window.localStorage.setItem("session_expired", "Your session has expired please log in");
                     window.location.replace("index.html")
                 }
