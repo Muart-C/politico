@@ -180,6 +180,7 @@ table a.button-edit{
 table a.button-edit:hover{
     background-color: green;
     color: #ffffff;
+    cursor: pointer;
 }
 
 table a.button-delete{
@@ -204,6 +205,7 @@ table a.button-delete:hover{
 a.button-add:hover{
     background-color: green;
     color: #ffffff;
+    cursor: pointer;
 }
 
 select{

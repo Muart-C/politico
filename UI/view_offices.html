@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
-    <title>View List of Vying Politicians</title>
+    <title>View Government Offices</title>
     <script src="js/utility.js"></script>
-    <script src="js/get_office.js"></script>
-    <script src="js/vote.js"></script>
+    <script src="js/get_offices_list.js"></script>
+    <script>
+        initOfficesUsers();
+    </script>
 </head>
 <body>
         <header id="dashboard">
@@ -18,23 +20,20 @@
                      </div>
                      <nav>
                          <ul>
-                            <li><a class="log-auth" href="view_offices.html">Offices</a></li>
-                            <li><a class="log-auth" href="index.html">Log out</a></li>
+                             <li><a class="log-auth" href="view_results.html">View Results</a></li>
+                             <li><a class="log-auth" href="index.html">Log out</a></li>
                          </ul>
                      </nav>
                 </div>
             </header>
+            <div id="notification_status"><!--notification message goes here--></div>
             <div class="container">
-                <h3>List of Vying Politicians</h3>
-                <div><a class="button-add" href="view_offices.html">Vote for other Offices</a>
-                <div id="notification_status"><!--notification message goes here--></div>
+                <h3>Government Offices</h3>
                 <table>
                     <thead>
                         <tr>
-                            <th>Image</th>
-                            <th>Candidate</th>
-                            <th>Office</th>
-                            <th>Party</th>
+                            <th>Office name</th>
+                            <th>Office Type</th>
                             <th>View More</th>
                         </tr>
                     </thead>
@@ -43,10 +42,8 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>Image</th>
-                            <th>Candidate</th>
-                            <th>Office</th>
-                            <th>Party</th>
+                            <th>Office name</th>
+                            <th>Office Type</th>
                             <th>View More</th>
                         </tr>
                     </tfoot>

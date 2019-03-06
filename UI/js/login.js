@@ -36,7 +36,7 @@ function userLogin() {
             if(admin == true){
                 window.location.replace('view_list_of_political_parties_admin.html');
             }else{
-                window.location.replace('view_list_of_vying_politicians.html');
+                window.location.replace('view_offices.html');
             }
         }else{
             showErrorMessage(data['error']);
