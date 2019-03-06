@@ -183,6 +183,16 @@ table a.button-edit:hover{
     cursor: pointer;
 }
 
+table a.button-success{
+    background-color: green;
+}
+
+table a.button-success:hover{
+    background-color: orangered;
+    color: #ffffff;
+    cursor: pointer;
+}
+
 table a.button-delete{
     background-color: red;
 }
