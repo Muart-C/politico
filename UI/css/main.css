@@ -248,3 +248,19 @@ select:focus{
  #notification_status.make_visible{
      visibility: visible;
  }
+
+ #createCandidateBtn{
+    border:none;
+    outline:none;
+    height: 45px;
+    background: orangered;
+    color: #ffffff;
+    font-size: 20px;
+    border-radius: 20px;
+    text-align: center;
+ }
+ #createCandidateBtn:hover{
+    cursor: pointer;
+    background: gray;
+    color: orangered;
+}

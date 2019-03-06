@@ -9,7 +9,7 @@
     <script src="js/utility.js"></script>
     <script src="js/create_candidate.js"></script>
     <script>
-        populateCandidatesPage();
+        
     </script>
 </head>
 <body>
@@ -27,9 +27,10 @@
             </nav>
        </div>
    </header>
+   <div id="notification_status"><!--notification message goes here--></div>
    <div class="login-area">
         <h4>Apply to vie for an Office seat</h4>
-            <form onsubmit="createCandidate(); return false;">
+            <form>
                 <div class="input-field">
                     <label for="user">Choose a User to register as Candidate</label>
                     <select name="user" id="user" required class="select">
@@ -51,7 +52,7 @@
                         <!-- Parties will be populated here -->
                     </select>
                 </div>
-                <input type="submit" class="log-auth" value="Register Candidate for Office">
+                <input id="createCandidateBtn"  class="log-auth" value="Register Candidate for Office">
             </form>
         </div>
     </div>
