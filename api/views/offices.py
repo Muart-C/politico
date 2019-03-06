@@ -79,8 +79,6 @@ def get_results(office_id):
         }), 200)
     return return_error(404, "No results were found")
 
-
-
 @OFFICE_BLUEPRINT.route('/offices/<int:office_id>/candidates', methods=['GET'])
 def get_registered_candidates(office_id):
     candidate = Candidate(office_id=None, party_id=None, candidate_id=None)
@@ -90,7 +88,6 @@ def get_registered_candidates(office_id):
             "data": candidates
         }), 200)
     return return_error(404, "No Candidates are currently registered")
-
 
 @OFFICE_BLUEPRINT.route('/offices/<int:id>', methods=['GET'])
 def get_office(id):
