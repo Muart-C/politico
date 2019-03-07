@@ -22,10 +22,9 @@ window.onload = () => {
                 if(data.status == 201){
                     showSuccessMessage("You voted Successfully Check out other offices and vote for other candidates");
                 }else if(data.status == 409){
-                    showErrorMessage('You have already voted');
+                    showErrorMessage('You have already voted for this office vote for other offices');
                 }else{
-                    window.localStorage.setItem("session_expired", "Your session has expired please log in");
-                }
+                    sessionExpiry(data['msg']);                }
             })
             .catch((error) => {
                 showErrorMessage('Make sure you choose all the details since they are required fields');

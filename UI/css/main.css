@@ -200,6 +200,7 @@ table a.button-delete{
 table a.button-delete:hover{
     background-color: green;
     color: #ffffff;
+    cursor: pointer;
 }
 
  a.button-add{
@@ -278,4 +279,7 @@ select:focus{
 }
 .logout_user:hover{
     cursor: pointer;
+}
+.style_image{
+    width: 100px;
 }

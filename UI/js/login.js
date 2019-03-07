@@ -4,11 +4,7 @@ window.onload = () => {
     if(localStorage.getItem('email') !== null){
         showSuccessMessage("You successfully created an account, Now login");
     }else{
-        showSuccessMessage(localStorage.getItem('success'))
-    }
-
-    if(sessionStorage.getItem('session_expired') !== null){
-        let message = sessionStorage.getItem('session_expired');
+        let message = localStorage.getItem('session_expired');
         showSuccessMessage(message);
     }
 }
@@ -32,6 +28,8 @@ function userLogin() {
     .then(res => res.json())
     .then((data) => {
         if (data['token']) {
+            localStorage.clear()
+            sessionStorage.clear()
             let token = data['token'];
             let admin = data['is_admin'];
             sessionStorage.setItem('token', token);
