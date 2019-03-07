@@ -47,13 +47,15 @@ class User(DatabaseSetup):
         users=self.cursor.fetchall()
         return users
 
-    @staticmethod
-    def check_password_match(self, password_hash, password):
-        return check_password_hash(password_hash, str(password))
-
     def get_user_by_id(self, user_id):
         self.cursor.execute('''SELECT * FROM users WHERE id='{}';'''.format(user_id))
         user=self.cursor.fetchone()
+        self.connection.commit()
+        self.cursor.close()
+        return user
+
+    def update_password(self, email, password):
+	    self.cursor.execute('''UPDATE users SET password='{}' WHERE email='{}';'''.format(password, email))
         self.connection.commit()
         self.cursor.close()
         return user
