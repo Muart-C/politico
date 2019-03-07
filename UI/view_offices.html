@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
     <title>View Government Offices</title>
     <script src="js/utility.js"></script>
+    <script src="js/logout.js"></script>
     <script src="js/get_offices_list.js"></script>
     <script>
         initOfficesUsers();
@@ -19,15 +20,16 @@
                          <h1 id="dash-header">Poli<span class="heading-style">Tico</span> ~ Election Services Portal</h1>
                      </div>
                      <nav>
-                         <ul>
-                             <li><a class="log-auth" href="index.html">Log out</a></li>
+                            <ul>
+                            <li><a class="log-auth" href="offices_check_results.html">View Results</a></li>
+                            <li><a class="log-auth" logout="logout">Log out</a></li>
                          </ul>
                      </nav>
                 </div>
             </header>
             <div id="notification_status"><!--notification message goes here--></div>
             <div class="container">
-                <h3>Government Offices</h3>
+                <h3>Choose Government Office to vote for</h3>
                 <table>
                     <thead>
                         <tr>

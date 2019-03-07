@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
-    <title>View List of Vying Politicians</title>
+    <title>View Government Offices</title>
     <script src="js/utility.js"></script>
     <script src="js/logout.js"></script>
-    <script src="js/get_office_results.js"></script>
+    <script src="js/get_offices_list.js"></script>
+    <script>
+        checkOffices();
+    </script>
 </head>
 <body>
         <header id="dashboard">
@@ -18,31 +21,32 @@
                      </div>
                      <nav>
                          <ul>
-                            <li><a class="log-auth" href="view_offices.html">Vote</a></li>
-                            <li><a class="log-auth" logout="logout">Log out</a></li>
+                             <li><a class="log-auth" href="view_offices.html">Vote</a></li>
+                             <li><a class="log-auth" href="#">Voting History</a></li>
+                             <li><a class="log-auth" logout="logout">Log out</a></li>
                          </ul>
                      </nav>
                 </div>
             </header>
+            <div id="notification_status"><!--notification message goes here--></div>
             <div class="container">
-                <h3>Results</h3>
-                <div id="notification_status"><!--notification message goes here--></div>
+                <h3>Government Offices Results</h3>
                 <table>
                     <thead>
                         <tr>
-                            <th>Candidate</th>
-                            <th>Office</th>
-                            <th>Number of Votes</th>
+                            <th>Office name</th>
+                            <th>Office Type</th>
+                            <th>View More</th>
                         </tr>
                     </thead>
                     <tbody>
-                       <!-- List of vote results goes here -->
+                       <!-- List of offices goes here -->
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>Candidate</th>
-                            <th>Office</th>
-                            <th>Number of Votes</th>
+                            <th>Office name</th>
+                            <th>Office Type</th>
+                            <th>View More</th>
                         </tr>
                     </tfoot>
                 </table>
