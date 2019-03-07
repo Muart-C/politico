@@ -39,7 +39,10 @@ def create_vote():
     office = office.get_office(office_id)
     if not office:
         return return_error(404, "Ensure that the office exists")
-
+    vote = Vote(office_id=None,user_id=None, candidate_id=None)
+    vote =  vote.check_if_has_voted(user_id, office_id)
+    if vote:
+        return return_error(409, "You have already voted.")
     candidate = Candidate(office_id=None, party_id=None, candidate_id=None)
 
     candidate = candidate.get_candidate(candidate_id)
