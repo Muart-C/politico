@@ -1,3 +1,9 @@
+window.onload = () => {
+    if(localStorage.getItem('success') !== null){
+        showSuccessMessage("You need to login again");
+        window.location.replace("index.html")
+    }
+}
 function createOffice(){
     if(sessionStorage.getItem('admin', true)){
         let token = sessionStorage.getItem('token');
@@ -25,7 +31,7 @@ function createOffice(){
             }else if(data.status == 409){
                 showErrorMessage(data['error']);
             }else if(data.status == 401){
-                window.localStorage.setItem("session_expired", "Your session has expired please log in");
+                sessionStorage.setItem("session_expired", "Your session has expired please log in");
                 window.location.replace("index.html")
             }
             else{

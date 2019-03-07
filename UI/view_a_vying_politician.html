@@ -6,6 +6,8 @@
     <title>View a Politician </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+    <script src="js/utility.js"></script>
+    <script src="js/logout.js"></script>
 </head>
 <body>
    <header id="dashboard">
@@ -15,14 +17,13 @@
             </div>
             <nav>
                 <ul>
-                    <li><a class="log-auth" href="index.html">Log out</a></li>
+                    <li><a class="log-auth logout_user" logout="index.html">Log out</a></li>
                 </ul>
             </nav>
        </div>
-   </header> 
+   </header>
    <div class="login-area">
         <h4>Politician`s Details</h4>
-        
             <form action="">
                 <div class="input-field">
                     <input type="text" name="politican_name" id="politican_name" value="Alfred Mutua" readonly>
@@ -37,7 +38,6 @@
                     <label for="politician_manifesto">Politician`s bio and their Manifesto</label>
                     <textarea name="politician_manifesto" id="politician_manifesto" cols="40" rows="5" readonly placeholder="">Maendeleo kwa wote</textarea>
                 </div>
-                
                 <input type="submit" class="log-auth" value="Vote for Me">
                 <tr></tr>
                 <br>

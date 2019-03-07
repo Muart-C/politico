@@ -10,7 +10,7 @@
     <script src="js/logout.js"></script>
     <script src="js/get_offices_list.js"></script>
     <script>
-        initOffices();
+        checkOffices();
     </script>
 </head>
 <body>
@@ -21,8 +21,8 @@
                      </div>
                      <nav>
                          <ul>
-                             <li><a class="log-auth" href="view_list_of_political_parties_admin.html">Political Parties</a></li>
-                             <li><a class="log-auth" href="register_candidate_for_office.html">Add Candidates</a></li>
+                             <li><a class="log-auth" href="view_offices.html">Vote</a></li>
+                             <li><a class="log-auth" href="#">Voting History</a></li>
                              <li><a class="log-auth logout_user" logout="index.html">Log out</a></li>
                          </ul>
                      </nav>
@@ -30,8 +30,7 @@
             </header>
             <div id="notification_status"><!--notification message goes here--></div>
             <div class="container">
-                <h3>Government Offices</h3>
-                <div><a class="button-add" href="create_a_government_office_admin.html">Add an Office</a></div>
+                <h3>Government Offices Results</h3>
                 <table>
                     <thead>
                         <tr>

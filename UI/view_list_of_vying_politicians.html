@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
     <title>View List of Vying Politicians</title>
     <script src="js/utility.js"></script>
+    <script src="js/logout.js"></script>
     <script src="js/get_office.js"></script>
     <script src="js/vote.js"></script>
 </head>
@@ -18,15 +19,15 @@
                      </div>
                      <nav>
                          <ul>
-                            <li><a class="log-auth" href="view_offices.html">Offices</a></li>
-                            <li><a class="log-auth" href="index.html">Log out</a></li>
+                            <li><a class="log-auth" href="offices_check_results.html">View Office Results</a></li>
+                            <li><a class="log-auth logout_user" logout="index.html">Log out</a></li>
                          </ul>
                      </nav>
                 </div>
             </header>
             <div class="container">
                 <h3>List of Vying Politicians</h3>
-                <div><a class="button-add" href="view_offices.html">Vote for other Offices</a>
+                <div><a class="button-add" href="view_offices.html">Vote for other Offices</a></div>
                 <div id="notification_status"><!--notification message goes here--></div>
                 <table>
                     <thead>
@@ -36,7 +37,6 @@
                             <th>Office</th>
                             <th>Party</th>
                             <th>Vote</th>
-                            <th>View Results</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,7 +49,6 @@
                             <th>Office</th>
                             <th>Party</th>
                             <th>Vote</th>
-                            <th>View Results</th>
                         </tr>
                     </tfoot>
                 </table>
