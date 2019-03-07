@@ -25,8 +25,8 @@ function createParty(){
         .then((data) => {
             if(data.status == 201){
                 showSuccessMessage(`Party Created Successfully`);
-            }else if(data.status == 401){
-                window.localStorage.setItem("session_expired", "Your session has expired please log in");
+            }else if(data['msg']){
+                sessionExpiry(data['msg'])
             }
             else{
                 showErrorMessage(data['error']);

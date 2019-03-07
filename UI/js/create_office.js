@@ -30,9 +30,8 @@ function createOffice(){
                 showSuccessMessage(`office Created Successfully`);
             }else if(data.status == 409){
                 showErrorMessage(data['error']);
-            }else if(data.status == 401){
-                sessionStorage.setItem("session_expired", "Your session has expired please log in");
-                window.location.replace("index.html")
+            }else if(data['msg']){
+                sessionExpiry(data['msg']);
             }
             else{
                 showErrorMessage(data['error']);
