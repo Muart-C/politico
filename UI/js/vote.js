@@ -25,12 +25,13 @@ window.onload = () => {
                     showErrorMessage('You have already voted');
                 }else{
                     window.localStorage.setItem("session_expired", "Your session has expired please log in");
-                    window.location.replace("index.html")
                 }
             })
             .catch((error) => {
                 showErrorMessage('Make sure you choose all the details since they are required fields');
             });
+        }else{
+            window.location.replace("index.html")
         }
     }
     let tableEl = document.getElementsByTagName("table")[0]

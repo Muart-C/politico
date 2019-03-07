@@ -1,4 +1,9 @@
 window.onload = () => {
+    if(localStorage.getItem('success') !== null){
+        showSuccessMessage("You need to login again");
+        window.location.replace("index.html")
+    }
+}
     function populateUsers(data) {
         for (let index = 0; index < data.length; index++) {
             let options = `
@@ -115,22 +120,26 @@ window.onload = () => {
                 }else if(data.status == 409){
                     showErrorMessage('Candidate is already registered');
                 }else{
-                    window.localStorage.setItem("session_expired", "Your session has expired please log in");
+                    sessionStorage.setItem("session_expired", "Your session has expired please log in");
                     window.location.replace("index.html")
                 }
             })
             .catch((error) => {
                 showErrorMessage('Make sure you choose all the details since they are required fields');
             });
+        }else{
+            window.location.replace("index.html")
         }
     }
     (() => {
         populateCandidatesPage();
     })()
-
-    let createCandidateBtn = document.getElementById("createCandidateBtn")
-    createCandidateBtn.addEventListener("click", () => {
-        createCandidate();
-    })
-}
+    // window.onload = () => {
+    //     let createCandidateBtn = document.getElementById("createCandidateBtn")
+    //     console.log(createCandidateBtn)
+    //     createCandidateBtn.addEventListener("click", (event) => {
+    //         console.log(event.target.attributes.input)
+    //         createCandidate();
+    //     })
+    // }
 

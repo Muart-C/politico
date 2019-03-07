@@ -1,8 +1,14 @@
-let tableEl = document.getElementById('logout_user').value;
-console.log(tableEl)
-    tableEl.addEventListener("click", (event) => {
-        if (event.target.name == "logout") {
-            let logoutCommand = event.target.attributes.party_id.nodeValue;
-            console.log(logoutCommand)
+window.onload = () => {
+    let logoutLink = document.getElementsByTagName('nav')[0];
+    logoutLink.addEventListener("click", (event) => {
+        if (event.target.attributes.logout.nodeName == "logout") {
+            let logoutCommand = event.target.attributes.logout.nodeValue;
+            if(sessionStorage.getItem("token") !== null){
+                sessionStorage.clear()
+                localStorage.clear()
+                localStorage.setItem('success',"logged out successfully")
+                window.open(logoutCommand,"_self")
+            }
         }
     })
+}

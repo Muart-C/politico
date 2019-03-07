@@ -5,7 +5,7 @@ function getAllOffices(data){
         <tr>
             <td>${data[index].name}</td>
             <td>${data[index].office_type}</td>
-            <td><a class="button-edit" href="view_government_office.html?office_id=${data[index].id}">View Details</a></td>
+            <td><a class="button-edit" href="view_results.html?office_id=${data[index].id}">View Office Results</a></td>
         </tr>
        `
        dataBodyHolder.insertAdjacentHTML('afterbegin', dataRow);
@@ -32,7 +32,7 @@ function initOffices() {
             }
         })
     }else{
-        window.localStorage.setItem("session_expired", "Your session has expired please log in");
+        sessionStorage.setItem("session_expired", "Your session has expired please log in");
         window.location.replace("index.html");
     }
 }
@@ -65,14 +65,13 @@ function checkOffices() {
         .then(res => res.json())
         .then((data) => {
             if(data['data'].length > 0){
-                console.log(data['data'])
                 getOfficesToResults(data['data']);
             }else{
                 showSuccessMessage("No offices kindly register them");
             }
         })
     }else{
-        window.localStorage.setItem("session_expired", "Your session has expired please log in");
+        sessionStorage.setItem("session_expired", "Your session has expired please log in");
         window.location.replace("index.html");
     }
 }
@@ -111,7 +110,7 @@ function initOfficesUsers() {
             }
         })
     }else{
-        window.localStorage.setItem("session_expired", "Your session has expired please log in");
+        sessionStorage.setItem("session_expired", "Your session has expired please log in");
         window.location.replace("index.html");
     }
 }

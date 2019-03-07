@@ -1,14 +1,17 @@
 const login_user = 'https://api-politico-v2.herokuapp.com/api/v2/auth/login';
 
-if(window.localStorage.getItem('email') !== null){
-    showSuccessMessage("You successfully created an account, Now login");
-}
+window.onload = () => {
+    if(localStorage.getItem('email') !== null){
+        showSuccessMessage("You successfully created an account, Now login");
+    }else{
+        showSuccessMessage(localStorage.getItem('success'))
+    }
 
-if(window.localStorage.getItem('session_expired') !== null){
-    let message = window.localStorage.getItem('session_expired');
-    showSuccessMessage(message);
+    if(sessionStorage.getItem('session_expired') !== null){
+        let message = sessionStorage.getItem('session_expired');
+        showSuccessMessage(message);
+    }
 }
-
 function userLogin() {
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;

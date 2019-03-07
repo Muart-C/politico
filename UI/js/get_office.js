@@ -1,4 +1,11 @@
-    function getCandidates(data){
+window.onload = () => {
+    if(localStorage.getItem('success') !== null){
+        showSuccessMessage("You need to login again");
+        window.location.replace("index.html")
+    }
+}
+
+function getCandidates(data){
         let dataBodyHolder = document.getElementsByTagName('tbody')[0];
         for (let index = 0; index < data.length; index++) {
             let dataRow = `

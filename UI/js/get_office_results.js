@@ -1,11 +1,17 @@
+window.onload = () => {
+    if(localStorage.getItem('success') !== null){
+        showSuccessMessage("You need to login again");
+        window.location.replace("index.html")
+    }
+}
 function getResults(data){
     let dataBodyHolder = document.getElementsByTagName('tbody')[0];
     for (let index = 0; index < data.length; index++) {
         let dataRow = `
         <tr>
             <td>${data[index].candidate}</td>
-            <td>${data[index].office}</td>
-            <td>${data[index].results}</td>
+            <td>Office of the ${data[index].office}</td>
+            <td>${data[index].results} Total Votes</td>
         </tr>
        `
        dataBodyHolder.insertAdjacentHTML('afterbegin', dataRow);

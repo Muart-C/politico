@@ -41,7 +41,7 @@ header li{
 }
 
 header #top-nav-brand{
-    float: left; 
+    float: left;
 }
 header a{
     color: #ffffff;
@@ -275,4 +275,7 @@ select:focus{
     cursor: pointer;
     background: gray;
     color: orangered;
+}
+.logout_user:hover{
+    cursor: pointer;
 }

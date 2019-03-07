@@ -1,3 +1,9 @@
+window.onload = () => {
+    if(localStorage.getItem('success') !== null){
+        showSuccessMessage("You need to login again");
+        window.location.replace("index.html")
+    }
+}
 function getPartyPartyName(partyId){
     let get_party ={
         method:'GET',

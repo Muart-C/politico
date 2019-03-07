@@ -1,3 +1,12 @@
+window.onload = () => {
+    if(sessionStorage.getItem('token') !== null){
+        showSuccessMessage("You successfully logged in to your account");
+    }else if(localStorage.getItem('success') !== null){
+        showSuccessMessage("You need to login again");
+        window.location.replace("index.html")
+    }
+}
+
 function getAllParties(data){
     let dataBodyHolder = document.getElementsByTagName('tbody')[0];
     for (let index = 0; index < data.length; index++) {

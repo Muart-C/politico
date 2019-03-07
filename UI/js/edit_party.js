@@ -1,3 +1,9 @@
+window.onload = () => {
+    if(localStorage.getItem('success') !== null){
+        showSuccessMessage("You need to login again");
+        window.location.replace("index.html")
+    }
+}
 let partyID = new URL(window.location.href).searchParams.get("party_id");
 function editPartyName() {
     if(sessionStorage.getItem('admin', true)){
@@ -22,7 +28,7 @@ function editPartyName() {
             if(data.status == 200){
                 showSuccessMessage(`Party Name Successfully Updated`);
             }else if(data.status == 401){
-                window.localStorage.setItem("session_expired", "Your session has expired please log in");
+                sessionStorage.setItem("session_expired", "Your session has expired please log in");
                 window.location.replace("index.html");
             }
             else{
@@ -31,5 +37,7 @@ function editPartyName() {
         }).catch((error) => {
             showErrorMessage('There is an issue with the internet please try again');
         });
+    }else{
+        window.location.replace("index.html")
     }
 }
