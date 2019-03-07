@@ -1,8 +1,9 @@
 import datetime
 import json
 import re
-from flask import Blueprint, request, make_response, jsonify
+from flask import Blueprint, current_app, request, make_response, jsonify
 from flask_jwt_extended import create_access_token
+from flask_sendgrid import SendGrid
 from werkzeug.security import check_password_hash, generate_password_hash
 from api.utils.validator import check_json_new_user_keys,\
      return_error, validate_string_data_type,\
@@ -116,3 +117,23 @@ def get_users():
     if users:
         return return_response(200, "Request was successful", users)
     return return_response(200, "No government users were found register an office", users)
+
+@AUTH_BLUEPRINT.route('/auth/reset', methods=['POST'])
+def send_reset_link():
+    data = request.get_json()
+    email = data['email']
+    if(check_email_validity(email) is False):
+        return return_error(400, "Enter the correct email format i.e should contain @ and .")
+    user = User(email=None, password=None, firstname=None,\
+        lastname=None, othername=None, phone_number=None,\
+             passport_url=None)
+    user = user.get_user(email=email)
+    if not user:
+        return return_error(404, "User with that email does not exist kindly register")
+    mail_instance = SendGrid(current_app)
+    token = create_access_token({
+        "id" : user["id"],
+        }, expires_delta= datetime.timedelta(days=5))
+    reset_link = '''
+    https://muart-c.github.io/politico/UI/password-reset.html?token={}
+    '''.format(model.access_token)

@@ -3,7 +3,8 @@ import os
 class Config:
     DEBUG = False
     JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY')
-
+    SENDGRID_DEFAULT_FROM = os.getenv('SENDGRID_DEFAULT_FROM')
+    SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
 
 class TestingConfiguration(Config):
     TESTING = True
