@@ -55,7 +55,8 @@ class User(DatabaseSetup):
         return user
 
     def update_password(self, email, password):
-	    self.cursor.execute('''UPDATE users SET password='{}' WHERE email='{}';'''.format(password, email))
+        user=self.cursor.execute('''UPDATE users SET password='{}' WHERE \
+            email='{}';'''.format(password, email))
         self.connection.commit()
         self.cursor.close()
         return user
