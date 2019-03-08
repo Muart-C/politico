@@ -50,18 +50,18 @@ function updatePassword() {
     .then(res => res.json())
     .then((data) => {
         console.log(data)
-        if (data.status === 200) {
-            showSuccessMessage('Your password has been updated')
-            setTimeout(function(){
-                 window.location.replace('index.html')
-            }, 3000);
+//         if (data.status === 200) {
+//             showSuccessMessage('Your password has been updated')
+//             setTimeout(function(){
+//                  window.location.replace('index.html')
+//             }, 3000);
 
-        }else {
-            showErrorMessage(data['error'])
-        }
+//         }else {
+//             showErrorMessage(data['error'])
+//         }
 
-    })
-    .catch((error) => {
-        showErrorMessage('Ensure you are connected to internet')
+//     })
+//     .catch((error) => {
+//         showErrorMessage('Ensure you are connected to internet')
     });
 }
