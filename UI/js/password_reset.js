@@ -1,4 +1,5 @@
 const send_reset_url = 'https://api-politico-v2.herokuapp.com/api/v2/auth/reset';
+const new_password_url = 'https://api-politico-v2.herokuapp.com/api/v2/reset';
 function requestPasswordReset() {
     let email = document.getElementById('email').value;
     console.log(email)
@@ -36,7 +37,7 @@ function updatePassword() {
         showErrorMessage('Ensure your Password match');
         return;
     }
-    fetch(`${BASE_URL}/reset`, {
+    fetch(new_password_url, {
         method: 'POST',
         headers: new Headers({
             'Content-Type': 'application/json',
