@@ -1,8 +1,9 @@
 import datetime
 import json
 import re
-from flask import Blueprint, request, make_response, jsonify
+from flask import Blueprint, current_app, request, make_response, jsonify
 from flask_jwt_extended import create_access_token
+from flask_sendgrid import SendGrid
 from werkzeug.security import check_password_hash, generate_password_hash
 from api.utils.validator import check_json_new_user_keys,\
      return_error, validate_string_data_type,\
@@ -116,3 +117,60 @@ def get_users():
     if users:
         return return_response(200, "Request was successful", users)
     return return_response(200, "No government users were found register an office", users)
+
+@AUTH_BLUEPRINT.route('/auth/reset', methods=['POST'])
+def send_reset_link():
+    data = request.get_json()
+    email = data['email']
+    if(check_email_validity(email) is False):
+        return return_error(400, "Enter the correct email format i.e should contain @ and .")
+    user = User(email=None, password=None, firstname=None,\
+        lastname=None, othername=None, phone_number=None,\
+             passport_url=None)
+    user = user.get_user(email=email)
+    if not user:
+        return return_error(404, "User with that email does not exist kindly register")
+    mail_instance = SendGrid(current_app)
+    token = create_access_token({
+        "id" : user["id"],
+        }, expires_delta= datetime.timedelta(days=5))
+    reset_link = '''
+    https://muart-c.github.io/politico/UI/password_reset.html?token={}
+    '''.format(token)
+    mail_instance.send_email(
+        from_email='administrator@politico.com',
+        to_email=email,
+        subject='Hello {} Kindly reset your password'.format(user['firstname']),
+        html='''Click this link to reset your password {}'''.format(reset_link)
+    )
+    return make_response(jsonify({
+        "email":email,
+        "message" : "Check your email for the reset link",
+        }), 200)
+
+@AUTH_BLUEPRINT.route('/reset', methods=['POST'])
+def change_password():
+    data = request.get_json()
+    if not data:
+        return return_error(400, "ensure you pass the correct data")
+    email = data['email']
+    password = data['password']
+    if(check_email_validity(email) is False):
+        return return_error(400, "Add a valid email address")
+    if(validate_password(password) is False):
+        return return_error(400,"Password should be more than six characters, also must contain at least one upper case letter and a number")
+
+    user = User(email=None, password=None, firstname=None,\
+        lastname=None, othername=None, phone_number=None,\
+             passport_url=None)
+    user = user.get_user(email=email)
+    if not user:
+        return return_error(404, "User with that email address was not found please register as a new user")
+    user = User(email=None, password=None, firstname=None,\
+        lastname=None, othername=None, phone_number=None,\
+             passport_url=None)
+    hash_password = generate_password_hash(password)
+    update_password = user.update_password(email, hash_password)
+    if update_password:
+        return return_response(200, "Your password was successfully update login using your new password")
+    return return_error(400, "An error occurred while updating your password please proceed to reset your password again")

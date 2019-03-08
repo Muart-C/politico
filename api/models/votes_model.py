@@ -24,6 +24,13 @@ class Vote(DatabaseSetup):
             return self
         return True
 
+    def check_if_has_voted(self, user_id, office_id):
+        self.cursor.execute('''SELECT * FROM votes WHERE created_by='{}'\
+             AND office_id='{}';'''.format(user_id, office_id))
+        vote=self.cursor.fetchone()
+        self.connection.commit()
+        self.cursor.close()
+        return vote
 
     def get_results_of_a_particular_office(self, office_id):
         self.cursor.execute('''SELECT concat_ws(' ',users.firstname,users.lastname) AS candidate,
