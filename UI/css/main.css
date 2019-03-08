@@ -12,7 +12,7 @@ body{
 }
 
 /*Header section*/
-/* header .brand h1{
+ header .brand h1{
     text-align: center;
     font-size:30px;
 }
@@ -24,7 +24,7 @@ header h1 .heading-style{
     color: orangered;
     font-weight: 300;
 }
-
+/*
 header#dashboard{
     background: #35424a;
     color: #ffffff;

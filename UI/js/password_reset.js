@@ -1,6 +1,8 @@
+const send_reset_url = 'https://api-politico-v2.herokuapp.com/api/v2/auth/reset';
 function requestPasswordReset() {
     let email = document.getElementById('email').value;
-    fetch(`${BASE_API_URL}/auth/reset`, {
+    console.log(email)
+    fetch(send_reset_url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -9,18 +11,20 @@ function requestPasswordReset() {
             email: email
         }),
     })
+    console.log(BASE_API_URL)
     .then(res => res.json())
     .then((data) => {
-        if (data.status === 200) {
-            showSuccessMessage(data['message']);
-        }else {
-            showErrorMessage(data['error']);
-        }
+        console.log(data.status)
+        // if (data.status === 200) {
+        //     showSuccessMessage(data['message']);
+        // }else {
+        //     showErrorMessage(data['error']);
+        // }
 
     })
-    .catch((error) => {
-        showErrorMessage('An error occurred while checking your email');
-    });
+    // .catch((error) => {
+    //     showErrorMessage('An error occurred while checking your email');
+    // });
 }
 
 
