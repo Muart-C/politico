@@ -48,6 +48,7 @@ function updatePassword() {
     })
     .then(res => res.json())
     .then((data) => {
+        console.log(data)
         if (data.status === 200) {
             showSuccessMessage('Your password has been updated')
             setTimeout(function(){
