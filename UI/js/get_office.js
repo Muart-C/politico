@@ -10,7 +10,7 @@ function getCandidates(data){
         for (let index = 0; index < data.length; index++) {
             let dataRow = `
             <tr>
-                <td><img src="${data[index].passport_url}" alt="${data[index].candidate} Passport"> </td>
+                <td><img class="style_image" src="${data[index].passport_url}" alt="${data[index].candidate} Passport"> </td>
                 <td>${data[index].candidate}</td>
                 <td> Office of the ${data[index].office}</td>
                 <td>${data[index].party}</td>

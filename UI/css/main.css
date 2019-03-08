@@ -24,47 +24,6 @@ header h1 .heading-style{
     color: orangered;
     font-weight: 300;
 }
-/*
-header#dashboard{
-    background: #35424a;
-    color: #ffffff;
-}
-
-header ul{
-    margin: 0;
-    padding: 0;
-}
-header li{
-    float: left;
-    display: inline;
-    padding-right: 10px;
-}
-
-header #top-nav-brand{
-    float: left;
-}
-header a{
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 19px;
-}
-
-header a:hover{
-    color: #ffffff;
-}
-header nav{
-    float: right;
-    margin-top: 25px;
-}
-
-header .log-auth{
-    color: orangered;
-    font-weight: 700;
-}
-
-header #dash-header{
-    color: #ffffff;
-} */
 
 /*Form Styles*/
 .login-area{
@@ -200,6 +159,7 @@ table a.button-delete{
 table a.button-delete:hover{
     background-color: green;
     color: #ffffff;
+    cursor: pointer;
 }
 
  a.button-add{
@@ -398,4 +358,6 @@ select:focus{
     .nav-links li a{
         padding: 14px 4px;
     }
+.style_image{
+    width: 100px;
 }

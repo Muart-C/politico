@@ -27,9 +27,10 @@ function editPartyName() {
         .then((data) => {
             if(data.status == 200){
                 showSuccessMessage(`Party Name Successfully Updated`);
-            }else if(data.status == 401){
-                sessionStorage.setItem("session_expired", "Your session has expired please log in");
-                window.location.replace("index.html");
+            }else if(data['msg']){
+                let error_message = "Your Session "+ data['msg'] + " Please login again"
+                localStorage.setItem("session_expired", error_message);
+                window.location.replace("index.html")
             }
             else{
                 showErrorMessage(data['error']);

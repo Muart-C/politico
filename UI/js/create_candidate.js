@@ -120,8 +120,7 @@ window.onload = () => {
                 }else if(data.status == 409){
                     showErrorMessage('Candidate is already registered');
                 }else{
-                    sessionStorage.setItem("session_expired", "Your session has expired please log in");
-                    window.location.replace("index.html")
+                    sessionExpiry(data['msg']);
                 }
             })
             .catch((error) => {
@@ -134,12 +133,4 @@ window.onload = () => {
     (() => {
         populateCandidatesPage();
     })()
-    // window.onload = () => {
-    //     let createCandidateBtn = document.getElementById("createCandidateBtn")
-    //     console.log(createCandidateBtn)
-    //     createCandidateBtn.addEventListener("click", (event) => {
-    //         console.log(event.target.attributes.input)
-    //         createCandidate();
-    //     })
-    // }
 

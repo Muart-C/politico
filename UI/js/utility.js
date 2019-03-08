@@ -13,6 +13,11 @@ function showSuccessMessage(message){
     showNotificationStatus();
 }
 
+function sessionExpiry(message){
+  let error_message = "Your Session "+ message + " Please login again"
+  localStorage.setItem("session_expired", error_message);
+  window.location.replace("index.html")
+}
 function showNotificationStatus() {
     var notificationStatus = document.getElementById("notification_status")[0];
     notificationStatus.className = "make_visible";
