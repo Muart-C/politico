@@ -137,6 +137,7 @@ def send_reset_link():
     reset_link = '''
     https://muart-c.github.io/politico/UI/password_reset.html?token={}
     '''.format(token)
+    print(mail_instance)
     mail_instance.send_email(
         from_email='administrator@politico.com',
         to_email=email,
