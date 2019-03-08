@@ -14,19 +14,17 @@
     </script>
 </head>
 <body>
-        <header id="dashboard">
-                <div class="container">
-                     <div id="top-nav-brand">
-                         <h1 id="dash-header">Poli<span class="heading-style">Tico</span> ~ Election Services Portal</h1>
-                     </div>
-                     <nav>
-                        <ul>
-                          <li><a class="log-auth" href="offices_check_results.html">View Results</a></li>
-                          <li><a class="log-auth logout_user" logout="index.html">Log out</a></li>
-                         </ul>
-                     </nav>
+        <nav class="nav-bar">
+                <div class="nav-brand">
+                PoliTico ~ Election Services Portal
                 </div>
-            </header>
+                <div class="nav-links">
+                <ul>
+                    <li><a class="log-auth" href="offices_check_results.html">View Office Results</a></li>
+                    <li><a class="log-auth logout_user" logout="index.html">Log out</a></li>
+                </ul>
+                </div>
+        </nav>
             <div id="notification_status"><!--notification message goes here--></div>
             <div class="container">
                 <h3>Choose Government Office to vote for</h3>
@@ -50,5 +48,11 @@
                     </tfoot>
                 </table>
             </div>
+        <!-- <div class="spinner">
+            <div class="spinner-text">Wait..</div>
+            <div class="spinner-sector spinner-sector-orangered"></div>
+            <div class="spinner-sector spinner-sector-green"></div>
+            <div class="spinner-sector spinner-sector-lightblue"></div>
+        </div> -->
 </body>
 </html>
