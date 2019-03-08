@@ -51,17 +51,15 @@ function updatePassword() {
     .then((data) => {
         console.log(data)
         if (data.status === 200) {
-            showSuccessMessage('Your password has been updated')
+            alert('Your password has been updated')
+            localStorage.setItem('session_expired',"password reset successful go ahead and login")
             setTimeout(function(){
                  window.location.replace('index.html')
             }, 3000);
 
         }else {
-            showErrorMessage(data['error'])
+            alert('Password should be more than six characters, also must contain at least one upper case letter and a number')
         }
 
     })
-    .catch((error) => {
-        showErrorMessage('Ensure you are connected to internet')
-    });
 }

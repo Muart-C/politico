@@ -35,7 +35,6 @@ window.onload = () => {
     tableEl.addEventListener("click", (event) => {
         if (event.target.name == "delete_party") {
             let partyId = event.target.attributes.party_id.nodeValue;
-            console.log(partyId);
             deleteParty(partyId);
         }
     })
